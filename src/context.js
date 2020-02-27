@@ -23,7 +23,7 @@ class RoomProvider extends Component {
     }
     componentDidMount(){
         const self = this;
-        axios.get('http://localhost:1337/hotel-rooms')
+        axios.get('http://192.168.1.134:1337/hotel-rooms')
         .then(function (response) {
           // handle success
           console.log(response);
