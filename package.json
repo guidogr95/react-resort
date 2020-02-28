@@ -6,7 +6,7 @@
     "dev": "node server.js",
     "build": "next build",
     "export": "next export",
-    "deploy": "node server.js && npm run build && npm run export",
+    "deploy": "npm run build && npm run export && node server.js",
     "start": "next start"
   },
   "dependencies": {
