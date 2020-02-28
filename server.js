@@ -15,7 +15,7 @@ app.prepare()
     server.get('*', (req,res) => {
         return handle(req,res);
     })
-
+    console.log(process.env)
     const port = process.env.PORT || 3000;
 
     server.listen(port, err => {
