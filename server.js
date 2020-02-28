@@ -15,13 +15,13 @@ app.prepare()
     server.get('*', (req,res) => {
         return handle(req,res);
     })
-    console.log(process.env.PORT)
-    const port = process.env.PORT || 3000;
+    // console.log(process.env.PORT)
+    // const port = process.env.PORT || 3000;
 
-    server.listen(port, err => {
-        if(err) throw err;
-        console.log(port)
-    })
+    // server.listen(port, err => {
+    //     if(err) throw err;
+    //     console.log(port)
+    // })
 
 })
 .catch(err => {
