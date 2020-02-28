@@ -356,7 +356,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function RoomsContainer(props) {
   const context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_3__["RoomContext"]);
-  console.log(context);
   const {
     loading,
     sortedRooms,
@@ -367,7 +366,7 @@ function RoomsContainer(props) {
     return __jsx(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 11
       },
       __self: this
     });
@@ -377,14 +376,14 @@ function RoomsContainer(props) {
     rooms: rooms,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 15
     },
     __self: this
   }), __jsx(_RoomsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rooms: sortedRooms,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 16
     },
     __self: this
   }));
