@@ -23,7 +23,7 @@ class RoomProvider extends Component {
     }
     componentDidMount(){
         const self = this;
-        axios.get('https://hotel-react-heroku.neltify.com/hotel-rooms')
+        axios.get('https://hotel-react-heroku.netlify.com/hotel-rooms')
         .then(function (response) {
           // handle success
           console.log(response);
