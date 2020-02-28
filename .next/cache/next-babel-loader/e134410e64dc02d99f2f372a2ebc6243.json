@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nexport default function Banner({\n  children,\n  title,\n  subtitle\n}) {\n  return __jsx(\"div\", {\n    className: \"banner\"\n  }, __jsx(\"h1\", null, title), __jsx(\"div\", null), __jsx(\"p\", null, subtitle), children);\n}","map":null,"metadata":{},"sourceType":"module"}

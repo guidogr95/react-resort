@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nexport default function Hero({\n  children,\n  hero\n}) {\n  return __jsx(\"header\", {\n    className: hero\n  }, children);\n}\nHero.defaultProps = {\n  hero: \"defaultHero\"\n};","map":null,"metadata":{},"sourceType":"module"}
