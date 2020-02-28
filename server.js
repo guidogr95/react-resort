@@ -16,9 +16,11 @@ app.prepare()
         return handle(req,res);
     })
 
-    server.listen(3000, err => {
+    const port = process.env.PORT || 3000;
+
+    server.listen(port, err => {
         if(err) throw err;
-        console.log('ready on port 3000')
+        console.log(port)
     })
 
 })
