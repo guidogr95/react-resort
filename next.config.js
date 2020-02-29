@@ -17,7 +17,7 @@ module.exports = withImages(withCSS({
         data.forEach(room => {
             paths[`/room/${room.slug}`] = {page: '/room/[name]', query: {name: room.slug}};
         })
-        console.log(paths)
+        // console.log(paths)
         return paths;
     }
 }));

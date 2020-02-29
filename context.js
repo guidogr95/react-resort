@@ -23,9 +23,9 @@ class RoomProvider extends Component {
     }
     componentDidMount(){
         const self = this;
-        const APITOKEN = 'd1e4ead97f43b1e8086aa4abb8b5be';
+        const APITOKEN = 'f3341f2f85860e06446a5e86bfd392';
         axios.post('https://graphql.datocms.com/', 
-            {headers: { 'Content-Type': 'aplication/json', 'Accept': 'aplication/json', 'Authorization': `Bearer ${APITOKEN}`}},
+            {headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${APITOKEN}`,}},
             {data: {
                 query:
                 `query allRooms {
