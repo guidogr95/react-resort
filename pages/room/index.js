@@ -10,7 +10,7 @@ import { RoomContext, Room } from '../../context'
 import StyledHero from '../../components/StyledHero'
 import fetch from 'isomorphic-unfetch';
 
-class SingleRoom extends Component {
+class room extends Component {
     
     // static async getInitialProps({query}) {
     //     // console.log(query)
@@ -83,4 +83,4 @@ class SingleRoom extends Component {
     }
 }
 
-export default withRouter(SingleRoom);
+export default withRouter(room);
