@@ -23,11 +23,32 @@ class RoomProvider extends Component {
     }
     componentDidMount(){
         const self = this;
-        console.log('mounted')
-        axios.get('https://test-project-react.herokuapp.com/hotel-rooms')
+        const APITOKEN = 'd1e4ead97f43b1e8086aa4abb8b5be';
+        axios.post('https://graphql.datocms.com/', 
+            {headers: { 'Content-Type': 'aplication/json', 'Accept': 'aplication/json', 'Authorization': `Bearer ${APITOKEN}`}},
+            {data: {
+                query:
+                `query allRooms {
+                    name
+                    slug
+                    price
+                    roomtype
+                    size
+                    capacity
+                    breakfast
+                    pets
+                    featured
+                    description
+                    extras
+                    images {
+                      url
+                    }
+                  }`
+            }}
+        )
         .then(function (response) {
           // handle success
-          let rooms = self.formatData(response);
+          let rooms = self.formatData(response.data.allRooms);
           let featuredRooms = rooms.filter(room => room.featured === true);
             let maxPrice = Math.max(...rooms.map(item => item.price));
             let maxSize = Math.max(...rooms.map(item => item.size));
@@ -41,6 +62,8 @@ class RoomProvider extends Component {
                 maxSize
             })
           return rooms
+        }).catch(error => {
+            console.log(error)
         })
         // let rooms = this.formatData(items);
         // let featuredRooms = rooms.filter(room => room.featured === true);

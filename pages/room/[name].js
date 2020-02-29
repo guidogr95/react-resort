@@ -35,8 +35,7 @@ class room extends Component {
         }
         const { name,description,capacity,size,price,extras,breakfast,pets,images } = this.state.room
         const roomimages = images.map(image => image.url);
-        const [mainImg,...defaultImg] = roomimages
-        console.log(mainImg)
+        const [mainImg,...defaultImg] = roomimages;
         return (
             <>
             <Head>

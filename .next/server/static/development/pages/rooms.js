@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -885,10 +885,35 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidMount() {
     const self = this;
-    console.log('mounted');
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
+    const APITOKEN = 'd1e4ead97f43b1e8086aa4abb8b5be';
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('https://graphql.datocms.com/', {
+      headers: {
+        'Content-Type': 'aplication/json',
+        'Accept': 'aplication/json',
+        'Authorization': `Bearer ${APITOKEN}`
+      }
+    }, {
+      data: {
+        query: `query allRooms {
+                    name
+                    slug
+                    price
+                    roomtype
+                    size
+                    capacity
+                    breakfast
+                    pets
+                    featured
+                    description
+                    extras
+                    images {
+                      url
+                    }
+                  }`
+      }
+    }).then(function (response) {
       // handle success
-      let rooms = self.formatData(response);
+      let rooms = self.formatData(response.data.allRooms);
       let featuredRooms = rooms.filter(room => room.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
@@ -902,6 +927,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         maxSize
       });
       return rooms;
+    }).catch(error => {
+      console.log(error);
     }); // let rooms = this.formatData(items);
     // let featuredRooms = rooms.filter(room => room.featured === true);
     // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -925,7 +952,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 115
+        lineNumber: 138
       },
       __self: this
     }, this.props.children);
@@ -939,14 +966,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 155
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 133
+        lineNumber: 156
       },
       __self: this
     })));
@@ -3576,7 +3603,7 @@ const Rooms = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/rooms.js ***!
   \******************************/

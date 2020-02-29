@@ -349,10 +349,20 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var self = this;
-      console.log('mounted');
-      axios__WEBPACK_IMPORTED_MODULE_18___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
+      var APITOKEN = 'd1e4ead97f43b1e8086aa4abb8b5be';
+      axios__WEBPACK_IMPORTED_MODULE_18___default.a.post('https://graphql.datocms.com/', {
+        headers: {
+          'Content-Type': 'aplication/json',
+          'Accept': 'aplication/json',
+          'Authorization': "Bearer ".concat(APITOKEN)
+        }
+      }, {
+        data: {
+          query: "query allRooms {\n                    name\n                    slug\n                    price\n                    roomtype\n                    size\n                    capacity\n                    breakfast\n                    pets\n                    featured\n                    description\n                    extras\n                    images {\n                      url\n                    }\n                  }"
+        }
+      }).then(function (response) {
         // handle success
-        var rooms = self.formatData(response);
+        var rooms = self.formatData(response.data.allRooms);
         var featuredRooms = rooms.filter(function (room) {
           return room.featured === true;
         });
@@ -372,6 +382,8 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           maxSize: maxSize
         });
         return rooms;
+      })["catch"](function (error) {
+        console.log(error);
       }); // let rooms = this.formatData(items);
       // let featuredRooms = rooms.filter(room => room.featured === true);
       // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -396,7 +408,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 138
         },
         __self: this
       }, this.props.children);
@@ -412,7 +424,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 155
       },
       __self: this
     }, function (value) {
@@ -420,7 +432,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 156
         },
         __self: this
       }));
