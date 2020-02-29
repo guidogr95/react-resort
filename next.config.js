@@ -12,9 +12,21 @@ module.exports = withImages(withCSS({
             '/': {page: '/'},
             '/rooms': {page: '/rooms'}
         };
-        const res = await fetch('https://test-project-react.herokuapp.com/hotel-rooms');
+        // const res = await fetch('https://test-project-react.herokuapp.com/hotel-rooms');
+        const res = await fetch('https://graphql.datocms.com/',{
+            method: "POST",
+            body: JSON.stringify({
+                query: `{ allRooms {
+                    slug
+                  } }`
+            }),
+            headers: {
+                'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer f3341f2f85860e06446a5e86bfd392'
+            }
+        });
         const data = await res.json();
-        data.forEach(room => {
+        const roomData = data.data.allRooms
+        roomData.forEach(room => {
             paths[`/room/${room.slug}`] = {page: '/room/[name]', query: {name: room.slug}};
         })
         // console.log(paths)
