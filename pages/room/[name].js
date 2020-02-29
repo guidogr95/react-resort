@@ -3,12 +3,10 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 //Components
 // import defaultBcg from '../images/room-1.jpeg'
-import Hero from '../../components/Hero'
 import Banner from '../../components/Banner'
 //Context
-import { RoomContext, Room } from '../../context'
+import { RoomContext, RoomProvider } from '../../context'
 import StyledHero from '../../components/StyledHero'
-import fetch from 'isomorphic-unfetch';
 
 class room extends Component {
     
