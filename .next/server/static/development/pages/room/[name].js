@@ -3060,20 +3060,18 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       pets,
       images
     } = this.state.room;
-    console.log(this.state.room);
     const roomimages = images.map(image => image.url);
     const [mainImg, ...defaultImg] = roomimages;
-    console.log(mainImg);
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 66
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 67
       },
       __self: this
     }, name), __jsx("meta", {
@@ -3081,7 +3079,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: name,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 68
       },
       __self: this
     }), __jsx("meta", {
@@ -3089,7 +3087,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: description,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 69
       },
       __self: this
     }), __jsx("meta", {
@@ -3097,7 +3095,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: description,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 70
       },
       __self: this
     }), __jsx("meta", {
@@ -3105,7 +3103,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: mainImg,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 71
       },
       __self: this
     }), __jsx("meta", {
@@ -3113,49 +3111,49 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: name,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 74
+        lineNumber: 72
       },
       __self: this
     })), __jsx(_components_StyledHero__WEBPACK_IMPORTED_MODULE_5__["default"], {
       img: mainImg,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 76
+        lineNumber: 74
       },
       __self: this
     }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_3__["default"], {
       title: `${name} room`,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 75
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/rooms",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 76
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 77
       },
       __self: this
     }, "back to rooms")))), __jsx("section", {
       className: "single-room",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 83
+        lineNumber: 81
       },
       __self: this
     }, __jsx("div", {
       className: "single-room-images",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 84
+        lineNumber: 82
       },
       __self: this
     }, defaultImg.map((item, index) => {
@@ -3165,7 +3163,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         alt: name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 84
         },
         __self: this
       });
@@ -3173,89 +3171,89 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "single-room-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 87
       },
       __self: this
     }, __jsx("article", {
       className: "description",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 90
+        lineNumber: 88
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 89
       },
       __self: this
     }, "Details"), __jsx("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 90
       },
       __self: this
     }, description)), __jsx("article", {
       className: "info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 94
+        lineNumber: 92
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 95
+        lineNumber: 93
       },
       __self: this
     }, "Info"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 96
+        lineNumber: 94
       },
       __self: this
     }, "price: $", price), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 97
+        lineNumber: 95
       },
       __self: this
     }, "size: $", size, " sqm"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 98
+        lineNumber: 96
       },
       __self: this
     }, "max capacity: ", capacity, " pax"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 97
       },
       __self: this
     }, pets ? "pets allows" : "no pets allowed"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 100
+        lineNumber: 98
       },
       __self: this
     }, breakfast && "free breakfast included")))), __jsx("section", {
       className: "room-extras",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 104
+        lineNumber: 102
       },
       __self: this
     }, __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 105
+        lineNumber: 103
       },
       __self: this
     }, "extras"), __jsx("ul", {
       className: "extras",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 106
+        lineNumber: 104
       },
       __self: this
     }, extras.map((item, index) => {
@@ -3263,7 +3261,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 106
         },
         __self: this
       }, "- ", item);
