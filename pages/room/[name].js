@@ -40,6 +40,8 @@ class room extends Component {
             <>
             <Head>
                 <title>{name}</title>
+                <meta name="title" content={name}/>
+                <meta name="description" content={description}/>
                 <meta property="og:description" content={description}/>
                 <meta property="og:image" content={mainImg}/>
                 <meta property="og:title" content={name}/>

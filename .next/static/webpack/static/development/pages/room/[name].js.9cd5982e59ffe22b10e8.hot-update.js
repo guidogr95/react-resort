@@ -134,46 +134,70 @@ var room = /*#__PURE__*/function (_Component) {
           lineNumber: 42
         },
         __self: this
-      }, name)), __jsx(_components_StyledHero__WEBPACK_IMPORTED_MODULE_13__["default"], {
-        img: mainImg,
+      }, name), __jsx("meta", {
+        property: "og:description",
+        content: description,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:image",
+        content: mainImg,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 44
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:title",
+        content: name,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        },
+        __self: this
+      })), __jsx(_components_StyledHero__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        img: mainImg,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 47
         },
         __self: this
       }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_11__["default"], {
         title: "".concat(name, " room"),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 48
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_9___default.a, {
         href: "/rooms",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 49
         },
         __self: this
       }, __jsx("a", {
         className: "btn-primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 50
         },
         __self: this
       }, "back to rooms")))), __jsx("section", {
         className: "single-room",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 54
         },
         __self: this
       }, __jsx("div", {
         className: "single-room-images",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 55
         },
         __self: this
       }, defaultImg.map(function (item, index) {
@@ -183,7 +207,7 @@ var room = /*#__PURE__*/function (_Component) {
           alt: name,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 54
+            lineNumber: 57
           },
           __self: this
         });
@@ -191,89 +215,89 @@ var room = /*#__PURE__*/function (_Component) {
         className: "single-room-info",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 60
         },
         __self: this
       }, __jsx("article", {
         className: "description",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 61
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 62
         },
         __self: this
       }, "Details"), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 63
         },
         __self: this
       }, description)), __jsx("article", {
         className: "info",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 65
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 66
         },
         __self: this
       }, "Info"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 67
         },
         __self: this
       }, "price: $", price), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 68
         },
         __self: this
       }, "size: $", size, " sqm"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 69
         },
         __self: this
       }, "max capacity: ", capacity, " pax"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 67
+          lineNumber: 70
         },
         __self: this
       }, pets ? "pets allows" : "no pets allowed"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 71
         },
         __self: this
       }, breakfast && "free breakfast included")))), __jsx("section", {
         className: "room-extras",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 75
         },
         __self: this
       }, __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 76
         },
         __self: this
       }, "extras"), __jsx("ul", {
         className: "extras",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 77
         },
         __self: this
       }, extras.map(function (item, index) {
@@ -281,7 +305,7 @@ var room = /*#__PURE__*/function (_Component) {
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 76
+            lineNumber: 79
           },
           __self: this
         }, "- ", item);
@@ -299,4 +323,4 @@ Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODUL
 /***/ })
 
 })
-//# sourceMappingURL=[name].js.b8408f9da4472e67da2f.hot-update.js.map
+//# sourceMappingURL=[name].js.9cd5982e59ffe22b10e8.hot-update.js.map
