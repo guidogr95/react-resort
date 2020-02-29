@@ -88,141 +88,671 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./app.css":
-/*!*****************!*\
-  !*** ./app.css ***!
-  \*****************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./components/Navbar.js":
+/***/ "./components/Banner.js":
 /*!******************************!*\
-  !*** ./components/Navbar.js ***!
+  !*** ./components/Banner.js ***!
   \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Navbar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Banner; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Banner.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function Banner({
+  children,
+  title,
+  subtitle
+}) {
+  return __jsx("div", {
+    className: "banner",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, __jsx("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, title), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, subtitle), children);
+}
+
+/***/ }),
+
+/***/ "./components/Hero.js":
+/*!****************************!*\
+  !*** ./components/Hero.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Hero; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Hero.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function Hero({
+  children,
+  hero
+}) {
+  return __jsx("header", {
+    className: hero,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, children);
+}
+Hero.defaultProps = {
+  hero: "defaultHero"
+};
+
+/***/ }),
+
+/***/ "./components/Loading.js":
+/*!*******************************!*\
+  !*** ./components/Loading.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loading; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/gif/loading-arrow.gif */ "./images/gif/loading-arrow.gif");
+/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Loading.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+function Loading() {
+  return __jsx("div", {
+    className: "loading",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, __jsx("h4", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, "rooms data loading..."), __jsx("img", {
+    src: _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_1___default.a,
+    alt: "loading arrow",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }));
+}
+
+/***/ }),
+
+/***/ "./components/Room.js":
+/*!****************************!*\
+  !*** ./components/Room.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Room; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _images_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/logo.svg */ "./images/logo.svg");
-/* harmony import */ var _images_logo_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_logo_svg__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "react-icons/fa");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.css */ "./app.css");
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Navbar.js";
+/* harmony import */ var _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/room-1.jpeg */ "./images/room-1.jpeg");
+/* harmony import */ var _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "prop-types");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Room.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function Room({
+  room
+}) {
+  const {
+    name,
+    slug,
+    images,
+    price
+  } = room;
+  return __jsx("article", {
+    className: "room",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "img-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, __jsx("img", {
+    src: images[0] || _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a,
+    alt: "room thumbnail",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }), __jsx("div", {
+    className: "price-top",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }, __jsx("h6", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }, "$", price), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, "per night")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: `/room/?name=${slug}`,
+    as: `/room/${slug}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, __jsx("a", {
+    className: "btn-primary room-link",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, "Features"))), __jsx("p", {
+    className: "room-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: this
+  }, name));
+}
+Room.propTypes = {
+  room: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.shape({
+    name: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string.isRequired,
+    slug: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string.isRequired,
+    images: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string).isRequired,
+    price: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number.isRequired
+  })
+};
+
+/***/ }),
+
+/***/ "./components/RoomsContainer.js":
+/*!**************************************!*\
+  !*** ./components/RoomsContainer.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _RoomsFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoomsFilter */ "./components/RoomsFilter.js");
+/* harmony import */ var _RoomsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RoomsList */ "./components/RoomsList.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./components/Loading.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/RoomsContainer.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
 
 
-class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  constructor(...args) {
-    super(...args);
+function RoomsContainer(props) {
+  const context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_3__["RoomContext"]);
+  const {
+    loading,
+    sortedRooms,
+    rooms
+  } = context;
 
-    _defineProperty(this, "state", {
-      isOpne: false
-    });
-
-    _defineProperty(this, "handelToggle", () => {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
+  if (loading) {
+    return __jsx(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 11
+      },
+      __self: this
     });
   }
 
-  render() {
-    return __jsx("nav", {
-      className: "navbar",
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_RoomsFilter__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    rooms: rooms,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }), __jsx(_RoomsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    rooms: sortedRooms,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (RoomsContainer); // import React from 'react'
+// import RoomsFilter from './RoomsFilter'
+// import RoomsList from './RoomsList'
+// import { RoomConsumer } from '../context'
+// import Loading from './Loading'
+// export default function RoomsContainer() {
+//     return (
+//         <RoomConsumer>
+//         {
+//             (value) => {
+//                 const {loading,sortedRooms,rooms} = value
+//                 if (loading) {
+//                     return <Loading/>
+//                 }
+//                 return (
+//                     <div>
+//                         <RoomsFilter rooms={rooms} />
+//                         <RoomsList rooms={sortedRooms} />
+//                     </div>
+//                 )
+//             }
+//         }
+//         </RoomConsumer>
+//     )
+// }
+
+/***/ }),
+
+/***/ "./components/RoomsFilter.js":
+/*!***********************************!*\
+  !*** ./components/RoomsFilter.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RoomsFilter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var _components_Title__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Title */ "./components/Title.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/RoomsFilter.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+/* eslint-disable no-unused-vars */
+
+
+ //get all unique values
+
+const getUnique = (items, value) => {
+  console.log(items);
+  return [...new Set(items.map(item => item[value]))];
+};
+
+function RoomsFilter({
+  rooms
+}) {
+  const context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_1__["RoomContext"]);
+  const {
+    handleChange,
+    roomtype,
+    capacity,
+    price,
+    minPrice,
+    maxPrice,
+    minSize,
+    maxSize,
+    breakfast,
+    pets
+  } = context; //get unique types
+
+  let types = getUnique(rooms, 'roomtype'); //add all type
+
+  types = ['all', ...types]; //map to jsx
+
+  types = types.map((item, index) => {
+    return __jsx("option", {
+      value: item,
+      key: index,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 24
       },
       __self: this
-    }, __jsx("div", {
-      className: "nav-center",
+    }, item);
+  });
+  let people = getUnique(rooms, 'capacity');
+  people = people.map((item, index) => {
+    return __jsx("option", {
+      key: index,
+      value: item,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29
+      },
+      __self: this
+    }, item);
+  });
+  return __jsx("section", {
+    className: "filter-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: this
+  }, __jsx(_components_Title__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "search rooms",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }), __jsx("form", {
+    className: "filter-form",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: this
+  }, __jsx("label", {
+    htmlFor: "type",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, "room type"), __jsx("select", {
+    name: "roomtype",
+    id: "type",
+    value: roomtype,
+    className: "form-control",
+    onChange: handleChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: this
+  }, types)), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }, __jsx("label", {
+    htmlFor: "capacity",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }, "Guests"), __jsx("select", {
+    name: "capacity",
+    id: "capacity",
+    value: capacity,
+    className: "form-control",
+    onChange: handleChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: this
+  }, people)), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, __jsx("label", {
+    htmlFor: "price",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: this
+  }, "room price $", price), __jsx("input", {
+    type: "range",
+    name: "price",
+    min: minPrice,
+    max: maxPrice,
+    id: "price",
+    value: price,
+    onChange: handleChange,
+    className: "form-control",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: this
+  })), __jsx("div", {
+    className: "form-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "single-extra",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: this
+  }, __jsx("input", {
+    type: "checkbox",
+    name: "breakfast",
+    id: "breakfast",
+    checked: breakfast,
+    onChange: handleChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76
+    },
+    __self: this
+  }), __jsx("label", {
+    htmlFor: "breakfast",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }, "breakfast")), __jsx("div", {
+    className: "single-extra",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: this
+  }, __jsx("input", {
+    type: "checkbox",
+    name: "pets",
+    id: "pets",
+    checked: pets,
+    onChange: handleChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: this
+  }), __jsx("label", {
+    htmlFor: "pets",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  }, "pets")))));
+}
+
+/***/ }),
+
+/***/ "./components/RoomsList.js":
+/*!*********************************!*\
+  !*** ./components/RoomsList.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RoomsList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Room__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Room */ "./components/Room.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/RoomsList.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+function RoomsList({
+  rooms
+}) {
+  if (rooms.length === 0) {
+    return __jsx("div", {
+      className: "empty-search",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7
+      },
+      __self: this
+    }, __jsx("h3", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 8
+      },
+      __self: this
+    }, "unfortunately no rooms matched your search parameters"));
+  }
+
+  return __jsx("section", {
+    className: "roomslist",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "roomslist-center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, rooms.map(item => {
+    return __jsx(_Room__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: item.id,
+      room: item,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 17
       },
       __self: this
-    }, __jsx("div", {
-      className: "nav-header",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 18
-      },
-      __self: this
-    }, __jsx("button", {
-      type: "button",
-      className: "nav-btn",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 22
-      },
-      __self: this
-    }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaAlignRight"], {
-      className: "nav-icon",
-      onClick: this.handelToggle,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 23
-      },
-      __self: this
-    }))), __jsx("ul", {
-      className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 26
-      },
-      __self: this
-    }, __jsx("li", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 27
-      },
-      __self: this
-    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 28
-      },
-      __self: this
-    }, "Home")), __jsx("li", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 30
-      },
-      __self: this
-    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/rooms/",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 31
-      },
-      __self: this
-    }, "Rooms")))));
-  }
+    });
+  })));
+}
 
+/***/ }),
+
+/***/ "./components/Title.js":
+/*!*****************************!*\
+  !*** ./components/Title.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Title; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Title.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function Title({
+  title
+}) {
+  return __jsx("div", {
+    className: "section-title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, __jsx("h4", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, title), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }));
 }
 
 /***/ }),
@@ -1110,14 +1640,14 @@ module.exports = "/_next/static/images/details-4-7569a31606be3db6b229327eec5999d
 
 /***/ }),
 
-/***/ "./images/logo.svg":
-/*!*************************!*\
-  !*** ./images/logo.svg ***!
-  \*************************/
+/***/ "./images/gif/loading-arrow.gif":
+/*!**************************************!*\
+  !*** ./images/gif/loading-arrow.gif ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/_next/static/images/logo-9f0cccc1e406a5aa9ef6ee36229762c3.svg";
+module.exports = "/_next/static/images/loading-arrow-e9ea73949de71d45ae46047646b95727.gif";
 
 /***/ }),
 
@@ -3004,66 +3534,89 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/_app.js":
-/*!***********************!*\
-  !*** ./pages/_app.js ***!
-  \***********************/
+/***/ "./pages/rooms.js":
+/*!************************!*\
+  !*** ./pages/rooms.js ***!
+  \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyApp; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app.css */ "./app.css");
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Navbar */ "./components/Navbar.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./context.js");
-var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/_app.js";
-
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Hero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Hero */ "./components/Hero.js");
+/* harmony import */ var _components_Banner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Banner */ "./components/Banner.js");
+/* harmony import */ var _components_RoomsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/RoomsContainer */ "./components/RoomsContainer.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../context */ "./context.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/rooms.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+ //Components
 
 
 
 
-function MyApp({
-  Component,
-  pageProps
-}) {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_context__WEBPACK_IMPORTED_MODULE_3__["RoomProvider"], {
+
+
+const Rooms = () => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_context__WEBPACK_IMPORTED_MODULE_5__["RoomProvider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 13
     },
-    __self: this
-  }, __jsx(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __self: undefined
+  }, __jsx(_components_Hero__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    hero: "roomsHero",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 14
     },
-    __self: this
-  }), __jsx(Component, _extends({}, pageProps, {
+    __self: undefined
+  }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Our Rooms",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 15
     },
-    __self: this
-  }))));
-}
+    __self: undefined
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  }, __jsx("a", {
+    className: "btn-primary",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: undefined
+  }, "Return Home")))), __jsx(_components_RoomsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: undefined
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Rooms);
 
 /***/ }),
 
-/***/ 0:
-/*!****************************************!*\
-  !*** multi private-next-pages/_app.js ***!
-  \****************************************/
+/***/ 4:
+/*!******************************!*\
+  !*** multi ./pages/rooms.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
+module.exports = __webpack_require__(/*! /home/guido/Documents/GitHub/react-resort/pages/rooms.js */"./pages/rooms.js");
 
 
 /***/ }),
@@ -3167,17 +3720,6 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ "react-icons/fa":
-/*!*********************************!*\
-  !*** external "react-icons/fa" ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-icons/fa");
-
-/***/ }),
-
 /***/ "react-is":
 /*!***************************!*\
   !*** external "react-is" ***!
@@ -3201,4 +3743,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=_app.js.map
+//# sourceMappingURL=rooms.js.map

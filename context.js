@@ -12,7 +12,7 @@ class RoomProvider extends Component {
         sortedRooms: [],
         featuredRooms: [],
         loading: true,
-        type:'all',
+        roomtype:'all',
         capacity:1,
         price:0,
         minPrice: 0,
@@ -117,8 +117,9 @@ class RoomProvider extends Component {
         capacity = parseInt(capacity);
         price = parseInt(price);
         //filter by type
-        if (type !== 'all') {
-            tempRooms = tempRooms.filter(room => room.roomtype === type)
+        if (roomtype !== 'all') {
+            console.log('notal')
+            tempRooms = tempRooms.filter(room => room.roomtype === roomtype)
         }
         //filter by capacity
         if (capacity !== 1) {

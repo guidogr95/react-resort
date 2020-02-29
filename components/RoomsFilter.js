@@ -6,16 +6,17 @@ import Title from '../components/Title'
 
 //get all unique values
 const getUnique = (items,value) => {
+    console.log(items)
     return [...new Set(items.map(item => item[value]))]
 }
 
 export default function RoomsFilter({rooms}) {
     const context = useContext(RoomContext);
     const {
-        handleChange,type,capacity,price,minPrice,maxPrice,minSize,maxSize,breakfast,pets
+        handleChange,roomtype,capacity,price,minPrice,maxPrice,minSize,maxSize,breakfast,pets
     } = context;
     //get unique types
-    let types = getUnique(rooms, 'type');
+    let types = getUnique(rooms, 'roomtype');
     //add all type
     types = ['all',...types]
     //map to jsx
@@ -36,9 +37,9 @@ export default function RoomsFilter({rooms}) {
                 <div className="form-group">
                     <label htmlFor="type">room type</label>
                     <select 
-                        name="type" 
+                        name="roomtype" 
                         id="type" 
-                        value={type} 
+                        value={roomtype} 
                         className="form-control" 
                         onChange={handleChange}
                     >
