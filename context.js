@@ -109,7 +109,7 @@ class RoomProvider extends Component {
     }
     filterRooms = () => {
         let {
-            rooms,type,capacity,price,minSize,maxSize,breakfast,pets
+            rooms,roomtype,capacity,price,minSize,maxSize,breakfast,pets
         } = this.state
         //all the rooms
         let tempRooms = [...rooms];
@@ -118,7 +118,7 @@ class RoomProvider extends Component {
         price = parseInt(price);
         //filter by type
         if (type !== 'all') {
-            tempRooms = tempRooms.filter(room => room.type === type)
+            tempRooms = tempRooms.filter(room => room.roomtype === type)
         }
         //filter by capacity
         if (capacity !== 1) {
