@@ -137,7 +137,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        href: "/rooms",
+        href: "/rooms/",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 31
@@ -252,11 +252,12 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       maxPrice: 0,
       minSize: 0,
       maxSize: 0,
-      breakfast: false
+      breakfast: false,
+      PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392'
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_15__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_13__["default"])(_this), "formatData", function (items) {
-      var tempItems = items.data.map(function (item) {
+      var tempItems = items.map(function (item) {
         var id = item.id;
         var images = item.images.map(function (image) {
           return image.url;
@@ -349,20 +350,20 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var self = this;
-      var APITOKEN = 'f3341f2f85860e06446a5e86bfd392';
-      axios__WEBPACK_IMPORTED_MODULE_18___default.a.post('https://graphql.datocms.com/', {
+      axios__WEBPACK_IMPORTED_MODULE_18___default()({
+        url: 'https://graphql.datocms.com/',
+        method: 'post',
+        data: {
+          query: "{\n                allRooms {\n                    id\n                    name\n                    slug\n                    price\n                    roomtype\n                    size\n                    capacity\n                    breakfast\n                    pets\n                    featured\n                    description\n                    extras\n                    images {\n                      url\n                    }\n                  }\n                }"
+        },
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': "Bearer ".concat(APITOKEN)
-        }
-      }, {
-        data: {
-          query: "query allRooms {\n                    name\n                    slug\n                    price\n                    roomtype\n                    size\n                    capacity\n                    breakfast\n                    pets\n                    featured\n                    description\n                    extras\n                    images {\n                      url\n                    }\n                  }"
+          'Authorization': "Bearer ".concat(this.state.PUBLICTOKEN)
         }
       }).then(function (response) {
         // handle success
-        var rooms = self.formatData(response.data.allRooms);
+        var rooms = self.formatData(response.data.data.allRooms);
         var featuredRooms = rooms.filter(function (room) {
           return room.featured === true;
         });
@@ -408,7 +409,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 142
         },
         __self: this
       }, this.props.children);
@@ -424,7 +425,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 159
       },
       __self: this
     }, function (value) {
@@ -432,7 +433,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 156
+          lineNumber: 160
         },
         __self: this
       }));

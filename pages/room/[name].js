@@ -14,9 +14,34 @@ import Head from 'next/head';
 class room extends Component {
     
     static getInitialProps= async ({query}) => {
-        const res = await fetch('https://test-project-react.herokuapp.com/hotel-rooms');
+        const res = await fetch('https://graphql.datocms.com/',{
+            method: "POST",
+            body: JSON.stringify({
+                query: `{ allRooms {
+                    id
+                    name
+                    slug
+                    price
+                    roomtype
+                    size
+                    capacity
+                    breakfast
+                    pets
+                    featured
+                    description
+                    extras
+                    images {
+                      url
+                    }
+                  } }`
+            }),
+            headers: {
+                'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer f3341f2f85860e06446a5e86bfd392'
+            }
+        });
         const data = await res.json();
-        const room = data.find(room => room.slug === query.name);
+        const roomData = data.data.allRooms;
+        const room = roomData.find(room => room.slug === query.name);
         return {query,room}
     }
     constructor(props){
@@ -34,8 +59,10 @@ class room extends Component {
             return <Loading/>
         }
         const { name,description,capacity,size,price,extras,breakfast,pets,images } = this.state.room
+        console.log(this.state.room)
         const roomimages = images.map(image => image.url);
         const [mainImg,...defaultImg] = roomimages;
+        console.log(mainImg)
         return (
             <>
             <Head>

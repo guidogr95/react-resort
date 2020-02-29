@@ -20,15 +20,17 @@ class RoomProvider extends Component {
         minSize: 0,
         maxSize: 0,
         breakfast: false,
+        PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392'
     }
     componentDidMount(){
         const self = this;
-        const APITOKEN = 'f3341f2f85860e06446a5e86bfd392';
-        axios.post('https://graphql.datocms.com/', 
-            {headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${APITOKEN}`,}},
-            {data: {
-                query:
-                `query allRooms {
+        axios({
+            url: 'https://graphql.datocms.com/',
+            method: 'post',
+            data: {
+              query: `{
+                allRooms {
+                    id
                     name
                     slug
                     price
@@ -43,12 +45,14 @@ class RoomProvider extends Component {
                     images {
                       url
                     }
-                  }`
-            }}
-        )
+                  }
+                }`
+            },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${this.state.PUBLICTOKEN}`,}
+          })
         .then(function (response) {
           // handle success
-          let rooms = self.formatData(response.data.allRooms);
+          let rooms = self.formatData(response.data.data.allRooms);
           let featuredRooms = rooms.filter(room => room.featured === true);
             let maxPrice = Math.max(...rooms.map(item => item.price));
             let maxSize = Math.max(...rooms.map(item => item.size));
@@ -80,7 +84,7 @@ class RoomProvider extends Component {
         // })
     }
     formatData = (items) => {
-        let tempItems = items.data.map(item => {
+        let tempItems = items.map(item => {
             let id = item.id;
             let images = item.images.map(image => image.url);
             let room = {...item,images,id};

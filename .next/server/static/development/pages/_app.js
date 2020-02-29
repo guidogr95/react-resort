@@ -214,7 +214,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/rooms",
+      href: "/rooms/",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 31
@@ -278,11 +278,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       maxPrice: 0,
       minSize: 0,
       maxSize: 0,
-      breakfast: false
+      breakfast: false,
+      PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392'
     });
 
     _defineProperty(this, "formatData", items => {
-      let tempItems = items.data.map(item => {
+      let tempItems = items.map(item => {
         let id = item.id;
         let images = item.images.map(image => image.url);
 
@@ -356,16 +357,13 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidMount() {
     const self = this;
-    const APITOKEN = 'f3341f2f85860e06446a5e86bfd392';
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('https://graphql.datocms.com/', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${APITOKEN}`
-      }
-    }, {
+    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+      url: 'https://graphql.datocms.com/',
+      method: 'post',
       data: {
-        query: `query allRooms {
+        query: `{
+                allRooms {
+                    id
                     name
                     slug
                     price
@@ -380,11 +378,17 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                     images {
                       url
                     }
-                  }`
+                  }
+                }`
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.state.PUBLICTOKEN}`
       }
     }).then(function (response) {
       // handle success
-      let rooms = self.formatData(response.data.allRooms);
+      let rooms = self.formatData(response.data.data.allRooms);
       let featuredRooms = rooms.filter(room => room.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
@@ -423,7 +427,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 142
       },
       __self: this
     }, this.props.children);
@@ -437,14 +441,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 159
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 156
+        lineNumber: 160
       },
       __self: this
     })));
