@@ -14,7 +14,7 @@ import Head from 'next/head';
 class room extends Component {
     
     static async getInitialProps({query}) {
-        // console.log(query)
+        console.log('initial')
         return {query}
     }
     constructor(props){

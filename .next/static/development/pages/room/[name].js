@@ -17285,11 +17285,12 @@ var room = /*#__PURE__*/function (_Component) {
           switch (_context.prev = _context.next) {
             case 0:
               query = _ref.query;
+              console.log('initial');
               return _context.abrupt("return", {
                 query: query
               });
 
-            case 2:
+            case 3:
             case "end":
               return _context.stop();
           }

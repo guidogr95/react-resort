@@ -3000,7 +3000,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   static async getInitialProps({
     query
   }) {
-    // console.log(query)
+    console.log('initial');
     return {
       query
     };
