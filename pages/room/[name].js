@@ -7,6 +7,9 @@ import Banner from '../../components/Banner'
 //Context
 import { RoomContext, RoomProvider } from '../../context'
 import StyledHero from '../../components/StyledHero'
+import Loading from '../../components/Loading'
+//SEO
+import Head from 'next/head';
 
 class room extends Component {
     
@@ -29,17 +32,18 @@ class room extends Component {
         const {getRoom} = this.context;
         const room = getRoom(this.state.slug);
         if (!room) {
-            return <div className="error">
-            <h3>no such room could be found...</h3>
-            <Link href='/rooms'>
-                <a  className="btn-primary">back to rooms</a>
-            </Link>
-            </div>
+            return <Loading/>
         }
         const { name,description,capacity,size,price,extras,breakfast,pets,images } = room
         const [mainImg,...defaultImg] = images
         return (
             <>
+            <Head>
+                <title>{name}</title>
+                <meta property="og:description" content={description}/>
+                <meta property="og:image" content={mainImg}/>
+                <meta property="og:title" content={name}/>
+            </Head>
             <StyledHero img={mainImg}>
                 <Banner title={`${name} room`}>
                     <Link href="/rooms">
