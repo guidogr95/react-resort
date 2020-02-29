@@ -11,6 +11,13 @@ const Home = () => {
 
     return (
         <React.Fragment>
+            <Head>
+                <title>Beach Hotel</title>
+                <meta name="title" content='Beach Hotel'/>
+                <meta name="description" content='It is a beach hotel'/>
+                <meta property="og:description" content='It is a beach hotel'/>
+                <meta property="og:title" content='Beach Hotel'/>
+            </Head>
         <RoomProvider>
             <Hero>
                 <Banner title="Luxurious Rooms" subtitle="Deluxe Rooms Starting at $299">
