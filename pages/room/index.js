@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 //Components
 // import defaultBcg from '../images/room-1.jpeg'
 import Hero from '../../components/Hero'
@@ -7,23 +8,24 @@ import Banner from '../../components/Banner'
 //Context
 import { RoomContext, Room } from '../../context'
 import StyledHero from '../../components/StyledHero'
+import fetch from 'isomorphic-unfetch';
 
-
-export default class SingleRoom extends Component {
-    static async getInitialProps({query}) {
-        // console.log(query)
-        return {query}
-    }
+class SingleRoom extends Component {
+    
+    // static async getInitialProps({query}) {
+    //     // console.log(query)
+    //     return {query}
+    // }
     constructor(props){
         super(props)
-        console.log(props.query.name)
+        console.log(this.props.router.query.name)
         this.state={
-            slug: this.props.query.name,
+            slug: this.props.router.query.name,
             // defaultBcg
         }
     }
     static contextType = RoomContext;
-    // componentDidMount(){}
+        
     render() {
         
         const {getRoom} = this.context;
@@ -80,3 +82,5 @@ export default class SingleRoom extends Component {
         )
     }
 }
+
+export default withRouter(SingleRoom);

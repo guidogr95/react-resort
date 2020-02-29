@@ -26,7 +26,6 @@ class RoomProvider extends Component {
         axios.get('https://test-project-react.herokuapp.com/hotel-rooms')
         .then(function (response) {
           // handle success
-          console.log(response);
           let rooms = self.formatData(response);
           let featuredRooms = rooms.filter(room => room.featured === true);
             let maxPrice = Math.max(...rooms.map(item => item.price));
