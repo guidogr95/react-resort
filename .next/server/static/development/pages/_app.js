@@ -356,6 +356,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidMount() {
     const self = this;
+    console.log('mounted');
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
       // handle success
       let rooms = self.formatData(response);
@@ -370,7 +371,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         price: maxPrice,
         maxPrice,
         maxSize
-      }); //   return rooms
+      });
+      return rooms;
     }); // let rooms = this.formatData(items);
     // let featuredRooms = rooms.filter(room => room.featured === true);
     // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -394,7 +396,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 114
+        lineNumber: 115
       },
       __self: this
     }, this.props.children);
@@ -408,14 +410,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 132
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 133
       },
       __self: this
     })));

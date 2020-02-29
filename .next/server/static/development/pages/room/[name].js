@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -343,6 +343,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidMount() {
     const self = this;
+    console.log('mounted');
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
       // handle success
       let rooms = self.formatData(response);
@@ -357,7 +358,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         price: maxPrice,
         maxPrice,
         maxSize
-      }); //   return rooms
+      });
+      return rooms;
     }); // let rooms = this.formatData(items);
     // let featuredRooms = rooms.filter(room => room.featured === true);
     // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -381,7 +383,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 114
+        lineNumber: 115
       },
       __self: this
     }, this.props.children);
@@ -395,14 +397,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 132
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 133
       },
       __self: this
     })));
@@ -2970,8 +2972,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Banner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Banner */ "./components/Banner.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context */ "./context.js");
 /* harmony import */ var _components_StyledHero__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/StyledHero */ "./components/StyledHero.js");
@@ -2997,35 +2999,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  static async getInitialProps({
-    query
-  }) {
-    console.log('initial');
-    return {
-      query
-    };
-  }
-
   constructor(props) {
     super(props);
-    console.log(this.props.router.query.name);
     this.state = {
-      slug: this.props.router.query.name // defaultBcg
-
+      slug: this.props.query.name,
+      room: this.props.room
     };
   }
 
   render() {
-    const {
-      getRoom
-    } = this.context;
-    const room = getRoom(this.state.slug);
-
     if (!room) {
       return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_6__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 34
         },
         __self: this
       });
@@ -3041,18 +3028,20 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       breakfast,
       pets,
       images
-    } = room;
-    const [mainImg, ...defaultImg] = images;
+    } = this.state.room;
+    const roomimages = images.map(image => image.url);
+    const [mainImg, ...defaultImg] = roomimages;
+    console.log(mainImg);
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 42
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 43
       },
       __self: this
     }, name), __jsx("meta", {
@@ -3060,7 +3049,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: name,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 44
       },
       __self: this
     }), __jsx("meta", {
@@ -3068,7 +3057,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: description,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 45
       },
       __self: this
     }), __jsx("meta", {
@@ -3076,7 +3065,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: description,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
     }), __jsx("meta", {
@@ -3084,7 +3073,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: mainImg,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 47
       },
       __self: this
     }), __jsx("meta", {
@@ -3092,49 +3081,49 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       content: name,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 48
       },
       __self: this
     })), __jsx(_components_StyledHero__WEBPACK_IMPORTED_MODULE_5__["default"], {
       img: mainImg,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 50
       },
       __self: this
     }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_3__["default"], {
       title: `${name} room`,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 51
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/rooms",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 52
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 53
       },
       __self: this
     }, "back to rooms")))), __jsx("section", {
       className: "single-room",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 57
       },
       __self: this
     }, __jsx("div", {
       className: "single-room-images",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 58
       },
       __self: this
     }, defaultImg.map((item, index) => {
@@ -3144,7 +3133,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         alt: name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 60
         },
         __self: this
       });
@@ -3152,89 +3141,89 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "single-room-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 62
+        lineNumber: 63
       },
       __self: this
     }, __jsx("article", {
       className: "description",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 64
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 65
       },
       __self: this
     }, "Details"), __jsx("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }, description)), __jsx("article", {
       className: "info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 68
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 69
       },
       __self: this
     }, "Info"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 70
       },
       __self: this
     }, "price: $", price), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 71
       },
       __self: this
     }, "size: $", size, " sqm"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 72
       },
       __self: this
     }, "max capacity: ", capacity, " pax"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 73
       },
       __self: this
     }, pets ? "pets allows" : "no pets allowed"), __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 74
       },
       __self: this
     }, breakfast && "free breakfast included")))), __jsx("section", {
       className: "room-extras",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 78
       },
       __self: this
     }, __jsx("h6", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 79
       },
       __self: this
     }, "extras"), __jsx("ul", {
       className: "extras",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 80
       },
       __self: this
     }, extras.map((item, index) => {
@@ -3242,7 +3231,7 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81
+          lineNumber: 82
         },
         __self: this
       }, "- ", item);
@@ -3251,13 +3240,25 @@ class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 }
 
+_defineProperty(room, "getInitialProps", async ({
+  query
+}) => {
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('https://test-project-react.herokuapp.com/hotel-rooms');
+  const data = await res.json();
+  const room = data.find(room => room.slug === query.name);
+  return {
+    query,
+    room
+  };
+});
+
 _defineProperty(room, "contextType", _context__WEBPACK_IMPORTED_MODULE_4__["RoomContext"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(room));
+/* harmony default export */ __webpack_exports__["default"] = (room);
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/room/[name].js ***!
   \************************************/
@@ -3335,6 +3336,17 @@ module.exports = require("core-js/library/fn/weak-map");
 
 /***/ }),
 
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
+
+/***/ }),
+
 /***/ "next/head":
 /*!****************************!*\
   !*** external "next/head" ***!
@@ -3343,17 +3355,6 @@ module.exports = require("core-js/library/fn/weak-map");
 /***/ (function(module, exports) {
 
 module.exports = require("next/head");
-
-/***/ }),
-
-/***/ "next/router":
-/*!******************************!*\
-  !*** external "next/router" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
 
 /***/ }),
 

@@ -22,6 +22,10 @@
     "/room/[name]": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/rooms": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

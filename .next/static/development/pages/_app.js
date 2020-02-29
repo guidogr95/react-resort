@@ -349,6 +349,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var self = this;
+      console.log('mounted');
       axios__WEBPACK_IMPORTED_MODULE_18___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
         // handle success
         var rooms = self.formatData(response);
@@ -369,7 +370,8 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           price: maxPrice,
           maxPrice: maxPrice,
           maxSize: maxSize
-        }); //   return rooms
+        });
+        return rooms;
       }); // let rooms = this.formatData(items);
       // let featuredRooms = rooms.filter(room => room.featured === true);
       // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -394,7 +396,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 115
         },
         __self: this
       }, this.props.children);
@@ -410,7 +412,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 132
       },
       __self: this
     }, function (value) {
@@ -418,7 +420,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 133
         },
         __self: this
       }));

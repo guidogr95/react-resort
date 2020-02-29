@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
-import { withRouter } from 'next/router'
+import fetch from 'isomorphic-unfetch'
 //Components
 // import defaultBcg from '../images/room-1.jpeg'
 import Banner from '../../components/Banner'
@@ -13,29 +13,30 @@ import Head from 'next/head';
 
 class room extends Component {
     
-    static async getInitialProps({query}) {
-        console.log('initial')
-        return {query}
+    static getInitialProps= async ({query}) => {
+        const res = await fetch('https://test-project-react.herokuapp.com/hotel-rooms');
+        const data = await res.json();
+        const room = data.find(room => room.slug === query.name);
+        return {query,room}
     }
     constructor(props){
         super(props)
-        console.log(this.props.router.query.name)
         this.state={
-            slug: this.props.router.query.name,
-            // defaultBcg
+            slug: this.props.query.name,
+            room: this.props.room
         }
     }
     static contextType = RoomContext;
         
     render() {
         
-        const {getRoom} = this.context;
-        const room = getRoom(this.state.slug);
         if (!room) {
             return <Loading/>
         }
-        const { name,description,capacity,size,price,extras,breakfast,pets,images } = room
-        const [mainImg,...defaultImg] = images
+        const { name,description,capacity,size,price,extras,breakfast,pets,images } = this.state.room
+        const roomimages = images.map(image => image.url);
+        const [mainImg,...defaultImg] = roomimages
+        console.log(mainImg)
         return (
             <>
             <Head>
@@ -87,4 +88,4 @@ class room extends Component {
     }
 }
 
-export default withRouter(room);
+export default room;

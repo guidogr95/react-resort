@@ -23,6 +23,7 @@ class RoomProvider extends Component {
     }
     componentDidMount(){
         const self = this;
+        console.log('mounted')
         axios.get('https://test-project-react.herokuapp.com/hotel-rooms')
         .then(function (response) {
           // handle success
@@ -39,7 +40,7 @@ class RoomProvider extends Component {
                 maxPrice,
                 maxSize
             })
-        //   return rooms
+          return rooms
         })
         // let rooms = this.formatData(items);
         // let featuredRooms = rooms.filter(room => room.featured === true);

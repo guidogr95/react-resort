@@ -323,6 +323,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var self = this;
+      console.log('mounted');
       axios__WEBPACK_IMPORTED_MODULE_18___default.a.get('https://test-project-react.herokuapp.com/hotel-rooms').then(function (response) {
         // handle success
         var rooms = self.formatData(response);
@@ -343,7 +344,8 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           price: maxPrice,
           maxPrice: maxPrice,
           maxSize: maxSize
-        }); //   return rooms
+        });
+        return rooms;
       }); // let rooms = this.formatData(items);
       // let featuredRooms = rooms.filter(room => room.featured === true);
       // let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -368,7 +370,7 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 115
         },
         __self: this
       }, this.props.children);
@@ -384,7 +386,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 132
       },
       __self: this
     }, function (value) {
@@ -392,7 +394,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 133
         },
         __self: this
       }));
@@ -9416,6 +9418,18 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/build/polyfills/fetch/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/next/dist/build/polyfills/fetch/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* globals self */var fetch=self.fetch.bind(self);module.exports=fetch;module.exports.default=module.exports;
+
+/***/ }),
+
 /***/ "./node_modules/next/dist/build/polyfills/object-assign.js":
 /*!***********************************************************************************************************************!*\
   !*** delegated ./node_modules/next/dist/build/polyfills/object-assign.js from dll-reference dll_0fb095e325d7ebf261c3 ***!
@@ -17229,21 +17243,21 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toArray.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toArray.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! isomorphic-unfetch */ "./node_modules/next/dist/build/polyfills/fetch/index.js");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _components_Banner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/Banner */ "./components/Banner.js");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../context */ "./context.js");
 /* harmony import */ var _components_StyledHero__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/StyledHero */ "./components/StyledHero.js");
@@ -17276,83 +17290,61 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 var room = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(room, _Component);
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_5__["default"])(room, null, [{
-    key: "getInitialProps",
-    value: function getInitialProps(_ref) {
-      var query;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function getInitialProps$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              query = _ref.query;
-              console.log('initial');
-              return _context.abrupt("return", {
-                query: query
-              });
-
-            case 3:
-            case "end":
-              return _context.stop();
-          }
-        }
-      });
-    }
-  }]);
-
   function room(props) {
     var _this;
 
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, room);
 
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(room).call(this, props));
-    console.log(_this.props.router.query.name);
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(room).call(this, props));
     _this.state = {
-      slug: _this.props.router.query.name // defaultBcg
-
+      slug: _this.props.query.name,
+      room: _this.props.room
     };
     return _this;
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_5__["default"])(room, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(room, [{
     key: "render",
     value: function render() {
-      var getRoom = this.context.getRoom;
-      var room = getRoom(this.state.slug);
-
       if (!room) {
         return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_14__["default"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 35
+            lineNumber: 34
           },
           __self: this
         });
       }
 
-      var name = room.name,
-          description = room.description,
-          capacity = room.capacity,
-          size = room.size,
-          price = room.price,
-          extras = room.extras,
-          breakfast = room.breakfast,
-          pets = room.pets,
-          images = room.images;
+      var _this$state$room = this.state.room,
+          name = _this$state$room.name,
+          description = _this$state$room.description,
+          capacity = _this$state$room.capacity,
+          size = _this$state$room.size,
+          price = _this$state$room.price,
+          extras = _this$state$room.extras,
+          breakfast = _this$state$room.breakfast,
+          pets = _this$state$room.pets,
+          images = _this$state$room.images;
+      var roomimages = images.map(function (image) {
+        return image.url;
+      });
 
-      var _images = Object(_babel_runtime_corejs2_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_0__["default"])(images),
-          mainImg = _images[0],
-          defaultImg = _images.slice(1);
+      var _roomimages = Object(_babel_runtime_corejs2_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_1__["default"])(roomimages),
+          mainImg = _roomimages[0],
+          defaultImg = _roomimages.slice(1);
 
+      console.log(mainImg);
       return __jsx(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_15___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 42
         },
         __self: this
       }, __jsx("title", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 43
         },
         __self: this
       }, name), __jsx("meta", {
@@ -17360,7 +17352,7 @@ var room = /*#__PURE__*/function (_Component) {
         content: name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 44
         },
         __self: this
       }), __jsx("meta", {
@@ -17368,7 +17360,7 @@ var room = /*#__PURE__*/function (_Component) {
         content: description,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 45
         },
         __self: this
       }), __jsx("meta", {
@@ -17376,7 +17368,7 @@ var room = /*#__PURE__*/function (_Component) {
         content: description,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 46
         },
         __self: this
       }), __jsx("meta", {
@@ -17384,7 +17376,7 @@ var room = /*#__PURE__*/function (_Component) {
         content: mainImg,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 47
         },
         __self: this
       }), __jsx("meta", {
@@ -17392,49 +17384,49 @@ var room = /*#__PURE__*/function (_Component) {
         content: name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 48
         },
         __self: this
       })), __jsx(_components_StyledHero__WEBPACK_IMPORTED_MODULE_13__["default"], {
         img: mainImg,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 50
         },
         __self: this
       }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_11__["default"], {
         title: "".concat(name, " room"),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 51
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_9___default.a, {
         href: "/rooms",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 52
         },
         __self: this
       }, __jsx("a", {
         className: "btn-primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 53
         },
         __self: this
       }, "back to rooms")))), __jsx("section", {
         className: "single-room",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 57
         },
         __self: this
       }, __jsx("div", {
         className: "single-room-images",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 58
         },
         __self: this
       }, defaultImg.map(function (item, index) {
@@ -17444,7 +17436,7 @@ var room = /*#__PURE__*/function (_Component) {
           alt: name,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 59
+            lineNumber: 60
           },
           __self: this
         });
@@ -17452,89 +17444,89 @@ var room = /*#__PURE__*/function (_Component) {
         className: "single-room-info",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 63
         },
         __self: this
       }, __jsx("article", {
         className: "description",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 64
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 65
         },
         __self: this
       }, "Details"), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 66
         },
         __self: this
       }, description)), __jsx("article", {
         className: "info",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 67
+          lineNumber: 68
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 69
         },
         __self: this
       }, "Info"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 70
         },
         __self: this
       }, "price: $", price), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70
+          lineNumber: 71
         },
         __self: this
       }, "size: $", size, " sqm"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 72
         },
         __self: this
       }, "max capacity: ", capacity, " pax"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 73
         },
         __self: this
       }, pets ? "pets allows" : "no pets allowed"), __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 74
         },
         __self: this
       }, breakfast && "free breakfast included")))), __jsx("section", {
         className: "room-extras",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 78
         },
         __self: this
       }, __jsx("h6", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 79
         },
         __self: this
       }, "extras"), __jsx("ul", {
         className: "extras",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 80
         },
         __self: this
       }, extras.map(function (item, index) {
@@ -17542,7 +17534,7 @@ var room = /*#__PURE__*/function (_Component) {
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 81
+            lineNumber: 82
           },
           __self: this
         }, "- ", item);
@@ -17553,13 +17545,46 @@ var room = /*#__PURE__*/function (_Component) {
   return room;
 }(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(room, "getInitialProps", function _callee(_ref) {
+  var query, res, data, room;
+  return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          query = _ref.query;
+          _context.next = 3;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_10___default()('https://test-project-react.herokuapp.com/hotel-rooms'));
+
+        case 3:
+          res = _context.sent;
+          _context.next = 6;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
+
+        case 6:
+          data = _context.sent;
+          room = data.find(function (room) {
+            return room.slug === query.name;
+          });
+          return _context.abrupt("return", {
+            query: query,
+            room: room
+          });
+
+        case 9:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+});
+
 Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(room, "contextType", _context__WEBPACK_IMPORTED_MODULE_12__["RoomContext"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_10__["withRouter"])(room));
+/* harmony default export */ __webpack_exports__["default"] = (room);
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!********************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Froom%2F%5Bname%5D&absolutePagePath=%2Fhome%2Fguido%2FDocuments%2FGitHub%2Freact-resort%2Fpages%2Froom%2F%5Bname%5D.js ***!
   \********************************************************************************************************************************************************************/
@@ -17582,5 +17607,5 @@ module.exports = dll_0fb095e325d7ebf261c3;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=[name].js.map
