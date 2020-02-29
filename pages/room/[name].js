@@ -10,10 +10,10 @@ import StyledHero from '../../components/StyledHero'
 
 class room extends Component {
     
-    // static async getInitialProps({query}) {
-    //     // console.log(query)
-    //     return {query}
-    // }
+    static async getInitialProps({query}) {
+        // console.log(query)
+        return {query}
+    }
     constructor(props){
         super(props)
         console.log(this.props.router.query.name)

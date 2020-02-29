@@ -2935,10 +2935,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class room extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  // static async getInitialProps({query}) {
-  //     // console.log(query)
-  //     return {query}
-  // }
+  static async getInitialProps({
+    query
+  }) {
+    // console.log(query)
+    return {
+      query
+    };
+  }
+
   constructor(props) {
     super(props);
     console.log(this.props.router.query.name);
