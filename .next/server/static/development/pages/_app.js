@@ -122,8 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_logo_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_logo_svg__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "react-icons/fa");
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.css */ "./app.css");
-/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./context.js");
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/Navbar.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -139,13 +138,50 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     super(...args);
 
     _defineProperty(this, "state", {
-      isOpne: false
+      isOpen: false
     });
 
-    _defineProperty(this, "handelToggle", () => {
+    _defineProperty(this, "componentDidMount", () => {
+      this.context.updateCredentials(true);
+    });
+
+    _defineProperty(this, "handleToggle", () => {
       this.setState({
         isOpen: !this.state.isOpen
       });
+    });
+
+    _defineProperty(this, "adminPanel", () => {
+      console.log(this.context.authenticated);
+      let {
+        authenticated
+      } = this.context;
+
+      if (authenticated === null) {} else if (authenticated) {
+        return __jsx("button", {
+          onClick: this.context.logOut,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24
+          },
+          __self: this
+        }, "Log Out");
+      } else {
+        return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+          href: "/chat/",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 28
+          },
+          __self: this
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29
+          },
+          __self: this
+        }, "Log in"));
+      }
     });
   }
 
@@ -154,76 +190,126 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "navbar",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 37
       },
       __self: this
     }, __jsx("div", {
       className: "nav-center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17
+        lineNumber: 38
       },
       __self: this
     }, __jsx("div", {
       className: "nav-header",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
-      },
-      __self: this
-    }, __jsx("button", {
-      type: "button",
-      className: "nav-btn",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 22
-      },
-      __self: this
-    }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaAlignRight"], {
-      className: "nav-icon",
-      onClick: this.handelToggle,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 23
-      },
-      __self: this
-    }))), __jsx("ul", {
-      className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 26
-      },
-      __self: this
-    }, __jsx("li", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 39
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 28
+        lineNumber: 40
       },
       __self: this
-    }, "Home")), __jsx("li", {
+    }, __jsx("img", {
+      src: _images_logo_svg__WEBPACK_IMPORTED_MODULE_2___default.a,
+      alt: "logo",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 41
+      },
+      __self: this
+    })), __jsx("button", {
+      type: "button",
+      className: "nav-btn",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 43
+      },
+      __self: this
+    }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaAlignRight"], {
+      className: "nav-icon",
+      onClick: this.handleToggle,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }))), __jsx("ul", {
+      className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 47
+      },
+      __self: this
+    }, __jsx("li", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 48
+      },
+      __self: this
+    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      href: "/",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 49
+      },
+      __self: this
+    }, __jsx("a", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 49
+      },
+      __self: this
+    }, "Home"))), __jsx("li", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/rooms/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 52
       },
       __self: this
-    }, "Rooms")))));
+    }, __jsx("a", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 52
+      },
+      __self: this
+    }, "Rooms")))), __jsx("div", {
+      className: "admin-panel",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 55
+      },
+      __self: this
+    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      href: "/chat/",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56
+      },
+      __self: this
+    }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaUserCircle"], {
+      className: "user-circle",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: this
+    })), this.adminPanel())));
   }
 
 }
+
+_defineProperty(Navbar, "contextType", _context__WEBPACK_IMPORTED_MODULE_4__["RoomContext"]);
 
 /***/ }),
 
@@ -242,9 +328,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoomContext", function() { return RoomContext; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data */ "./data.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/context.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -279,7 +366,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       minSize: 0,
       maxSize: 0,
       breakfast: false,
-      PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392'
+      PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
+      authenticated: null
     });
 
     _defineProperty(this, "formatData", items => {
@@ -301,6 +389,68 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       let tempRooms = [...this.state.rooms];
       const room = tempRooms.find(room => room.slug === slug);
       return room;
+    });
+
+    _defineProperty(this, "logOut", () => {
+      console.log('logged out');
+      localStorage.removeItem('userData');
+      this.setState({
+        authenticated: false
+      });
+    });
+
+    _defineProperty(this, "updateCredentials", (refresh, userId, email, token) => {
+      // const userData = JSON.parse(localStorage.getItem('userData'));
+      // const decoded = jwt.decode(userData.token, {complete:true});
+      // console.log(userData)
+      // console.log(decoded)
+      if (refresh === true) {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        console.log(userData);
+
+        if (userData) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default()({
+            url: 'http://localhost:8000/api/users/refresh',
+            method: 'POST',
+            data: JSON.stringify({
+              email: userData.email
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${userData.token}`
+            }
+          }).then(res => {
+            console.log(res);
+            localStorage.setItem('userData', JSON.stringify({
+              userId: res.data.userId,
+              email: res.data.email,
+              token: res.data.token
+            }));
+            this.setState({
+              authenticated: true
+            });
+          }).catch(err => {
+            console.log(err);
+            localStorage.removeItem('userData');
+            this.setState({
+              authenticated: false
+            });
+          });
+        } else {
+          this.setState({
+            authenticated: false
+          });
+        }
+      } else {
+        localStorage.setItem('userData', JSON.stringify({
+          userId: userId,
+          email: email,
+          token: token
+        }));
+        this.setState({
+          authenticated: true
+        });
+      }
     });
 
     _defineProperty(this, "handleChange", event => {
@@ -358,7 +508,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidMount() {
     const self = this;
-    axios__WEBPACK_IMPORTED_MODULE_2___default()({
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
       url: 'https://graphql.datocms.com/',
       method: 'post',
       data: {
@@ -405,30 +555,20 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return rooms;
     }).catch(error => {
       console.log(error);
-    }); // let rooms = this.formatData(items);
-    // let featuredRooms = rooms.filter(room => room.featured === true);
-    // let maxPrice = Math.max(...rooms.map(item => item.price));
-    // let maxSize = Math.max(...rooms.map(item => item.size));
-    // this.setState({
-    //     rooms,
-    //     featuredRooms,
-    //     sortedRooms: rooms,
-    //     loading: false,
-    //     price: maxPrice,
-    //     maxPrice,
-    //     maxSize
-    // })
+    });
   }
 
   render() {
     return __jsx(RoomContext.Provider, {
       value: _objectSpread({}, this.state, {
         getRoom: this.getRoom,
-        handleChange: this.handleChange
+        handleChange: this.handleChange,
+        updateCredentials: this.updateCredentials,
+        logOut: this.logOut
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 143
+        lineNumber: 177
       },
       __self: this
     }, this.props.children);
@@ -442,671 +582,20 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 160
+        lineNumber: 196
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 161
+        lineNumber: 197
       },
       __self: this
     })));
   };
 }
 
-
-/***/ }),
-
-/***/ "./data.js":
-/*!*****************!*\
-  !*** ./data.js ***!
-  \*****************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _images_details_1_jpeg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images/details-1.jpeg */ "./images/details-1.jpeg");
-/* harmony import */ var _images_details_1_jpeg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_images_details_1_jpeg__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./images/details-2.jpeg */ "./images/details-2.jpeg");
-/* harmony import */ var _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./images/details-3.jpeg */ "./images/details-3.jpeg");
-/* harmony import */ var _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images/details-4.jpeg */ "./images/details-4.jpeg");
-/* harmony import */ var _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./images/room-1.jpeg */ "./images/room-1.jpeg");
-/* harmony import */ var _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _images_room_2_jpeg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./images/room-2.jpeg */ "./images/room-2.jpeg");
-/* harmony import */ var _images_room_2_jpeg__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_images_room_2_jpeg__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _images_room_3_jpeg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/room-3.jpeg */ "./images/room-3.jpeg");
-/* harmony import */ var _images_room_3_jpeg__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_images_room_3_jpeg__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _images_room_4_jpeg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./images/room-4.jpeg */ "./images/room-4.jpeg");
-/* harmony import */ var _images_room_4_jpeg__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_images_room_4_jpeg__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _images_room_5_jpeg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/room-5.jpeg */ "./images/room-5.jpeg");
-/* harmony import */ var _images_room_5_jpeg__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_images_room_5_jpeg__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _images_room_6_jpeg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/room-6.jpeg */ "./images/room-6.jpeg");
-/* harmony import */ var _images_room_6_jpeg__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_images_room_6_jpeg__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _images_room_7_jpeg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/room-7.jpeg */ "./images/room-7.jpeg");
-/* harmony import */ var _images_room_7_jpeg__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_images_room_7_jpeg__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _images_room_8_jpeg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/room-8.jpeg */ "./images/room-8.jpeg");
-/* harmony import */ var _images_room_8_jpeg__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_images_room_8_jpeg__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _images_room_9_jpeg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/room-9.jpeg */ "./images/room-9.jpeg");
-/* harmony import */ var _images_room_9_jpeg__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_images_room_9_jpeg__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _images_room_10_jpeg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./images/room-10.jpeg */ "./images/room-10.jpeg");
-/* harmony import */ var _images_room_10_jpeg__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_images_room_10_jpeg__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _images_room_11_jpeg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/room-11.jpeg */ "./images/room-11.jpeg");
-/* harmony import */ var _images_room_11_jpeg__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_images_room_11_jpeg__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _images_room_12_jpeg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./images/room-12.jpeg */ "./images/room-12.jpeg");
-/* harmony import */ var _images_room_12_jpeg__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_images_room_12_jpeg__WEBPACK_IMPORTED_MODULE_15__);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ([{
-  sys: {
-    id: "1"
-  },
-  fields: {
-    name: "single economy",
-    slug: "single-economy",
-    type: "single",
-    price: 100,
-    size: 200,
-    capacity: 1,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_1_jpeg__WEBPACK_IMPORTED_MODULE_4___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "2"
-  },
-  fields: {
-    name: "single basic",
-    slug: "single-basic",
-    type: "single",
-    price: 150,
-    size: 250,
-    capacity: 1,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_2_jpeg__WEBPACK_IMPORTED_MODULE_5___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "3"
-  },
-  fields: {
-    name: "single standard",
-    slug: "single-standard",
-    type: "single",
-    price: 250,
-    size: 300,
-    capacity: 1,
-    pets: true,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_3_jpeg__WEBPACK_IMPORTED_MODULE_6___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "4"
-  },
-  fields: {
-    name: "single deluxe",
-    slug: "single-deluxe",
-    type: "single",
-    price: 300,
-    size: 400,
-    capacity: 1,
-    pets: true,
-    breakfast: true,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_4_jpeg__WEBPACK_IMPORTED_MODULE_7___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "5"
-  },
-  fields: {
-    name: "double economy",
-    slug: "double-economy",
-    type: "double",
-    price: 200,
-    size: 300,
-    capacity: 2,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_5_jpeg__WEBPACK_IMPORTED_MODULE_8___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "6"
-  },
-  fields: {
-    name: "double basic",
-    slug: "double-basic",
-    type: "double",
-    price: 250,
-    size: 350,
-    capacity: 2,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_6_jpeg__WEBPACK_IMPORTED_MODULE_9___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "7"
-  },
-  fields: {
-    name: "double standard",
-    slug: "double-standard",
-    type: "double",
-    price: 300,
-    size: 400,
-    capacity: 2,
-    pets: true,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_7_jpeg__WEBPACK_IMPORTED_MODULE_10___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "8"
-  },
-  fields: {
-    name: "double deluxe",
-    slug: "double-deluxe",
-    type: "double",
-    price: 400,
-    size: 500,
-    capacity: 2,
-    pets: true,
-    breakfast: true,
-    featured: true,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_8_jpeg__WEBPACK_IMPORTED_MODULE_11___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "9"
-  },
-  fields: {
-    name: "family economy",
-    slug: "family-economy",
-    type: "family",
-    price: 300,
-    size: 500,
-    capacity: 3,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_9_jpeg__WEBPACK_IMPORTED_MODULE_12___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "10"
-  },
-  fields: {
-    name: "family basic",
-    slug: "family-basic",
-    type: "family",
-    price: 350,
-    size: 550,
-    capacity: 4,
-    pets: false,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_10_jpeg__WEBPACK_IMPORTED_MODULE_13___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "11"
-  },
-  fields: {
-    name: "family standard",
-    slug: "family-standard",
-    type: "family",
-    price: 400,
-    size: 600,
-    capacity: 5,
-    pets: true,
-    breakfast: false,
-    featured: false,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_11_jpeg__WEBPACK_IMPORTED_MODULE_14___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "12"
-  },
-  fields: {
-    name: "family deluxe",
-    slug: "family-deluxe",
-    type: "family",
-    price: 500,
-    size: 700,
-    capacity: 6,
-    pets: true,
-    breakfast: true,
-    featured: true,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_room_12_jpeg__WEBPACK_IMPORTED_MODULE_15___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}, {
-  sys: {
-    id: "13"
-  },
-  fields: {
-    name: "presidential",
-    slug: "presidential-room",
-    type: "presidential",
-    price: 600,
-    size: 1000,
-    capacity: 10,
-    pets: true,
-    breakfast: true,
-    featured: true,
-    description: "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
-    extras: ["Plush pillows and breathable bed linens", "Soft, oversized bath towels", "Full-sized, pH-balanced toiletries", "Complimentary refreshments", "Adequate safety/security", "Internet", "Comfortable beds"],
-    images: [{
-      fields: {
-        file: {
-          url: _images_details_1_jpeg__WEBPACK_IMPORTED_MODULE_0___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_2_jpeg__WEBPACK_IMPORTED_MODULE_1___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_3_jpeg__WEBPACK_IMPORTED_MODULE_2___default.a
-        }
-      }
-    }, {
-      fields: {
-        file: {
-          url: _images_details_4_jpeg__WEBPACK_IMPORTED_MODULE_3___default.a
-        }
-      }
-    }]
-  }
-}]);
-
-/***/ }),
-
-/***/ "./images/details-1.jpeg":
-/*!*******************************!*\
-  !*** ./images/details-1.jpeg ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/details-1-33ab9f1e88f204b5b8a13725a918f36c.jpeg";
-
-/***/ }),
-
-/***/ "./images/details-2.jpeg":
-/*!*******************************!*\
-  !*** ./images/details-2.jpeg ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/details-2-50c23e6265e40d602f1ac080e2d4169a.jpeg";
-
-/***/ }),
-
-/***/ "./images/details-3.jpeg":
-/*!*******************************!*\
-  !*** ./images/details-3.jpeg ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/details-3-7345b9f61680c799868f66f297cedab5.jpeg";
-
-/***/ }),
-
-/***/ "./images/details-4.jpeg":
-/*!*******************************!*\
-  !*** ./images/details-4.jpeg ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/details-4-7569a31606be3db6b229327eec5999df.jpeg";
 
 /***/ }),
 
@@ -1118,138 +607,6 @@ module.exports = "/_next/static/images/details-4-7569a31606be3db6b229327eec5999d
 /***/ (function(module, exports) {
 
 module.exports = "/_next/static/images/logo-9f0cccc1e406a5aa9ef6ee36229762c3.svg";
-
-/***/ }),
-
-/***/ "./images/room-1.jpeg":
-/*!****************************!*\
-  !*** ./images/room-1.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-1-e928a5c462a9f4f590af64285b387571.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-10.jpeg":
-/*!*****************************!*\
-  !*** ./images/room-10.jpeg ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-10-3b5c08716be6b713154c8aedaec3f5bf.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-11.jpeg":
-/*!*****************************!*\
-  !*** ./images/room-11.jpeg ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-11-f08fee37bdc8f3d11ef36658cfacc44e.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-12.jpeg":
-/*!*****************************!*\
-  !*** ./images/room-12.jpeg ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-12-0e293352532d9483616fe4c5110c8e28.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-2.jpeg":
-/*!****************************!*\
-  !*** ./images/room-2.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-2-052c76815f889f20b8a498c19a212c50.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-3.jpeg":
-/*!****************************!*\
-  !*** ./images/room-3.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-3-9a1103b597895b4c4b373d6304400781.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-4.jpeg":
-/*!****************************!*\
-  !*** ./images/room-4.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-4-1e407d88a352a0e8493e2275a76f39f5.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-5.jpeg":
-/*!****************************!*\
-  !*** ./images/room-5.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-5-a5c06e0bb3e90f927159439d68b07253.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-6.jpeg":
-/*!****************************!*\
-  !*** ./images/room-6.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-6-b9a34e969ab86c1500d67183f646995a.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-7.jpeg":
-/*!****************************!*\
-  !*** ./images/room-7.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-7-e251c8d571a7f753b3da985e4b8a34c6.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-8.jpeg":
-/*!****************************!*\
-  !*** ./images/room-8.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-8-ebb7fca5f456fb07e0096ab3ef72b330.jpeg";
-
-/***/ }),
-
-/***/ "./images/room-9.jpeg":
-/*!****************************!*\
-  !*** ./images/room-9.jpeg ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/room-9-7b17c49f01aa17fc11df8400d604e1c9.jpeg";
 
 /***/ }),
 
@@ -3036,19 +2393,19 @@ function MyApp({
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_context__WEBPACK_IMPORTED_MODULE_3__["RoomProvider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     },
     __self: this
   }, __jsx(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 10
     },
     __self: this
   }), __jsx(Component, _extends({}, pageProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     },
     __self: this
   }))));
@@ -3131,6 +2488,17 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/weak-map");
+
+/***/ }),
+
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("jsonwebtoken");
 
 /***/ }),
 

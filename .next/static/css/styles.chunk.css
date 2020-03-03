@@ -512,5 +512,92 @@ h6 {
   }
 }
 /* end of rooms fitler*/
+/*Log box*/
+.log-box,
+.log-box form {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  max-width: 350px
+}
+
+.log-box {
+  margin: auto;
+  background: rgba(255,255,255,0.6);
+  padding: 20px 40px;
+}
+
+.log-box input {
+  margin: 0 0 10px 0;
+}
+
+.log-box h3 {
+  text-align: center;
+}
+
+.loading-spinner {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  height: 34px !important;
+  transition: all linear;
+}
+
+.submit-btn.disabled {
+  background: gray;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.signed {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.loading-login {
+  height: 25px;
+}
+
+.login-err {
+  margin-bottom: 20px;
+  color: red;
+  font-size: 0.8em;
+}
+
+.admin-panel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  align-items: center;
+  color: #2c2c2c;
+}
+
+.admin-panel .user-circle {
+  font-size: 1.2em;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.admin-panel button {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.admin-panel a {
+  color: #2c2c2c;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+/*end of log box*/
 
 /*# sourceMappingURL=styles.chunk.css.map*/

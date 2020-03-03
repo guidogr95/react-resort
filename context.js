@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import items from './data';
 import axios from 'axios'
+import jwt from 'jsonwebtoken';
 
 const RoomContext = React.createContext();
 // 
@@ -20,7 +20,8 @@ class RoomProvider extends Component {
         minSize: 0,
         maxSize: 0,
         breakfast: false,
-        PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392'
+        PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
+        authenticated: null,
     }
     componentDidMount(){
         const self = this;
@@ -69,19 +70,6 @@ class RoomProvider extends Component {
         }).catch(error => {
             console.log(error)
         })
-        // let rooms = this.formatData(items);
-        // let featuredRooms = rooms.filter(room => room.featured === true);
-        // let maxPrice = Math.max(...rooms.map(item => item.price));
-        // let maxSize = Math.max(...rooms.map(item => item.size));
-        // this.setState({
-        //     rooms,
-        //     featuredRooms,
-        //     sortedRooms: rooms,
-        //     loading: false,
-        //     price: maxPrice,
-        //     maxPrice,
-        //     maxSize
-        // })
     }
     formatData = (items) => {
         let tempItems = items.map(item => {
@@ -96,7 +84,53 @@ class RoomProvider extends Component {
         let tempRooms = [...this.state.rooms];
         const room = tempRooms.find(room => room.slug === slug);
         return room;
+
     }
+
+    logOut = () => {
+        console.log('logged out');
+        localStorage.removeItem('userData');
+        this.setState({authenticated: false}) 
+    }
+
+    updateCredentials = (refresh, userId, email, token) => {
+        // const userData = JSON.parse(localStorage.getItem('userData'));
+        // const decoded = jwt.decode(userData.token, {complete:true});
+        // console.log(userData)
+        // console.log(decoded)
+        if (refresh === true) {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            console.log(userData);
+            if (userData) {
+                axios({
+                    url: 'http://localhost:8000/api/users/refresh',
+                    method: 'POST',
+                    data: JSON.stringify({
+                        email: userData.email
+                    }),
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData.token}`}
+                })
+                .then(res => {
+                    console.log(res);
+                    localStorage.setItem('userData', JSON.stringify({userId: res.data.userId, email: res.data.email, token: res.data.token}));
+                    this.setState({authenticated: true})
+                })
+                .catch(err => {
+                    console.log(err);
+                    localStorage.removeItem('userData');
+                    this.setState({authenticated: false})    
+                })
+            } else {
+                this.setState({authenticated: false})
+            }
+        } else {
+            localStorage.setItem('userData', JSON.stringify({userId: userId, email: email, token: token}));
+            this.setState({
+                authenticated: true
+            })
+        }
+    }
+
     handleChange = event => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked :
@@ -144,7 +178,9 @@ class RoomProvider extends Component {
                 value={{
                     ...this.state,
                     getRoom: this.getRoom,
-                    handleChange: this.handleChange
+                    handleChange: this.handleChange,
+                    updateCredentials: this.updateCredentials,
+                    logOut: this.logOut
                 }}
             >
                 {this.props.children}

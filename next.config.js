@@ -10,7 +10,8 @@ module.exports = withImages(withCSS({
     exportPathMap: async function() {
         const paths = {
             '/': {page: '/'},
-            '/rooms': {page: '/rooms'}
+            '/rooms/': {page: '/rooms'},
+            '/chat/': {page: '/chat'}
         };
         // const res = await fetch('https://test-project-react.herokuapp.com/hotel-rooms');
         const res = await fetch('https://graphql.datocms.com/',{
