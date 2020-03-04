@@ -23,8 +23,8 @@ const Home = () => {
         <RoomProvider>
             <Hero>
                 <Banner title="Luxurious Rooms" subtitle="Deluxe Rooms Starting at $299">
-                    <Link href="/rooms">
-                        <a  className="btn-primary">our rooms</a>
+                    <Link href="/rooms/">
+                        <a className="btn-primary">our rooms</a>
                     </Link>
                 </Banner>
             </Hero>

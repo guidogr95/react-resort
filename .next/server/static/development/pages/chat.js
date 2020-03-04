@@ -88,10 +88,312 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/ChatBoard.js":
+/*!*********************************!*\
+  !*** ./components/ChatBoard.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatBoard; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ChatInstance__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatInstance */ "./components/ChatInstance.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatBoard.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+class ChatBoard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: this.props.currentUser
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.props.currentUser);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentUser !== this.props.currentUser) {
+      console.log(this.props.currentUser);
+      this.setState({
+        currentUser: this.props.currentUser
+      });
+    }
+  }
+
+  render() {
+    const {
+      currentUser
+    } = this.state;
+    return __jsx("div", {
+      className: "chat-board",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 27
+      },
+      __self: this
+    }, currentUser && currentUser !== null ? Object.values(currentUser.rooms).map(room => {
+      if (room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4') {
+        return __jsx(_ChatInstance__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          id: room.id,
+          key: room.id,
+          roomInfo: room,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 32
+          },
+          __self: this
+        });
+      }
+    }) : 'Loading');
+  }
+
+}
+
+/***/ }),
+
+/***/ "./components/ChatInstance.js":
+/*!************************************!*\
+  !*** ./components/ChatInstance.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatInstance; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @pusher/chatkit-client */ "@pusher/chatkit-client");
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./context.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatInstance.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "componentDidMount", () => {
+      const chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default.a.ChatManager({
+        instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
+        userId: 'guido',
+        tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default.a.TokenProvider({
+          url: 'http://localhost:3001/authenticate'
+        })
+      }); // console.log(this.props)
+
+      chatManager.connect().then(currentUser => {
+        this.setState({
+          currentUser
+        });
+        return currentUser.subscribeToRoom({
+          roomId: this.props.roomInfo.id,
+          messageLimit: 100,
+          hooks: {
+            onMessage: message => {
+              console.log(message);
+              this.setState({
+                messages: [...this.state.messages, message]
+              });
+            },
+            onUserStartedTyping: user => {
+              this.setState({
+                userTyping: user.name,
+                isUserTyping: true
+              });
+            },
+            onUserStoppedTyping: user => {
+              this.setState({
+                userTyping: user.name,
+                isUserTyping: false
+              });
+            }
+          }
+        });
+      }).then(room => this.setState({
+        currentRoom: room
+      })).catch(error => console.log('Hiiiii', error));
+    });
+
+    this.state = {
+      messages: [],
+      currentRoom: {},
+      currentUser: {},
+      userTyping: '',
+      isUserTyping: false
+    };
+  }
+
+  componentDidUpdate() {
+    console.log(this.context);
+    console.log(this.state.currentRoom);
+  }
+
+  render() {
+    const {
+      roomInfo
+    } = this.props.roomInfo;
+
+    if (this.state.currentRoom.length === 0) {
+      return __jsx("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 68
+        },
+        __self: this
+      }, "Loading....");
+    }
+
+    return __jsx("div", {
+      className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 72
+      },
+      __self: this
+    }, __jsx("ul", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 73
+      },
+      __self: this
+    }, this.state.messages.map((message, index) => {
+      return __jsx("li", {
+        key: index,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 76
+        },
+        __self: this
+      }, __jsx("div", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 77
+        },
+        __self: this
+      }, __jsx("span", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 78
+        },
+        __self: this
+      }, message.senderId), __jsx("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 79
+        },
+        __self: this
+      }, message.text)));
+    })));
+  }
+
+}
+
+_defineProperty(ChatInstance, "contextType", _context__WEBPACK_IMPORTED_MODULE_2__["RoomContext"]);
+
+/***/ }),
+
+/***/ "./components/ChatList.js":
+/*!********************************!*\
+  !*** ./components/ChatList.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./context.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatList.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+class ChatList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "switchChat", event => {
+      this.context.changeWindow(event.target.value);
+    });
+
+    this.state = {
+      activeWindow: ''
+    };
+  }
+
+  componentDidMount() {
+    this.context.changeWindow(this.state.activeWindow);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentUser !== this.props.currentUser && this.props.currentUser !== null) {
+      this.setState({
+        activeWindow: this.props.currentUser.rooms[1].id
+      });
+    }
+  }
+
+  render() {
+    const {
+      currentUser
+    } = this.props;
+    return __jsx("ul", {
+      className: "chatrooms-container",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: this
+    }, currentUser ? Object.values(currentUser.rooms).map((room, index) => {
+      if (room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4') {
+        return __jsx("li", {
+          key: room.id,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 38
+          },
+          __self: this
+        }, __jsx("button", {
+          value: room.id,
+          onClick: this.switchChat,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 39
+          },
+          __self: this
+        }, room.id));
+      }
+    }) : 'Loading...');
+  }
+
+}
+
+_defineProperty(ChatList, "contextType", _context__WEBPACK_IMPORTED_MODULE_1__["RoomContext"]);
+
+/***/ }),
 
 /***/ "./context.js":
 /*!********************!*\
@@ -147,7 +449,9 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       maxSize: 0,
       breakfast: false,
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
-      authenticated: null
+      authenticated: null,
+      chatUserId: 'guido',
+      activeWindow: ''
     });
 
     _defineProperty(this, "formatData", items => {
@@ -171,8 +475,13 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return room;
     });
 
+    _defineProperty(this, "changeWindow", window => {
+      this.setState({
+        activeWindow: window
+      });
+    });
+
     _defineProperty(this, "logOut", () => {
-      console.log('logged out');
       localStorage.removeItem('userData');
       this.setState({
         authenticated: false
@@ -186,9 +495,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       // console.log(decoded)
       if (refresh === true) {
         const userData = JSON.parse(localStorage.getItem('userData'));
-        console.log(userData);
 
-        if (userData) {
+        if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_1___default()({
             url: 'http://localhost:8000/api/users/refresh',
             method: 'POST',
@@ -200,7 +508,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               'Authorization': `Bearer ${userData.token}`
             }
           }).then(res => {
-            console.log(res);
             localStorage.setItem('userData', JSON.stringify({
               userId: res.data.userId,
               email: res.data.email,
@@ -210,7 +517,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               authenticated: true
             });
           }).catch(err => {
-            console.log(err);
             localStorage.removeItem('userData');
             this.setState({
               authenticated: false
@@ -260,7 +566,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       price = parseInt(price); //filter by type
 
       if (roomtype !== 'all') {
-        console.log('notal');
         tempRooms = tempRooms.filter(room => room.roomtype === roomtype);
       } //filter by capacity
 
@@ -344,11 +649,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         getRoom: this.getRoom,
         handleChange: this.handleChange,
         updateCredentials: this.updateCredentials,
-        logOut: this.logOut
+        logOut: this.logOut,
+        changeWindow: this.changeWindow
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 177
+        lineNumber: 181
       },
       __self: this
     }, this.props.children);
@@ -362,14 +668,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 201
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 197
+        lineNumber: 202
       },
       __self: this
     })));
@@ -2173,6 +2479,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./context.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @pusher/chatkit-client */ "@pusher/chatkit-client");
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_ChatList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ChatList */ "./components/ChatList.js");
+/* harmony import */ var _components_ChatBoard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ChatBoard */ "./components/ChatBoard.js");
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/chat.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -2182,6 +2492,9 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 
 
@@ -2203,20 +2516,40 @@ function chat() {
     0: errors,
     1: setErrors
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+  const {
+    0: currentUser,
+    1: setCurrentUser
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  const {
+    0: currentRoom,
+    1: setCurrentRoom
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+  const {
+    0: value,
+    1: setValue
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const style = {
-    backgroundImage: "url(" + _images_chat_jpg__WEBPACK_IMPORTED_MODULE_1___default.a + ")",
-    height: 600,
+    minHeight: 600,
     width: "100%",
-    padding: "150px 0 150px 0"
+    padding: "50px 0 50px 0"
   };
 
   const handleChange = event => setInput(_objectSpread({}, input, {
     [event.target.name]: event.target.value
   }));
 
+  const useForceUpdate = () => {
+    setValue(Math.random());
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     context.updateCredentials(true);
   }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (context.authenticated && context.authenticated !== null) {
+      handleChatSession();
+    } else {}
+  }, [context.authenticated]);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -2243,17 +2576,74 @@ function chat() {
     });
   };
 
+  const handleChatSession = () => {
+    const chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6___default.a.ChatManager({
+      instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
+      userId: context.chatUserId,
+      tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6___default.a.TokenProvider({
+        url: 'http://localhost:3001/authenticate'
+      })
+    });
+    chatManager.connect().then(currentUser => {
+      setCurrentUser(currentUser);
+      console.log(currentUser);
+      currentUser;
+      return currentUser.subscribeToRoom({
+        roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+        messageLimit: 100,
+        hooks: {
+          onMessage: message => {
+            useForceUpdate();
+          }
+        }
+      }).catch(err => console.log(err)); // return currentUser.createRoom({
+      //     id: `${currentUser.id}-room`,
+      //     name: `${currentUser.id}-room`,
+      //     private: true,
+      //     addUserIds: [currentUser.id, 'guido']
+      // }).then(room => {
+      //     setCurrentRoom(room)
+      // //     return currentUser.subscribeToRoom({
+      // //     roomId: room.id,
+      // //     messageLimit: 100,
+      // //     hooks: {
+      // //         onMessage: (message) => {
+      // //             console.log(message)
+      // //             this.setState({
+      // //                 messages: [...this.state.messages, message]
+      // //             })
+      // //         },
+      // //         onUserStartedTyping: user => {
+      // //             this.setState({
+      // //                 userTyping: user.name,
+      // //                 isUserTyping: true
+      // //             })
+      // //         },
+      // //         onUserStoppedTyping: user => {
+      // //             this.setState({
+      // //                 userTyping: user.name,
+      // //                 isUserTyping: false
+      // //             })
+      // //         }
+      // //     }
+      // // })
+      // }).catch(err => {
+      //     console.log('error', err)
+      // })
+    }).catch(error => console.log('Hiiiii', error));
+  };
+
   const renderForm = () => {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 139
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 140
       },
       __self: this
     }, "Login to Chat"), Object.values(errors).map((err, index) => {
@@ -2262,7 +2652,7 @@ function chat() {
         className: "login-err",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 143
         },
         __self: this
       }, err);
@@ -2270,14 +2660,14 @@ function chat() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 146
       },
       __self: this
     }, __jsx("label", {
       htmlFor: "email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 147
       },
       __self: this
     }, "Email"), __jsx("input", {
@@ -2287,14 +2677,14 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 148
       },
       __self: this
     }), __jsx("label", {
       htmlFor: "password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 150
       },
       __self: this
     }, "Password"), __jsx("input", {
@@ -2304,7 +2694,7 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 151
       },
       __self: this
     }), __jsx("button", {
@@ -2313,7 +2703,7 @@ function chat() {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 152
       },
       __self: this
     }, btnDisabled ? __jsx("img", {
@@ -2322,7 +2712,7 @@ function chat() {
       alt: "loading spinner",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 154
       },
       __self: this
     }) : "Enviar")));
@@ -2333,44 +2723,65 @@ function chat() {
       className: "signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 85
+        lineNumber: 163
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 86
+        lineNumber: 164
       },
       __self: this
     }, "You are logged in"), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 87
+        lineNumber: 165
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 166
       },
       __self: this
     }, "Go Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
       href: "/admin",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 170
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 171
       },
       __self: this
-    }, "Admin Panel")));
+    }, "Admin Panel")), __jsx("div", {
+      className: "chat-window",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 175
+      },
+      __self: this
+    }, __jsx(_components_ChatList__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      currentUser: currentUser,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 176
+      },
+      __self: this
+    }), __jsx(_components_ChatBoard__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      currentUser: currentUser,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 177
+      },
+      __self: this
+    })));
   };
 
   if (context.authenticated === null) {
@@ -2378,14 +2789,14 @@ function chat() {
       style: style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 102
+        lineNumber: 185
       },
       __self: this
     }, __jsx("div", {
       className: "log-box loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 186
       },
       __self: this
     }, __jsx("img", {
@@ -2394,7 +2805,7 @@ function chat() {
       alt: "loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 104
+        lineNumber: 187
       },
       __self: this
     })));
@@ -2404,14 +2815,14 @@ function chat() {
     style: style,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 193
     },
     __self: this
   }, __jsx("div", {
     className: "log-box",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 111
+      lineNumber: 194
     },
     __self: this
   }, context.authenticated ? renderLoggedin() : renderForm()));
@@ -2419,7 +2830,7 @@ function chat() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!*****************************!*\
   !*** multi ./pages/chat.js ***!
   \*****************************/
@@ -2428,6 +2839,17 @@ function chat() {
 
 module.exports = __webpack_require__(/*! /home/guido/Documents/GitHub/react-resort/pages/chat.js */"./pages/chat.js");
 
+
+/***/ }),
+
+/***/ "@pusher/chatkit-client":
+/*!*****************************************!*\
+  !*** external "@pusher/chatkit-client" ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@pusher/chatkit-client");
 
 /***/ }),
 

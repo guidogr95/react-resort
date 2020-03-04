@@ -643,7 +643,9 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       maxSize: 0,
       breakfast: false,
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
-      authenticated: null
+      authenticated: null,
+      chatUserId: 'guido',
+      activeWindow: ''
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "formatData", function (items) {
@@ -672,8 +674,13 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       return room;
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "changeWindow", function (window) {
+      _this.setState({
+        activeWindow: window
+      });
+    });
+
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "logOut", function () {
-      console.log('logged out');
       localStorage.removeItem('userData');
 
       _this.setState({
@@ -688,9 +695,8 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       // console.log(decoded)
       if (refresh === true) {
         var userData = JSON.parse(localStorage.getItem('userData'));
-        console.log(userData);
 
-        if (userData) {
+        if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_18___default()({
             url: 'http://localhost:8000/api/users/refresh',
             method: 'POST',
@@ -702,7 +708,6 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
               'Authorization': "Bearer ".concat(userData.token)
             }
           }).then(function (res) {
-            console.log(res);
             localStorage.setItem('userData', _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()({
               userId: res.data.userId,
               email: res.data.email,
@@ -713,7 +718,6 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
               authenticated: true
             });
           })["catch"](function (err) {
-            console.log(err);
             localStorage.removeItem('userData');
 
             _this.setState({
@@ -765,7 +769,6 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       price = _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_7___default()(price); //filter by type
 
       if (roomtype !== 'all') {
-        console.log('notal');
         tempRooms = tempRooms.filter(function (room) {
           return room.roomtype === roomtype;
         });
@@ -852,11 +855,12 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           getRoom: this.getRoom,
           handleChange: this.handleChange,
           updateCredentials: this.updateCredentials,
-          logOut: this.logOut
+          logOut: this.logOut,
+          changeWindow: this.changeWindow
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 177
+          lineNumber: 181
         },
         __self: this
       }, this.props.children);
@@ -872,7 +876,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 201
       },
       __self: this
     }, function (value) {
@@ -880,7 +884,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 197
+          lineNumber: 202
         },
         __self: this
       }));
@@ -50553,7 +50557,7 @@ var Home = function Home() {
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
-    href: "/rooms",
+    href: "/rooms/",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 26
@@ -50629,7 +50633,7 @@ var Home = function Home() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /*!***************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fguido%2FDocuments%2FGitHub%2Freact-resort%2Fpages%2Findex.js ***!
   \***************************************************************************************************************************************/
@@ -50652,5 +50656,5 @@ module.exports = dll_0fb095e325d7ebf261c3;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js"]]]);
+},[[7,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -638,7 +638,9 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       maxSize: 0,
       breakfast: false,
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
-      authenticated: null
+      authenticated: null,
+      chatUserId: 'guido',
+      activeWindow: ''
     });
 
     _defineProperty(this, "formatData", items => {
@@ -662,8 +664,13 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return room;
     });
 
+    _defineProperty(this, "changeWindow", window => {
+      this.setState({
+        activeWindow: window
+      });
+    });
+
     _defineProperty(this, "logOut", () => {
-      console.log('logged out');
       localStorage.removeItem('userData');
       this.setState({
         authenticated: false
@@ -677,9 +684,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       // console.log(decoded)
       if (refresh === true) {
         const userData = JSON.parse(localStorage.getItem('userData'));
-        console.log(userData);
 
-        if (userData) {
+        if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_1___default()({
             url: 'http://localhost:8000/api/users/refresh',
             method: 'POST',
@@ -691,7 +697,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               'Authorization': `Bearer ${userData.token}`
             }
           }).then(res => {
-            console.log(res);
             localStorage.setItem('userData', JSON.stringify({
               userId: res.data.userId,
               email: res.data.email,
@@ -701,7 +706,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               authenticated: true
             });
           }).catch(err => {
-            console.log(err);
             localStorage.removeItem('userData');
             this.setState({
               authenticated: false
@@ -751,7 +755,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       price = parseInt(price); //filter by type
 
       if (roomtype !== 'all') {
-        console.log('notal');
         tempRooms = tempRooms.filter(room => room.roomtype === roomtype);
       } //filter by capacity
 
@@ -835,11 +838,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         getRoom: this.getRoom,
         handleChange: this.handleChange,
         updateCredentials: this.updateCredentials,
-        logOut: this.logOut
+        logOut: this.logOut,
+        changeWindow: this.changeWindow
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 177
+        lineNumber: 181
       },
       __self: this
     }, this.props.children);
@@ -853,14 +857,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 201
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 197
+        lineNumber: 202
       },
       __self: this
     })));
@@ -2749,7 +2753,7 @@ const Home = () => {
     },
     __self: undefined
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
-    href: "/rooms",
+    href: "/rooms/",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 26
@@ -2781,7 +2785,7 @@ const Home = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

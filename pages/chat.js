@@ -4,6 +4,9 @@ import loading from '../images/gif/loading-arrow.gif'
 import axios from 'axios';
 import { RoomContext } from '../context'
 import Link from 'next/link';
+import Chatkit from '@pusher/chatkit-client'
+import ChatList from '../components/ChatList'
+import ChatBoard from '../components/ChatBoard'
 
 
 export default function chat() {
@@ -11,20 +14,36 @@ export default function chat() {
     const [input, setInput] = useState({});
     const [btnDisabled, setbtnDisabled] = useState(false);
     const [errors, setErrors] = useState({});
+    const [currentUser, setCurrentUser] = useState(null);
+    const [currentRoom, setCurrentRoom] = useState({});
+    const [value, setValue] = useState(0);
     const style = {
-        backgroundImage: "url("+ chatImg + ")",
-        height: 600,
+        minHeight: 600,
         width: "100%",
-        padding: "150px 0 150px 0"
+        padding: "50px 0 50px 0"
     };
     const handleChange = (event) => setInput({
         ...input,
         [event.target.name]: event.target.value
     });
 
+    const useForceUpdate = () => {
+        setValue(Math.random());
+    }
+
     useEffect(() => {
         context.updateCredentials(true);
     }, [])
+
+    useEffect(() => {
+        if ( context.authenticated && context.authenticated !== null ) {
+            handleChatSession();
+        } else {
+
+        }
+        
+    }, [context.authenticated])
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -51,6 +70,70 @@ export default function chat() {
             setbtnDisabled(false);
         })
     }
+
+    const handleChatSession = () => {
+        const chatManager = new Chatkit.ChatManager({
+            instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
+            userId: context.chatUserId,
+            tokenProvider: new Chatkit.TokenProvider({
+                url: 'http://localhost:3001/authenticate'
+            })
+        })
+
+        chatManager
+            .connect()
+            .then(currentUser => {
+                setCurrentUser(currentUser)
+                console.log(currentUser)
+                currentUser
+                return currentUser.subscribeToRoom({
+                        roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+                        messageLimit: 100,
+                        hooks: {
+                            onMessage: (message) => {
+                                useForceUpdate();
+                            }
+                        }
+                        
+                }).catch(err => console.log(err))
+                // return currentUser.createRoom({
+                //     id: `${currentUser.id}-room`,
+                //     name: `${currentUser.id}-room`,
+                //     private: true,
+                //     addUserIds: [currentUser.id, 'guido']
+                // }).then(room => {
+                //     setCurrentRoom(room)
+                // //     return currentUser.subscribeToRoom({
+                // //     roomId: room.id,
+                // //     messageLimit: 100,
+                // //     hooks: {
+                // //         onMessage: (message) => {
+                // //             console.log(message)
+                // //             this.setState({
+                // //                 messages: [...this.state.messages, message]
+                // //             })
+                // //         },
+                // //         onUserStartedTyping: user => {
+                // //             this.setState({
+                // //                 userTyping: user.name,
+                // //                 isUserTyping: true
+                // //             })
+                // //         },
+                // //         onUserStoppedTyping: user => {
+                // //             this.setState({
+                // //                 userTyping: user.name,
+                // //                 isUserTyping: false
+                // //             })
+                // //         }
+                // //     }
+                // // })
+                // }).catch(err => {
+                //     console.log('error', err)
+                // })
+            })
+            .catch(error => console.log('Hiiiii', error))
+    }
+
     const renderForm = () => {
         return (
             <React.Fragment>
@@ -71,11 +154,6 @@ export default function chat() {
                         <img className="loading-login" src={loading} alt="loading spinner"/>:
                         "Enviar"
                     }</button>
-                    {/* <Link href="/admin">
-                        <button className="btn-primary submit-btn">
-                            Admin Panel
-                        </button>
-                    </Link> */}
                 </form>
             </React.Fragment>
         )
@@ -94,6 +172,11 @@ export default function chat() {
                         Admin Panel
                     </a>
                 </Link>
+                <div className="chat-window">
+                    <ChatList currentUser={currentUser} />
+                    <ChatBoard currentUser={currentUser} />
+                </div>
+                
             </div>
         )
     }

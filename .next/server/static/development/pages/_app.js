@@ -104,6 +104,363 @@ module.exports =
 
 /***/ }),
 
+/***/ "./components/ChatComponent.js":
+/*!*************************************!*\
+  !*** ./components/ChatComponent.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatComponent; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UsernameForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsernameForm */ "./components/UsernameForm.js");
+/* harmony import */ var _ChatScreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatScreen */ "./components/ChatScreen.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./context.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatComponent.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+class ChatComponent extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleSubmit", username => {
+      axios__WEBPACK_IMPORTED_MODULE_3___default()({
+        url: 'http://localhost:3001/users',
+        method: 'POST',
+        data: JSON.stringify({
+          username
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        console.log(res.data.userId);
+        console.log('success');
+        this.setState({
+          currentUsername: username,
+          currentScreen: 'ChatScreen',
+          userId: res.data.userId
+        });
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(this, "handleChat", () => {
+      if (this.state.currentScreen === 'WhatIsYourUsernameScreen') {
+        return __jsx(_UsernameForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onSubmit: this.handleSubmit,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 40
+          },
+          __self: this
+        });
+      } else if (this.state.currentScreen === 'ChatScreen') {
+        return __jsx(_ChatScreen__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          currentUsername: this.state.currentUsername,
+          userId: this.state.userId,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 42
+          },
+          __self: this
+        });
+      }
+    });
+
+    this.state = {
+      currentScreen: 'WhatIsYourUsernameScreen',
+      currentUsername: '',
+      userId: ''
+    };
+  }
+
+  render() {
+    if (this.context.authenticated || this.context.authenticated === null) {
+      return __jsx("div", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 48
+        },
+        __self: this
+      });
+    } else {
+      return __jsx("div", {
+        className: "chat-component",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51
+        },
+        __self: this
+      }, this.handleChat());
+    }
+  }
+
+}
+
+_defineProperty(ChatComponent, "contextType", _context__WEBPACK_IMPORTED_MODULE_4__["RoomContext"]);
+
+/***/ }),
+
+/***/ "./components/ChatScreen.js":
+/*!**********************************!*\
+  !*** ./components/ChatScreen.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatScreen; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @pusher/chatkit-client */ "@pusher/chatkit-client");
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _MessageList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessageList */ "./components/MessageList.js");
+/* harmony import */ var _SendMessageForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SendMessageForm */ "./components/SendMessageForm.js");
+/* harmony import */ var _TypingIndicator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TypingIndicator */ "./components/TypingIndicator.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatScreen.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+ //Components
+
+
+
+
+class ChatScreen extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "componentDidMount", () => {
+      const chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default.a.ChatManager({
+        instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
+        userId: this.props.userId,
+        tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default.a.TokenProvider({
+          url: 'http://localhost:3001/authenticate'
+        })
+      });
+      chatManager.connect().then(currentUser => {
+        this.setState({
+          currentUser
+        });
+        console.log(currentUser);
+        return currentUser.createRoom({
+          id: `${currentUser.id}-room`,
+          name: `${currentUser.id}-room`,
+          private: true,
+          addUserIds: [currentUser.id, 'guido']
+        }).then(room => {
+          this.setState({
+            currentRoom: room
+          });
+          return currentUser.subscribeToRoom({
+            roomId: room.id,
+            messageLimit: 100,
+            hooks: {
+              onMessage: message => {
+                console.log(message);
+                this.setState({
+                  messages: [...this.state.messages, message]
+                });
+              },
+              onUserStartedTyping: user => {
+                this.setState({
+                  userTyping: user.name,
+                  isUserTyping: true
+                });
+              },
+              onUserStoppedTyping: user => {
+                this.setState({
+                  userTyping: user.name,
+                  isUserTyping: false
+                });
+              }
+            }
+          }).then(() => {
+            return this.state.currentUser.subscribeToRoomMultipart({
+              roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+              messageLimit: 100,
+              hooks: {
+                onMessage: message => {
+                  console.log(message); // this.updateRooms();
+                }
+              }
+            }).then(() => {
+              this.state.currentUser.sendSimpleMessage({
+                roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+                text: 'we'
+              }).then(messageId => console.log('sent', messageId)).catch(err => console.log('error', err));
+            });
+          });
+        }).catch(err => {
+          console.log('error', err);
+        }); // return currentUser.subscribeToRoom({
+        //     roomId: 'eadf4af7-69ff-4a59-9dc1-d4c4adcafde4',
+        //     messageLimit: 100,
+        //     hooks: {
+        //         onMessage: (message) => {
+        //             console.log(message)
+        //             this.setState({
+        //                 messages: [...this.state.messages, message]
+        //             })
+        //         },
+        //         onUserStartedTyping: user => {
+        //             this.setState({
+        //                 userTyping: user.name,
+        //                 isUserTyping: true
+        //             })
+        //         },
+        //         onUserStoppedTyping: user => {
+        //             this.setState({
+        //                 userTyping: user.name,
+        //                 isUserTyping: false
+        //             })
+        //         }
+        //     }
+        // })
+      }).catch(error => console.log('Hiiiii', error));
+    });
+
+    _defineProperty(this, "sendMessage", text => {
+      this.state.currentUser.sendSimpleMessage({
+        roomId: this.state.currentRoom.id,
+        text
+      }).then(messageId => console.log('sent', messageId)).catch(err => console.log('error', err));
+    });
+
+    _defineProperty(this, "sendTypingEvent", () => {
+      this.state.currentUser.isTypingIn({
+        roomId: this.state.currentRoom.id
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+
+    this.state = {
+      messages: [],
+      currentRoom: {},
+      currentUser: {},
+      userTyping: '',
+      isUserTyping: false
+    };
+  }
+
+  render() {
+    return __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 134
+      },
+      __self: this
+    }, "Hello ", this.props.currentUsername, __jsx(_MessageList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      messages: this.state.messages,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 136
+      },
+      __self: this
+    }), this.state.isUserTyping ? __jsx(_TypingIndicator__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      userTyping: this.state.userTyping,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 137
+      },
+      __self: this
+    }) : '', __jsx(_SendMessageForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      onSubmit: this.sendMessage,
+      onChange: this.sendTypingEvent,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 138
+      },
+      __self: this
+    }));
+  }
+
+}
+
+/***/ }),
+
+/***/ "./components/MessageList.js":
+/*!***********************************!*\
+  !*** ./components/MessageList.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MessageList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/MessageList.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+class MessageList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return __jsx("ul", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 10
+      },
+      __self: this
+    }, this.props.messages.map((message, index) => {
+      return __jsx("li", {
+        key: index,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13
+        },
+        __self: this
+      }, __jsx("div", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14
+        },
+        __self: this
+      }, __jsx("span", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15
+        },
+        __self: this
+      }, message.senderId), __jsx("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16
+        },
+        __self: this
+      }, message.text)));
+    }));
+  }
+
+}
+
+/***/ }),
+
 /***/ "./components/Navbar.js":
 /*!******************************!*\
   !*** ./components/Navbar.js ***!
@@ -152,7 +509,6 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "adminPanel", () => {
-      console.log(this.context.authenticated);
       let {
         authenticated
       } = this.context;
@@ -162,7 +518,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           onClick: this.context.logOut,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 24
+            lineNumber: 23
           },
           __self: this
         }, "Log Out");
@@ -171,13 +527,13 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           href: "/chat/",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 28
+            lineNumber: 27
           },
           __self: this
         }, __jsx("a", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 29
+            lineNumber: 28
           },
           __self: this
         }, "Log in"));
@@ -190,28 +546,28 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "navbar",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 36
       },
       __self: this
     }, __jsx("div", {
       className: "nav-center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 37
       },
       __self: this
     }, __jsx("div", {
       className: "nav-header",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 38
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 39
       },
       __self: this
     }, __jsx("img", {
@@ -219,7 +575,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       alt: "logo",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 40
       },
       __self: this
     })), __jsx("button", {
@@ -227,7 +583,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "nav-btn",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 42
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaAlignRight"], {
@@ -235,73 +591,73 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.handleToggle,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 43
       },
       __self: this
     }))), __jsx("ul", {
       className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 46
       },
       __self: this
     }, __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 47
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 48
       },
       __self: this
     }, __jsx("a", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 48
       },
       __self: this
     }, "Home"))), __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/rooms/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 51
       },
       __self: this
     }, __jsx("a", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 51
       },
       __self: this
     }, "Rooms")))), __jsx("div", {
       className: "admin-panel",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55
+        lineNumber: 54
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/chat/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 55
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaUserCircle"], {
       className: "user-circle",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57
+        lineNumber: 56
       },
       __self: this
     })), this.adminPanel())));
@@ -310,6 +666,194 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 }
 
 _defineProperty(Navbar, "contextType", _context__WEBPACK_IMPORTED_MODULE_4__["RoomContext"]);
+
+/***/ }),
+
+/***/ "./components/SendMessageForm.js":
+/*!***************************************!*\
+  !*** ./components/SendMessageForm.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SendMessageForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/SendMessageForm.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleChange", event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      }); // this.props.onChange();
+    });
+
+    _defineProperty(this, "onSubmit", event => {
+      event.preventDefault();
+      this.props.onSubmit(this.state.text);
+    });
+
+    this.state = {
+      text: ''
+    };
+  }
+
+  render() {
+    return __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22
+      },
+      __self: this
+    }, __jsx("form", {
+      onSubmit: this.onSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23
+      },
+      __self: this
+    }, __jsx("input", {
+      name: "text",
+      type: "text",
+      placeholder: "Your text...",
+      onChange: this.handleChange,
+      value: this.state.username,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24
+      },
+      __self: this
+    }), __jsx("button", {
+      type: "submit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25
+      },
+      __self: this
+    }, "Enviar")));
+  }
+
+}
+
+/***/ }),
+
+/***/ "./components/TypingIndicator.js":
+/*!***************************************!*\
+  !*** ./components/TypingIndicator.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TypingIndicator; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/TypingIndicator.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function TypingIndicator(props) {
+  return __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, props.userTyping, " is typing..."));
+}
+
+/***/ }),
+
+/***/ "./components/UsernameForm.js":
+/*!************************************!*\
+  !*** ./components/UsernameForm.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UsernameForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/UsernameForm.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class UsernameForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleChange", event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    });
+
+    _defineProperty(this, "onSubmit", event => {
+      event.preventDefault();
+      this.props.onSubmit(this.state.username);
+    });
+
+    this.state = {
+      username: ''
+    };
+  }
+
+  render() {
+    return __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
+      },
+      __self: this
+    }, __jsx("form", {
+      onSubmit: this.onSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22
+      },
+      __self: this
+    }, __jsx("input", {
+      name: "username",
+      type: "text",
+      placeholder: "Username",
+      onChange: this.handleChange,
+      value: this.state.username,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23
+      },
+      __self: this
+    }), __jsx("button", {
+      type: "submit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24
+      },
+      __self: this
+    }, "Enviar")));
+  }
+
+}
 
 /***/ }),
 
@@ -367,7 +911,9 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       maxSize: 0,
       breakfast: false,
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
-      authenticated: null
+      authenticated: null,
+      chatUserId: 'guido',
+      activeWindow: ''
     });
 
     _defineProperty(this, "formatData", items => {
@@ -391,8 +937,13 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return room;
     });
 
+    _defineProperty(this, "changeWindow", window => {
+      this.setState({
+        activeWindow: window
+      });
+    });
+
     _defineProperty(this, "logOut", () => {
-      console.log('logged out');
       localStorage.removeItem('userData');
       this.setState({
         authenticated: false
@@ -406,9 +957,8 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       // console.log(decoded)
       if (refresh === true) {
         const userData = JSON.parse(localStorage.getItem('userData'));
-        console.log(userData);
 
-        if (userData) {
+        if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_1___default()({
             url: 'http://localhost:8000/api/users/refresh',
             method: 'POST',
@@ -420,7 +970,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               'Authorization': `Bearer ${userData.token}`
             }
           }).then(res => {
-            console.log(res);
             localStorage.setItem('userData', JSON.stringify({
               userId: res.data.userId,
               email: res.data.email,
@@ -430,7 +979,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               authenticated: true
             });
           }).catch(err => {
-            console.log(err);
             localStorage.removeItem('userData');
             this.setState({
               authenticated: false
@@ -480,7 +1028,6 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       price = parseInt(price); //filter by type
 
       if (roomtype !== 'all') {
-        console.log('notal');
         tempRooms = tempRooms.filter(room => room.roomtype === roomtype);
       } //filter by capacity
 
@@ -564,11 +1111,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         getRoom: this.getRoom,
         handleChange: this.handleChange,
         updateCredentials: this.updateCredentials,
-        logOut: this.logOut
+        logOut: this.logOut,
+        changeWindow: this.changeWindow
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 177
+        lineNumber: 181
       },
       __self: this
     }, this.props.children);
@@ -582,14 +1130,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 201
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 197
+        lineNumber: 202
       },
       __self: this
     })));
@@ -2376,7 +2924,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app.css */ "./app.css");
 /* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Navbar */ "./components/Navbar.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var _components_ChatComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ChatComponent */ "./components/ChatComponent.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./context.js");
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/_app.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -2386,29 +2935,36 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
 function MyApp({
   Component,
   pageProps
 }) {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_context__WEBPACK_IMPORTED_MODULE_3__["RoomProvider"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }, __jsx(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_context__WEBPACK_IMPORTED_MODULE_4__["RoomProvider"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     },
     __self: this
-  }), __jsx(Component, _extends({}, pageProps, {
+  }, __jsx(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     },
     __self: this
-  }))));
+  }), __jsx(Component, _extends({}, pageProps, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  })), __jsx(_components_ChatComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  })));
 }
 
 /***/ }),
@@ -2422,6 +2978,17 @@ function MyApp({
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
 
+
+/***/ }),
+
+/***/ "@pusher/chatkit-client":
+/*!*****************************************!*\
+  !*** external "@pusher/chatkit-client" ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@pusher/chatkit-client");
 
 /***/ }),
 

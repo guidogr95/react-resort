@@ -526,7 +526,9 @@ h6 {
 .log-box {
   margin: auto;
   background: rgba(255,255,255,0.6);
-  padding: 20px 40px;
+  padding: 20px 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .log-box input {
@@ -570,6 +572,41 @@ h6 {
   font-size: 0.8em;
 }
 
+.chat-window {
+  display: flex;
+  display: -webkit-flex;
+  display: flexbox;
+  margin: 20px 0 0 0;
+  background: whitesmoke;
+  padding: 20px;
+}
+
+.chat-instance {
+  width: 100%;
+  height: 350px;
+}
+
+.chat-instance.inactive {
+  display: none;
+}
+
+.chatrooms-container {
+  width: 25%;
+  list-style: none;
+}
+
+.chat-board {
+  height: 550px;
+  width: 75%;
+}
+
+.chat-board ul {
+  list-style: none;
+  text-align: left;
+}
+
+/*end of log box*/
+/*Admin panel*/
 .admin-panel {
   position: absolute;
   top: 5px;
@@ -598,4 +635,13 @@ h6 {
   text-decoration: none;
   font-size: 0.9em;
 }
-/*end of log box*/
+/*End of Admin panel*/
+
+/*Chat styles*/
+.chat-component {
+  position: fixed;
+  bottom: 100px;
+  left: 50px;
+}
+
+/*End of chat*/

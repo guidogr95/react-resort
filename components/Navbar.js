@@ -16,7 +16,6 @@ export default class Navbar extends Component {
         this.setState({isOpen:!this.state.isOpen})
     }
     adminPanel = () => {
-        console.log(this.context.authenticated);
         let { authenticated } = this.context;
         if (authenticated === null) {
         } else if (authenticated) {

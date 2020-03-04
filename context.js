@@ -22,6 +22,8 @@ class RoomProvider extends Component {
         breakfast: false,
         PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
         authenticated: null,
+        chatUserId: 'guido',
+        activeWindow: ''
     }
     componentDidMount(){
         const self = this;
@@ -87,8 +89,13 @@ class RoomProvider extends Component {
 
     }
 
+    changeWindow = (window) => {
+        this.setState({
+            activeWindow: window
+        })
+    }
+
     logOut = () => {
-        console.log('logged out');
         localStorage.removeItem('userData');
         this.setState({authenticated: false}) 
     }
@@ -100,8 +107,7 @@ class RoomProvider extends Component {
         // console.log(decoded)
         if (refresh === true) {
             const userData = JSON.parse(localStorage.getItem('userData'));
-            console.log(userData);
-            if (userData) {
+            if (userData && userData !== null) {
                 axios({
                     url: 'http://localhost:8000/api/users/refresh',
                     method: 'POST',
@@ -111,12 +117,10 @@ class RoomProvider extends Component {
                     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData.token}`}
                 })
                 .then(res => {
-                    console.log(res);
                     localStorage.setItem('userData', JSON.stringify({userId: res.data.userId, email: res.data.email, token: res.data.token}));
                     this.setState({authenticated: true})
                 })
                 .catch(err => {
-                    console.log(err);
                     localStorage.removeItem('userData');
                     this.setState({authenticated: false})    
                 })
@@ -130,6 +134,7 @@ class RoomProvider extends Component {
             })
         }
     }
+    
 
     handleChange = event => {
         const target = event.target;
@@ -152,7 +157,6 @@ class RoomProvider extends Component {
         price = parseInt(price);
         //filter by type
         if (roomtype !== 'all') {
-            console.log('notal')
             tempRooms = tempRooms.filter(room => room.roomtype === roomtype)
         }
         //filter by capacity
@@ -180,7 +184,8 @@ class RoomProvider extends Component {
                     getRoom: this.getRoom,
                     handleChange: this.handleChange,
                     updateCredentials: this.updateCredentials,
-                    logOut: this.logOut
+                    logOut: this.logOut,
+                    changeWindow: this.changeWindow
                 }}
             >
                 {this.props.children}
