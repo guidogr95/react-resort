@@ -131,9 +131,8 @@ export default class ChatScreen extends Component {
 
     render() {
         return (
-            <div>
-                Hello {this.props.currentUsername}
-                <MessageList messages={this.state.messages}/>
+            <div className="chat-screen" >
+                <MessageList messages={this.state.messages} currentUser={this.state.currentUser} />
                 { this.state.isUserTyping ? <TypingIndicator userTyping={this.state.userTyping} /> : '' }
                 <SendMessageForm onSubmit={this.sendMessage} onChange={this.sendTypingEvent} />
             </div>

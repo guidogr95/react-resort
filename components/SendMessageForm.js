@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import { MdSend } from "react-icons/md";
+
 
 export default class SendMessageForm extends Component {
     constructor(props) {
@@ -20,10 +22,12 @@ export default class SendMessageForm extends Component {
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmit}>
+            <div className="user-send-form">
+                <form onSubmit={this.onSubmit} autoComplete="off">
                     <input name="text" type="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text}/>
-                    <button type="submit">Enviar</button>
+                    <div>
+                        <button type="submit"><MdSend/></button>
+                    </div>
                 </form>
             </div>
         )

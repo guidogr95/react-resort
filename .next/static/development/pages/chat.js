@@ -132,7 +132,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
 
-var scroll = react_scroll__WEBPACK_IMPORTED_MODULE_12__["animateScroll"].animateScroll;
 
 var ChatInstance = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(ChatInstance, _Component);
@@ -166,8 +165,8 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
                 messages: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_this.state.messages), [message])
               });
 
-              scroll.scrollToBottom({
-                containerId: 'chat-messages'
+              react_scroll__WEBPACK_IMPORTED_MODULE_12__["animateScroll"].scrollToBottom({
+                containerId: "chat-messages"
               });
             },
             onUserStartedTyping: function onUserStartedTyping(user) {
@@ -236,7 +235,7 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         return __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 89
+            lineNumber: 88
           },
           __self: this
         }, "Loading....");
@@ -246,21 +245,21 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 91
         },
         __self: this
       }, __jsx("div", {
         className: "chat-messages",
-        containerId: "chat-messages",
+        id: "chat-messages",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 92
         },
         __self: this
       }, __jsx("ul", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 93
         },
         __self: this
       }, this.state.messages.map(function (message, index) {
@@ -269,40 +268,40 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 98
+            lineNumber: 97
           },
           __self: this
         }, __jsx("div", {
           className: "chat-msg",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 99
+            lineNumber: 98
           },
           __self: this
         }, __jsx("div", {
           className: "avatar",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 100
+            lineNumber: 99
           },
           __self: this
         }, message.senderId[0]), __jsx("div", {
           className: "msg-content",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 101
+            lineNumber: 100
           },
           __self: this
         }, __jsx("span", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 102
+            lineNumber: 101
           },
           __self: this
         }, message.senderId), __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 103
+            lineNumber: 102
           },
           __self: this
         }, message.text))));
@@ -310,14 +309,14 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         className: "chat-input-text",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 110
         },
         __self: this
       }, __jsx("form", {
         onSubmit: this.onSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 112
+          lineNumber: 111
         },
         __self: this
       }, __jsx("input", {
@@ -329,27 +328,27 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         autoComplete: "off",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 113
+          lineNumber: 112
         },
         __self: this
       }), __jsx("div", {
         className: "button-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 113
         },
         __self: this
       }, __jsx("button", {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 114
         },
         __self: this
       }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__["FaPaperPlane"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 114
         },
         __self: this
       }))))));

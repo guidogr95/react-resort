@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import UsernameForm from './UsernameForm'
 import ChatScreen from './ChatScreen'
+import ChatScreenDisplay from './ChatScreenDisplay'
 import axios from 'axios'
 import { RoomContext } from '../context';
+import { MdChat, MdClear } from "react-icons/md";
 
 export default class ChatComponent extends Component {
     constructor(props) {
@@ -10,7 +12,8 @@ export default class ChatComponent extends Component {
         this.state= {
             currentScreen: 'WhatIsYourUsernameScreen',
             currentUsername: '',
-            userId: ''
+            userId: '',
+            modalShow: false
         }
     }
     static contextType = RoomContext;
@@ -34,13 +37,11 @@ export default class ChatComponent extends Component {
             console.log(err);  
         })
     }
-    
-    handleChat = () => {
-        if ( this.state.currentScreen === 'WhatIsYourUsernameScreen' ) {
-            return <UsernameForm onSubmit={this.handleSubmit}/>         
-        } else if ( this.state.currentScreen === 'ChatScreen' ) {
-            return <ChatScreen currentUsername={this.state.currentUsername} userId={this.state.userId} />
-        }
+
+    toggleModal = () => {
+        this.setState({
+            modalShow: !this.state.modalShow
+        })
     }
     
     render() {
@@ -48,8 +49,22 @@ export default class ChatComponent extends Component {
             return (<div></div>)
         } else {
             return (
-                <div className="chat-component">
-                    {this.handleChat()}
+                // <div className="chat-component">
+                //     {this.handleChat()}
+                // </div>
+                <div className="chat-component chat-icon">
+                    <div className="chat-component-wrapper">
+                        <ChatScreenDisplay show={this.state.modalShow} onSubmit={this.handleSubmit} currentScreen={this.state.currentScreen} currentUsername={this.state.currentUsername} userId={this.state.userId}/>
+                        <div className="chat-icon-wrapper" onClick={this.toggleModal}>
+                            <div className="modal-icon">
+                                <MdClear className={this.state.modalShow ? "cross" : "cross hide"} />
+                            </div>
+                            <div className="modal-icon">
+                                <MdChat  className={this.state.modalShow ? "chat hide" : "chat"} />  
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
             )
         }

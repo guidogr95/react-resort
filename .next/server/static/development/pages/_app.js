@@ -118,9 +118,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _UsernameForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsernameForm */ "./components/UsernameForm.js");
 /* harmony import */ var _ChatScreen__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatScreen */ "./components/ChatScreen.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var _ChatScreenDisplay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ChatScreenDisplay */ "./components/ChatScreenDisplay.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-icons/md */ "react-icons/md");
+/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_icons_md__WEBPACK_IMPORTED_MODULE_6__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatComponent.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -132,12 +135,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 class ChatComponent extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
 
     _defineProperty(this, "handleSubmit", username => {
-      axios__WEBPACK_IMPORTED_MODULE_3___default()({
+      axios__WEBPACK_IMPORTED_MODULE_4___default()({
         url: 'http://localhost:3001/users',
         method: 'POST',
         data: JSON.stringify({
@@ -159,33 +164,17 @@ class ChatComponent extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       });
     });
 
-    _defineProperty(this, "handleChat", () => {
-      if (this.state.currentScreen === 'WhatIsYourUsernameScreen') {
-        return __jsx(_UsernameForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          onSubmit: this.handleSubmit,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 40
-          },
-          __self: this
-        });
-      } else if (this.state.currentScreen === 'ChatScreen') {
-        return __jsx(_ChatScreen__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          currentUsername: this.state.currentUsername,
-          userId: this.state.userId,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 42
-          },
-          __self: this
-        });
-      }
+    _defineProperty(this, "toggleModal", () => {
+      this.setState({
+        modalShow: !this.state.modalShow
+      });
     });
 
     this.state = {
       currentScreen: 'WhatIsYourUsernameScreen',
       currentUsername: '',
-      userId: ''
+      userId: '',
+      modalShow: false
     };
   }
 
@@ -194,25 +183,83 @@ class ChatComponent extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return __jsx("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       });
     } else {
-      return __jsx("div", {
-        className: "chat-component",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 51
-        },
-        __self: this
-      }, this.handleChat());
+      return (// <div className="chat-component">
+        //     {this.handleChat()}
+        // </div>
+        __jsx("div", {
+          className: "chat-component chat-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 55
+          },
+          __self: this
+        }, __jsx("div", {
+          className: "chat-component-wrapper",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 56
+          },
+          __self: this
+        }, __jsx(_ChatScreenDisplay__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          show: this.state.modalShow,
+          onSubmit: this.handleSubmit,
+          currentScreen: this.state.currentScreen,
+          currentUsername: this.state.currentUsername,
+          userId: this.state.userId,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 57
+          },
+          __self: this
+        }), __jsx("div", {
+          className: "chat-icon-wrapper",
+          onClick: this.toggleModal,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 58
+          },
+          __self: this
+        }, __jsx("div", {
+          className: "modal-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 59
+          },
+          __self: this
+        }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_6__["MdClear"], {
+          className: this.state.modalShow ? "cross" : "cross hide",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 60
+          },
+          __self: this
+        })), __jsx("div", {
+          className: "modal-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62
+          },
+          __self: this
+        }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_6__["MdChat"], {
+          className: this.state.modalShow ? "chat hide" : "chat",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 63
+          },
+          __self: this
+        })))))
+      );
     }
   }
 
 }
 
-_defineProperty(ChatComponent, "contextType", _context__WEBPACK_IMPORTED_MODULE_4__["RoomContext"]);
+_defineProperty(ChatComponent, "contextType", _context__WEBPACK_IMPORTED_MODULE_5__["RoomContext"]);
 
 /***/ }),
 
@@ -367,23 +414,25 @@ class ChatScreen extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   render() {
     return __jsx("div", {
+      className: "chat-screen",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 134
       },
       __self: this
-    }, "Hello ", this.props.currentUsername, __jsx(_MessageList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, __jsx(_MessageList__WEBPACK_IMPORTED_MODULE_2__["default"], {
       messages: this.state.messages,
+      currentUser: this.state.currentUser,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 136
+        lineNumber: 135
       },
       __self: this
     }), this.state.isUserTyping ? __jsx(_TypingIndicator__WEBPACK_IMPORTED_MODULE_4__["default"], {
       userTyping: this.state.userTyping,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 137
+        lineNumber: 136
       },
       __self: this
     }) : '', __jsx(_SendMessageForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -391,12 +440,141 @@ class ChatScreen extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onChange: this.sendTypingEvent,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 137
       },
       __self: this
     }));
   }
 
+}
+
+/***/ }),
+
+/***/ "./components/ChatScreenDisplay.js":
+/*!*****************************************!*\
+  !*** ./components/ChatScreenDisplay.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatScreenDisplay; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UsernameForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsernameForm */ "./components/UsernameForm.js");
+/* harmony import */ var _ChatWidgetHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatWidgetHeader */ "./components/ChatWidgetHeader.js");
+/* harmony import */ var _ChatScreen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ChatScreen */ "./components/ChatScreen.js");
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatScreenDisplay.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+class ChatScreenDisplay extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleChat", () => {
+      if (this.props.currentScreen === 'WhatIsYourUsernameScreen') {
+        return __jsx(_UsernameForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onSubmit: this.props.onSubmit,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 27
+          },
+          __self: this
+        });
+      } else if (this.props.currentScreen === 'ChatScreen' && this.state.userId !== '' && this.state.currentUsername !== '') {
+        return __jsx(_ChatScreen__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          currentUsername: this.state.currentUsername,
+          userId: this.state.userId,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29
+          },
+          __self: this
+        });
+      }
+    });
+
+    this.state = {
+      userId: '',
+      currentUsername: ''
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userId !== this.props.userId && prevProps.currentUsername !== this.props.currentUsername) {
+      console.log('updated', this.props);
+      this.setState({
+        userId: this.props.userId,
+        currentUsername: this.props.currentUsername
+      });
+    }
+  }
+
+  render() {
+    return __jsx("div", {
+      className: this.props.show ? "chat-screen-display" : "chat-screen-display inactive",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 35
+      },
+      __self: this
+    }, __jsx(_ChatWidgetHeader__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }), this.handleChat());
+  }
+
+}
+
+/***/ }),
+
+/***/ "./components/ChatWidgetHeader.js":
+/*!****************************************!*\
+  !*** ./components/ChatWidgetHeader.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatWidgetHeader; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatWidgetHeader.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function ChatWidgetHeader() {
+  return __jsx("div", {
+    className: "widget-header",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, __jsx("h4", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, "My chat"), __jsx("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, "Welcome!"));
 }
 
 /***/ }),
@@ -424,38 +602,58 @@ class MessageList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   render() {
     return __jsx("ul", {
+      className: "user-message-list",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 10
       },
       __self: this
     }, this.props.messages.map((message, index) => {
+      const rawId = message.senderId;
+      const idLength = rawId.length - 4;
+      const Id = rawId.substring(0, idLength);
       return __jsx("li", {
+        className: this.props.currentUser.id == message.senderId ? "admin-style" : "customer-style",
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 13
+          lineNumber: 17
         },
         __self: this
       }, __jsx("div", {
+        className: "chat-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 18
+        },
+        __self: this
+      }, __jsx("div", {
+        className: "avatar",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 19
+        },
+        __self: this
+      }, message.senderId[0]), __jsx("div", {
+        className: "msg-content",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 20
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 21
         },
         __self: this
-      }, message.senderId), __jsx("p", {
+      }, Id), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 22
         },
         __self: this
-      }, message.text)));
+      }, message.text))));
     }));
   }
 
@@ -682,11 +880,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SendMessageForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/md */ "react-icons/md");
+/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_icons_md__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/SendMessageForm.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
@@ -714,16 +915,18 @@ class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   render() {
     return __jsx("div", {
+      className: "user-send-form",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 25
       },
       __self: this
     }, __jsx("form", {
       onSubmit: this.onSubmit,
+      autoComplete: "off",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 26
       },
       __self: this
     }, __jsx("input", {
@@ -734,17 +937,29 @@ class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       value: this.state.text,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 27
       },
       __self: this
-    }), __jsx("button", {
+    }), __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 28
+      },
+      __self: this
+    }, __jsx("button", {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 29
       },
       __self: this
-    }, "Enviar")));
+    }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_1__["MdSend"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29
+      },
+      __self: this
+    })))));
   }
 
 }
@@ -823,35 +1038,39 @@ class UsernameForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   }
 
   render() {
-    return __jsx("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 21
-      },
-      __self: this
-    }, __jsx("form", {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("form", {
       onSubmit: this.onSubmit,
+      className: "username-form",
+      autoComplete: "off",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 22
       },
       __self: this
-    }, __jsx("input", {
-      name: "username",
-      type: "text",
-      placeholder: "Username",
-      onChange: this.handleChange,
-      value: this.state.username,
+    }, __jsx("label", {
+      htmlFor: "username",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 23
       },
       __self: this
-    }), __jsx("button", {
-      type: "submit",
+    }, "Enter your name to start chat with an agent"), __jsx("input", {
+      name: "username",
+      type: "text",
+      placeholder: "Nombre",
+      onChange: this.handleChange,
+      value: this.state.username,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 24
+      },
+      __self: this
+    }), __jsx("button", {
+      className: "btn-primary",
+      type: "submit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25
       },
       __self: this
     }, "Enviar")));
@@ -3114,6 +3333,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-icons/fa");
+
+/***/ }),
+
+/***/ "react-icons/md":
+/*!*********************************!*\
+  !*** external "react-icons/md" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-icons/md");
 
 /***/ }),
 

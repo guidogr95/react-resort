@@ -2,9 +2,8 @@ import { Component } from 'react'
 import Chatkit from '@pusher/chatkit-client'
 import { RoomContext } from '../context'
 import { FaPaperPlane } from "react-icons/fa";
-import { Element , Events, animateScroll as Scroll } from 'react-scroll'
+import { animateScroll } from 'react-scroll'
 
-const scroll = Scroll.animateScroll;
 
 export default class ChatInstance extends Component {
     static contextType = RoomContext;
@@ -41,8 +40,8 @@ export default class ChatInstance extends Component {
                             this.setState({
                                 messages: [...this.state.messages, message]
                             })
-                            scroll.scrollToBottom({
-                                containerId: 'chat-messages'
+                            animateScroll.scrollToBottom({
+                                containerId: "chat-messages"
                             });
                         },
                         onUserStartedTyping: user => {
@@ -90,7 +89,7 @@ export default class ChatInstance extends Component {
         }
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
-                <div className="chat-messages" containerId="chat-messages">
+                <div className="chat-messages" id="chat-messages">
                     <ul>
                         {this.state.messages.map((message, index) => {
                             

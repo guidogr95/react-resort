@@ -18,12 +18,13 @@ export default class UsernameForm extends Component {
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <input name="username" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
-                    <button type="submit">Enviar</button>
+            <>
+                <form onSubmit={this.onSubmit} className="username-form" autoComplete="off">
+                    <label htmlFor="username">Enter your name to start chat with an agent</label>
+                    <input name="username" type="text" placeholder="Nombre" onChange={this.handleChange} value={this.state.username}/>
+                    <button className="btn-primary" type="submit">Enviar</button>
                 </form>
-            </div>
+            </>
         )
     }
 }
