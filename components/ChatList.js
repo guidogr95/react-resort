@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { RoomContext } from '../context';
+import ChatRoomButton from './ChatRoomButton';
 
 export default class ChatList extends Component {
     static contextType = RoomContext;
@@ -10,15 +11,11 @@ export default class ChatList extends Component {
         }
     }
 
-    componentDidMount() {
-        this.context.changeWindow(this.state.activeWindow)
-    }
-
     componentDidUpdate(prevProps) {
-        if ( (prevProps.currentUser !== this.props.currentUser) && this.props.currentUser !== null ) {
-            this.setState({
-                activeWindow: this.props.currentUser.rooms[1].id
-            })
+        
+        if ( (prevProps.currentUser !== this.props.currentUser) && this.props.currentUser !== null && this.props.currentUser.rooms.length > 1) {
+            const chatWindow = this.props.currentUser.rooms.find(room => room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4' )
+            this.context.changeWindow(chatWindow.id)
         }
     }
 
@@ -35,9 +32,7 @@ export default class ChatList extends Component {
                 Object.values(currentUser.rooms).map((room, index) => {
                     if ( room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4' ) {
                         return (
-                            <li key={room.id}>
-                                <button value={room.id} onClick={this.switchChat} >{room.id}</button>
-                            </li>
+                            <ChatRoomButton room={room} onClick={this.switchChat} />
                         )
                     }
                 }) : 'Loading...'

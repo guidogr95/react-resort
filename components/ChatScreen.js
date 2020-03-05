@@ -117,7 +117,7 @@ export default class ChatScreen extends Component {
         this.state.currentUser.sendSimpleMessage({
             roomId: this.state.currentRoom.id,
             text
-        }).then(messageId => console.log('sent', messageId))
+        }).then(messageId => this.setState({text:''}))
         .catch(err => console.log('error', err))
     }
 

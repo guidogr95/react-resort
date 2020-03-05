@@ -343,7 +343,9 @@ class ChatScreen extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       this.state.currentUser.sendSimpleMessage({
         roomId: this.state.currentRoom.id,
         text
-      }).then(messageId => console.log('sent', messageId)).catch(err => console.log('error', err));
+      }).then(messageId => this.setState({
+        text: ''
+      })).catch(err => console.log('error', err));
     });
 
     _defineProperty(this, "sendTypingEvent", () => {
@@ -654,7 +656,6 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaUserCircle"], {
-      className: "user-circle",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 56
@@ -701,6 +702,9 @@ class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     _defineProperty(this, "onSubmit", event => {
       event.preventDefault();
       this.props.onSubmit(this.state.text);
+      this.setState({
+        text: ''
+      });
     });
 
     this.state = {
@@ -712,14 +716,14 @@ class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 23
       },
       __self: this
     }, __jsx("form", {
       onSubmit: this.onSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 24
       },
       __self: this
     }, __jsx("input", {
@@ -727,17 +731,17 @@ class SendMessageForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       type: "text",
       placeholder: "Your text...",
       onChange: this.handleChange,
-      value: this.state.username,
+      value: this.state.text,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 25
       },
       __self: this
     }), __jsx("button", {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 26
       },
       __self: this
     }, "Enviar")));

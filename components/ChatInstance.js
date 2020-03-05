@@ -1,6 +1,10 @@
 import { Component } from 'react'
 import Chatkit from '@pusher/chatkit-client'
-import { RoomContext } from '../context';
+import { RoomContext } from '../context'
+import { FaPaperPlane } from "react-icons/fa";
+import { Element , Events, animateScroll as Scroll } from 'react-scroll'
+
+const scroll = Scroll.animateScroll;
 
 export default class ChatInstance extends Component {
     static contextType = RoomContext;
@@ -11,7 +15,8 @@ export default class ChatInstance extends Component {
             currentRoom: {},
             currentUser: {},
             userTyping: '',
-            isUserTyping: false
+            isUserTyping: false,
+            text: ''
         }
     }
 
@@ -23,7 +28,7 @@ export default class ChatInstance extends Component {
                 url: 'http://localhost:3001/authenticate'
             })
         })
-        // console.log(this.props)
+        
         chatManager
             .connect()
             .then(currentUser => {
@@ -33,10 +38,12 @@ export default class ChatInstance extends Component {
                     messageLimit: 100,
                     hooks: {
                         onMessage: (message) => {
-                            console.log(message)
                             this.setState({
                                 messages: [...this.state.messages, message]
                             })
+                            scroll.scrollToBottom({
+                                containerId: 'chat-messages'
+                            });
                         },
                         onUserStartedTyping: user => {
                             this.setState({
@@ -57,31 +64,58 @@ export default class ChatInstance extends Component {
             .catch(error => console.log('Hiiiii', error))
     }
 
-    componentDidUpdate() {
-        console.log(this.context)
-        console.log(this.state.currentRoom)
+    sendMessage = (text) => {
+        this.state.currentUser.sendSimpleMessage({
+            roomId: this.state.currentRoom.id,
+            text
+        }).then(messageId => this.setState({text:''}))
+        .catch(err => console.log('error', err))
     }
 
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.sendMessage(this.state.text);
+    }
+
+
     render() {
-        const { roomInfo } = this.props.roomInfo
         if (this.state.currentRoom.length === 0) {
             return <p>Loading....</p>
         }
-        
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
-                <ul>
-                {this.state.messages.map((message, index) => {
-                    return (
-                        <li key={index}>
-                            <div>
-                                <span>{message.senderId}</span>
-                                <p>{message.text}</p>
+                <div className="chat-messages" containerId="chat-messages">
+                    <ul>
+                        {this.state.messages.map((message, index) => {
+                            
+                            return (
+                                <li className={ this.state.currentUser.id == message.senderId ? "admin-style" : "customer-style" } key={index}>
+                                    <div className="chat-msg">
+                                        <div className="avatar">{message.senderId[0]}</div>
+                                        <div className="msg-content">
+                                            <span>{message.senderId}</span>
+                                            <p>{message.text}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <div className="chat-input-text">
+                    <form onSubmit={this.onSubmit}>
+                            <input name="text" type="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" />
+                            <div className="button-container">
+                                <button type="submit"><FaPaperPlane/></button>
                             </div>
-                        </li>
-                    )
-                })}
-            </ul>
+                    </form>
+                </div>
             </div>
         )
     }

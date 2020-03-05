@@ -62,7 +62,6 @@ export default function chat() {
             context.updateCredentials(false, res.data.userId, res.data.email, res.data.token);
         })
         .catch(err => {
-            console.log(err);
             setErrors({
                 ...errors,
                 error: "No se pudo conectar. Revise sus credenciales"
@@ -84,7 +83,6 @@ export default function chat() {
             .connect()
             .then(currentUser => {
                 setCurrentUser(currentUser)
-                console.log(currentUser)
                 currentUser
                 return currentUser.subscribeToRoom({
                         roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
@@ -96,40 +94,6 @@ export default function chat() {
                         }
                         
                 }).catch(err => console.log(err))
-                // return currentUser.createRoom({
-                //     id: `${currentUser.id}-room`,
-                //     name: `${currentUser.id}-room`,
-                //     private: true,
-                //     addUserIds: [currentUser.id, 'guido']
-                // }).then(room => {
-                //     setCurrentRoom(room)
-                // //     return currentUser.subscribeToRoom({
-                // //     roomId: room.id,
-                // //     messageLimit: 100,
-                // //     hooks: {
-                // //         onMessage: (message) => {
-                // //             console.log(message)
-                // //             this.setState({
-                // //                 messages: [...this.state.messages, message]
-                // //             })
-                // //         },
-                // //         onUserStartedTyping: user => {
-                // //             this.setState({
-                // //                 userTyping: user.name,
-                // //                 isUserTyping: true
-                // //             })
-                // //         },
-                // //         onUserStoppedTyping: user => {
-                // //             this.setState({
-                // //                 userTyping: user.name,
-                // //                 isUserTyping: false
-                // //             })
-                // //         }
-                // //     }
-                // // })
-                // }).catch(err => {
-                //     console.log('error', err)
-                // })
             })
             .catch(error => console.log('Hiiiii', error))
     }

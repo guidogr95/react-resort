@@ -16,12 +16,13 @@ export default class SendMessageForm extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.text);
+        this.setState({text: ''})
     }
     render() {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    <input name="text" type="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.username}/>
+                    <input name="text" type="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text}/>
                     <button type="submit">Enviar</button>
                 </form>
             </div>

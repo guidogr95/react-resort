@@ -9,13 +9,8 @@ export default class ChatBoard extends Component {
         }
     }
 
-    componentDidMount() {
-        console.log(this.props.currentUser)
-    }
-
     componentDidUpdate(prevProps) {
         if ( prevProps.currentUser !== this.props.currentUser ) {
-            console.log(this.props.currentUser)
             this.setState({
                 currentUser: this.props.currentUser
             })

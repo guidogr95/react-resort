@@ -53,7 +53,7 @@ export default class Navbar extends Component {
                     </ul>
                     <div className="admin-panel">
                         <Link href="/chat/">
-                            <FaUserCircle className="user-circle" />
+                            <FaUserCircle  />
                         </Link>
                         {this.adminPanel()}
                     </div>

@@ -298,7 +298,9 @@ var ChatScreen = /*#__PURE__*/function (_Component) {
         roomId: _this.state.currentRoom.id,
         text: text
       }).then(function (messageId) {
-        return console.log('sent', messageId);
+        return _this.setState({
+          text: ''
+        });
       })["catch"](function (err) {
         return console.log('error', err);
       });
@@ -665,7 +667,6 @@ var Navbar = /*#__PURE__*/function (_Component) {
         },
         __self: this
       }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_10__["FaUserCircle"], {
-        className: "user-circle",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 56
@@ -734,6 +735,10 @@ var SendMessageForm = /*#__PURE__*/function (_Component) {
       event.preventDefault();
 
       _this.props.onSubmit(_this.state.text);
+
+      _this.setState({
+        text: ''
+      });
     });
 
     _this.state = {
@@ -748,14 +753,14 @@ var SendMessageForm = /*#__PURE__*/function (_Component) {
       return __jsx("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 23
         },
         __self: this
       }, __jsx("form", {
         onSubmit: this.onSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 24
         },
         __self: this
       }, __jsx("input", {
@@ -763,17 +768,17 @@ var SendMessageForm = /*#__PURE__*/function (_Component) {
         type: "text",
         placeholder: "Your text...",
         onChange: this.handleChange,
-        value: this.state.username,
+        value: this.state.text,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 25
         },
         __self: this
       }), __jsx("button", {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 26
         },
         __self: this
       }, "Enviar")));
