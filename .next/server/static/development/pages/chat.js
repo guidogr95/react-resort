@@ -2704,7 +2704,7 @@ function chat() {
     event.preventDefault();
     setbtnDisabled(true);
     axios__WEBPACK_IMPORTED_MODULE_3___default()({
-      url: 'http://localhost:8000/api/users/login',
+      url: 'http://localhost:9000/.netlify/functions/index/users/login',
       method: 'POST',
       data: JSON.stringify({
         email: input.email,

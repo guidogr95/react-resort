@@ -49,7 +49,7 @@ export default function chat() {
         event.preventDefault();
         setbtnDisabled(true);
         axios({
-            url: 'http://localhost:8000/api/users/login',
+            url: 'https://express-login.now.sh/api/users/login',
             method: 'POST',
             data: JSON.stringify({
                 email: input.email,
