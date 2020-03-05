@@ -109,7 +109,7 @@ class RoomProvider extends Component {
             const userData = JSON.parse(localStorage.getItem('userData'));
             if (userData && userData !== null) {
                 axios({
-                    url: 'http://localhost:8000/api/users/refresh',
+                    url: 'https://express-login.now.sh/api/users/refresh',
                     method: 'POST',
                     data: JSON.stringify({
                         email: userData.email

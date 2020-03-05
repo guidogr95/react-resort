@@ -22,7 +22,7 @@ export default class ChatScreen extends Component {
             instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
             userId: this.props.userId,
             tokenProvider: new Chatkit.TokenProvider({
-                url: 'http://localhost:3001/authenticate'
+                url: 'https://express-login.now.sh/chat/authenticate'
             })
         })
 

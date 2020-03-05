@@ -19,7 +19,7 @@ export default class ChatComponent extends Component {
     static contextType = RoomContext;
     handleSubmit = (username) => {
         axios({
-            url: 'http://localhost:3001/users',
+            url: 'https://express-login.now.sh/chat/users',
             method: 'POST',
             data: JSON.stringify({
                 username
