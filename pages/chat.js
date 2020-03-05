@@ -55,7 +55,7 @@ export default function chat() {
                 email: input.email,
                 password: input.password
             }),
-            headers: { 'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'}
         })
         .then(res => {
             setbtnDisabled(false);
