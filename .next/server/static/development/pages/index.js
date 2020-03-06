@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -601,8 +601,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/context.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -615,7 +613,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* eslint-disable no-unused-vars */
-
 
 
 const RoomContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(); // 
@@ -678,16 +675,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "updateCredentials", (refresh, userId, email, token) => {
-      // const userData = JSON.parse(localStorage.getItem('userData'));
-      // const decoded = jwt.decode(userData.token, {complete:true});
-      // console.log(userData)
-      // console.log(decoded)
       if (refresh === true) {
         const userData = JSON.parse(localStorage.getItem('userData'));
 
         if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_1___default()({
-            url: 'http://localhost:8000/api/users/refresh',
+            url: 'https://express-login.now.sh/api/users/refresh',
             method: 'POST',
             data: JSON.stringify({
               email: userData.email
@@ -843,7 +836,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 181
+        lineNumber: 176
       },
       __self: this
     }, this.props.children);
@@ -857,14 +850,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 201
+        lineNumber: 196
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 202
+        lineNumber: 197
       },
       __self: this
     })));
@@ -2785,7 +2778,7 @@ const Home = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -2860,17 +2853,6 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/weak-map");
-
-/***/ }),
-
-/***/ "jsonwebtoken":
-/*!*******************************!*\
-  !*** external "jsonwebtoken" ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("jsonwebtoken");
 
 /***/ }),
 

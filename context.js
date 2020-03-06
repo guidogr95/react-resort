@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios'
-import jwt from 'jsonwebtoken';
 
 const RoomContext = React.createContext();
 // 
@@ -101,10 +100,6 @@ class RoomProvider extends Component {
     }
 
     updateCredentials = (refresh, userId, email, token) => {
-        // const userData = JSON.parse(localStorage.getItem('userData'));
-        // const decoded = jwt.decode(userData.token, {complete:true});
-        // console.log(userData)
-        // console.log(decoded)
         if (refresh === true) {
             const userData = JSON.parse(localStorage.getItem('userData'));
             if (userData && userData !== null) {

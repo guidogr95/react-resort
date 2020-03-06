@@ -80,16 +80,26 @@ export default function chat() {
         })
 
         chatManager
-            .connect()
+            .connect({
+                onAddedToRoom: () => {
+                    useForceUpdate();
+                },
+                onRoomDeleted: () => {
+                    useForceUpdate();
+                },
+                onPresenceChanged: (state, user) => {
+                    console.log(`User ${user.name} is ${state.current}`)
+                }
+            })
             .then(currentUser => {
                 setCurrentUser(currentUser)
                 currentUser
                 return currentUser.subscribeToRoom({
-                        roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+                        roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
                         messageLimit: 100,
                         hooks: {
-                            onMessage: (message) => {
-                                useForceUpdate();
+                            onPresenceChanged: (state, user) => {
+                                console.log(`User ${user.name} is ${state.current}`)
                             }
                         }
                         

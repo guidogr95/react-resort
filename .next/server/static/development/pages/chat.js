@@ -196,7 +196,7 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
         userId: 'guido',
         tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_1___default.a.TokenProvider({
-          url: 'http://localhost:3001/authenticate'
+          url: 'https://express-login.now.sh/chat/authenticate'
         })
       });
       chatManager.connect().then(currentUser => {
@@ -211,8 +211,9 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
               this.setState({
                 messages: [...this.state.messages, message]
               });
+              console.log('message');
               react_scroll__WEBPACK_IMPORTED_MODULE_4__["animateScroll"].scrollToBottom({
-                containerId: "chat-messages"
+                containerId: this.state.currentRoom.id
               });
             },
             onUserStartedTyping: user => {
@@ -229,9 +230,11 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             }
           }
         });
-      }).then(room => this.setState({
-        currentRoom: room
-      })).catch(error => console.log('Hiiiii', error));
+      }).then(room => {
+        this.setState({
+          currentRoom: room
+        });
+      }).catch(error => console.log('Hiiiii', error));
     });
 
     _defineProperty(this, "sendMessage", text => {
@@ -269,7 +272,7 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       return __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 91
         },
         __self: this
       }, "Loading....");
@@ -279,21 +282,21 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 95
       },
       __self: this
     }, __jsx("div", {
       className: "chat-messages",
-      id: "chat-messages",
+      id: this.state.currentRoom.id,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 96
       },
       __self: this
     }, __jsx("ul", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 97
       },
       __self: this
     }, this.state.messages.map((message, index) => {
@@ -302,40 +305,40 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 101
         },
         __self: this
       }, __jsx("div", {
         className: "chat-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 102
         },
         __self: this
       }, __jsx("div", {
         className: "avatar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 103
         },
         __self: this
       }, message.senderId[0]), __jsx("div", {
         className: "msg-content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100
+          lineNumber: 104
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101
+          lineNumber: 105
         },
         __self: this
       }, message.senderId), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102
+          lineNumber: 106
         },
         __self: this
       }, message.text))));
@@ -343,14 +346,14 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "chat-input-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 110
+        lineNumber: 114
       },
       __self: this
     }, __jsx("form", {
       onSubmit: this.onSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 111
+        lineNumber: 115
       },
       __self: this
     }, __jsx("input", {
@@ -362,27 +365,27 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       autoComplete: "off",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 112
+        lineNumber: 116
       },
       __self: this
     }), __jsx("div", {
       className: "button-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 113
+        lineNumber: 117
       },
       __self: this
     }, __jsx("button", {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 114
+        lineNumber: 118
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaPaperPlane"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 114
+        lineNumber: 118
       },
       __self: this
     }))))));
@@ -408,11 +411,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./context.js");
 /* harmony import */ var _ChatRoomButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChatRoomButton */ "./components/ChatRoomButton.js");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatList.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -425,8 +434,88 @@ class ChatList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       this.context.changeWindow(event.target.value);
     });
 
+    _defineProperty(this, "addCheckedChat", chatRoom => {
+      this.setState({
+        checkedChats: [...this.state.checkedChats, chatRoom]
+      });
+    });
+
+    _defineProperty(this, "removeCheckedChat", chatRoom => {
+      const filtered = this.state.checkedChats.filter(room => room.id !== chatRoom.id);
+      console.log(filtered);
+      this.setState({
+        checkedChats: filtered
+      });
+    });
+
+    _defineProperty(this, "deleteChats", () => {
+      this.state.checkedChats.map(chat => {
+        try {
+          const token = this.getToken();
+          axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            url: `https://us1.pusherplatform.io/services/chatkit_scheduler/v1/fe088103-8b4d-4e06-a93c-4d2fb3f963be/users/${chat.createdByUserId}`,
+            method: 'put',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
+          }).then(res => console.log(res)).catch(err => console.log(err));
+        } catch (err) {
+          console.log(err);
+        }
+
+        this.props.currentUser.deleteRoom({
+          roomId: chat.id
+        }).then(() => {
+          console.log(`Deleted room with ID: ${chat.id}`);
+          this.setState({
+            checkAll: false
+          });
+        }).catch(err => {
+          console.log(`Error deleted room ${chat.id}: ${err}`);
+        });
+      });
+    });
+
+    _defineProperty(this, "handleCheckAll", () => {
+      const isCheckAll = !this.state.checkAll;
+      this.setState({
+        checkAll: !this.state.checkAll
+      });
+      console.log(isCheckAll);
+
+      if (isCheckAll) {
+        const allRooms = this.props.currentUser.rooms.filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45');
+        this.setState({
+          checkedChats: allRooms
+        });
+      } else {
+        this.setState({
+          checkedChats: []
+        });
+      }
+    });
+
+    _defineProperty(this, "getToken", userId => {
+      const token = jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.sign({
+        instance: 'fe088103-8b4d-4e06-a93c-4d2fb3f963be',
+        iss: 'api_keys/d6b63c39-9c58-459d-a34b-a8d39eb6124d',
+        sub: userId,
+        su: true
+      }, 'l8I+uX85fbJCwMZVSrlyE4z2f7ckYbgbirHv5pfhDgE=', {
+        expiresIn: '1h'
+      });
+      return token;
+    });
+
+    _defineProperty(this, "seeList", () => {
+      console.log(this.state.checkedChats);
+    });
+
     this.state = {
-      activeWindow: ''
+      activeWindow: '',
+      checkedChats: [],
+      checkAll: false
     };
   }
 
@@ -435,32 +524,82 @@ class ChatList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       const chatWindow = this.props.currentUser.rooms.find(room => room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4');
       this.context.changeWindow(chatWindow.id);
     }
+
+    if (this.state.checkedChats.length === 0 && this.state.checkAll) {
+      this.setState({
+        checkAll: false
+      });
+    }
   }
 
   render() {
     const {
       currentUser
     } = this.props;
-    return __jsx("ul", {
+    return __jsx("div", {
+      className: "chat-list-container",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 99
+      },
+      __self: this
+    }, __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 100
+      },
+      __self: this
+    }, __jsx("input", {
+      type: "checkbox",
+      name: "checkAll",
+      id: "chat-checkbox",
+      checked: this.state.checkAll,
+      onChange: this.handleCheckAll,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 101
+      },
+      __self: this
+    }), __jsx("button", {
+      onClick: this.getToken,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 102
+      },
+      __self: this
+    }, "Delete Chats"), __jsx("button", {
+      onClick: this.deleteChats,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 103
+      },
+      __self: this
+    }, "Delete Chats")), __jsx("ul", {
       className: "chatrooms-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 105
       },
       __self: this
     }, currentUser ? Object.values(currentUser.rooms).map((room, index) => {
-      if (room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4') {
+      if (room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45') {
         return __jsx(_ChatRoomButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: index,
           room: room,
+          see: this.seeList,
+          clearAll: this.clearAll,
+          checkAll: this.state.checkAll,
           onClick: this.switchChat,
+          check: this.addCheckedChat,
+          uncheck: this.removeCheckedChat,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 35
+            lineNumber: 112
           },
           __self: this
         });
       }
-    }) : 'Loading...');
+    }) : 'Loading...'));
   }
 
 }
@@ -482,64 +621,112 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatRoomButton.js";
+
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function ChatRoomButton(props) {
-  const rawId = props.room.id;
-  const idLength = rawId.length - 9;
-  const Id = rawId.substring(0, idLength);
-  const rawDate = props.room.createdAt;
-  const splitDate = rawDate.split('T');
-  const Date = splitDate[0];
-  const Time = splitDate[1].substring(0, 5);
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    },
-    __self: this
-  }, __jsx("li", {
-    className: "chat-room",
-    key: props.room.id,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }, __jsx("h5", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  }, Id), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    },
-    __self: this
-  }, Date), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    },
-    __self: this
-  }, Time), __jsx("div", {
-    className: "to-chat-btn",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    },
-    __self: this
-  }, __jsx("button", {
-    value: props.room.id,
-    onClick: props.onClick,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: this
-  }, ">"))));
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+class ChatRoomButton extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    _defineProperty(this, "handleChange", event => {
+      this.setState({
+        checked: !this.state.checked
+      });
+      const target = event.target;
+
+      if (target.checked) {
+        this.props.check(this.props.room);
+      } else {
+        this.props.uncheck(this.props.room);
+      }
+    });
+
+    this.state = {
+      checked: false
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.checkAll !== this.props.checkAll) {
+      if (this.props.checkAll && this.state.checked) {} else if (this.props.checkAll && !this.state.checked) {
+        this.setState({
+          checked: !this.state.checked
+        });
+      } else if (!this.props.checkAll && this.state.checked) {
+        this.setState({
+          checked: !this.state.checked
+        });
+      }
+    }
+  }
+
+  render() {
+    const rawId = this.props.room.id;
+    const idLength = rawId.length - 9;
+    const Id = rawId.substring(0, idLength);
+    const rawDate = this.props.room.createdAt;
+    const splitDate = rawDate.split('T');
+    const Date = splitDate[0];
+    const Time = splitDate[1].substring(0, 5);
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("li", {
+      className: "chat-room",
+      key: this.props.room.id,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }, __jsx("input", {
+      type: "checkbox",
+      name: this.props.room.id,
+      id: "chat-checkbox",
+      checked: this.state.checked,
+      onChange: this.handleChange,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 45
+      },
+      __self: this
+    }), __jsx("h5", {
+      onClick: this.props.see,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: this
+    }, Id), __jsx("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 47
+      },
+      __self: this
+    }, Date), __jsx("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 48
+      },
+      __self: this
+    }, Time), __jsx("div", {
+      className: "to-chat-btn",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 49
+      },
+      __self: this
+    }, __jsx("button", {
+      value: this.props.room.id,
+      onClick: this.props.onClick,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 50
+      },
+      __self: this
+    }, ">"))));
+  }
+
 }
 
 /***/ }),
@@ -561,8 +748,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/context.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -575,7 +760,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* eslint-disable no-unused-vars */
-
 
 
 const RoomContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(); // 
@@ -638,16 +822,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "updateCredentials", (refresh, userId, email, token) => {
-      // const userData = JSON.parse(localStorage.getItem('userData'));
-      // const decoded = jwt.decode(userData.token, {complete:true});
-      // console.log(userData)
-      // console.log(decoded)
       if (refresh === true) {
         const userData = JSON.parse(localStorage.getItem('userData'));
 
         if (userData && userData !== null) {
           axios__WEBPACK_IMPORTED_MODULE_1___default()({
-            url: 'http://localhost:8000/api/users/refresh',
+            url: 'https://express-login.now.sh/api/users/refresh',
             method: 'POST',
             data: JSON.stringify({
               email: userData.email
@@ -803,7 +983,7 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 181
+        lineNumber: 176
       },
       __self: this
     }, this.props.children);
@@ -817,14 +997,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 201
+        lineNumber: 196
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 202
+        lineNumber: 197
       },
       __self: this
     })));
@@ -2704,14 +2884,15 @@ function chat() {
     event.preventDefault();
     setbtnDisabled(true);
     axios__WEBPACK_IMPORTED_MODULE_3___default()({
-      url: 'http://localhost:9000/.netlify/functions/index/users/login',
+      url: 'https://express-login.now.sh/api/users/login',
       method: 'POST',
       data: JSON.stringify({
         email: input.email,
         password: input.password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }
     }).then(res => {
       setbtnDisabled(false);
@@ -2729,18 +2910,28 @@ function chat() {
       instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
       userId: context.chatUserId,
       tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_6___default.a.TokenProvider({
-        url: 'http://localhost:3001/authenticate'
+        url: 'https://express-login.now.sh/chat/authenticate'
       })
     });
-    chatManager.connect().then(currentUser => {
+    chatManager.connect({
+      onAddedToRoom: () => {
+        useForceUpdate();
+      },
+      onRoomDeleted: () => {
+        useForceUpdate();
+      },
+      onPresenceChanged: (state, user) => {
+        console.log(`User ${user.name} is ${state.current}`);
+      }
+    }).then(currentUser => {
       setCurrentUser(currentUser);
       currentUser;
       return currentUser.subscribeToRoom({
-        roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+        roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
         messageLimit: 100,
         hooks: {
-          onMessage: message => {
-            useForceUpdate();
+          onPresenceChanged: (state, user) => {
+            console.log(`User ${user.name} is ${state.current}`);
           }
         }
       }).catch(err => console.log(err));
@@ -2751,13 +2942,13 @@ function chat() {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 113
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 104
+        lineNumber: 114
       },
       __self: this
     }, "Login to Chat"), Object.values(errors).map((err, index) => {
@@ -2766,7 +2957,7 @@ function chat() {
         className: "login-err",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 117
         },
         __self: this
       }, err);
@@ -2774,14 +2965,14 @@ function chat() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 110
+        lineNumber: 120
       },
       __self: this
     }, __jsx("label", {
       htmlFor: "email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 111
+        lineNumber: 121
       },
       __self: this
     }, "Email"), __jsx("input", {
@@ -2791,14 +2982,14 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 112
+        lineNumber: 122
       },
       __self: this
     }), __jsx("label", {
       htmlFor: "password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 114
+        lineNumber: 124
       },
       __self: this
     }, "Password"), __jsx("input", {
@@ -2808,7 +2999,7 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 115
+        lineNumber: 125
       },
       __self: this
     }), __jsx("button", {
@@ -2817,7 +3008,7 @@ function chat() {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 116
+        lineNumber: 126
       },
       __self: this
     }, btnDisabled ? __jsx("img", {
@@ -2826,7 +3017,7 @@ function chat() {
       alt: "loading spinner",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 118
+        lineNumber: 128
       },
       __self: this
     }) : "Enviar")));
@@ -2837,62 +3028,62 @@ function chat() {
       className: "signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 127
+        lineNumber: 137
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 128
+        lineNumber: 138
       },
       __self: this
     }, "You are logged in"), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 129
+        lineNumber: 139
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 130
+        lineNumber: 140
       },
       __self: this
     }, "Go Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
       href: "/admin",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 134
+        lineNumber: 144
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 145
       },
       __self: this
     }, "Admin Panel")), __jsx("div", {
       className: "chat-window",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 149
       },
       __self: this
     }, __jsx(_components_ChatList__WEBPACK_IMPORTED_MODULE_7__["default"], {
       currentUser: currentUser,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 150
       },
       __self: this
     }), __jsx(_components_ChatBoard__WEBPACK_IMPORTED_MODULE_8__["default"], {
       currentUser: currentUser,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 141
+        lineNumber: 151
       },
       __self: this
     })));
@@ -2903,14 +3094,14 @@ function chat() {
       style: style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 149
+        lineNumber: 159
       },
       __self: this
     }, __jsx("div", {
       className: "log-box loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 160
       },
       __self: this
     }, __jsx("img", {
@@ -2919,7 +3110,7 @@ function chat() {
       alt: "loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 161
       },
       __self: this
     })));
@@ -2929,14 +3120,14 @@ function chat() {
     style: style,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 167
     },
     __self: this
   }, __jsx("div", {
     className: "log-box",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 158
+      lineNumber: 168
     },
     __self: this
   }, context.authenticated ? renderLoggedin() : renderForm()));

@@ -64,51 +64,19 @@ export default class ChatScreen extends Component {
                     }
                 }).then(() => {
                     return this.state.currentUser.subscribeToRoomMultipart({
-                        roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
+                        roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
                         messageLimit: 100,
                         hooks: {
-                            onMessage: (message) => {
-                                console.log(message)
-                                // this.updateRooms();
+                            onPresenceChanged: (state, user) => {
+                                console.log(`User ${user.name} is ${state.current}`)
                             }
                         }
                         
-                    }).then(() => {
-                        this.state.currentUser.sendSimpleMessage({
-                            roomId: '992194b2-feaa-4842-a546-5c3482ae69c4',
-                            text: 'we'
-                        }).then(messageId => console.log('sent', messageId))
-                        .catch(err => console.log('error', err))
-                    })
+                    }).catch(err => console.log(err))
                 })
                 }).catch(err => {
                     console.log('error', err)
                 })
-
-                // return currentUser.subscribeToRoom({
-                //     roomId: 'eadf4af7-69ff-4a59-9dc1-d4c4adcafde4',
-                //     messageLimit: 100,
-                //     hooks: {
-                //         onMessage: (message) => {
-                //             console.log(message)
-                //             this.setState({
-                //                 messages: [...this.state.messages, message]
-                //             })
-                //         },
-                //         onUserStartedTyping: user => {
-                //             this.setState({
-                //                 userTyping: user.name,
-                //                 isUserTyping: true
-                //             })
-                //         },
-                //         onUserStoppedTyping: user => {
-                //             this.setState({
-                //                 userTyping: user.name,
-                //                 isUserTyping: false
-                //             })
-                //         }
-                //     }
-                // })
             })
             .catch(error => console.log('Hiiiii', error))
     }

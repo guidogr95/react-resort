@@ -40,8 +40,9 @@ export default class ChatInstance extends Component {
                             this.setState({
                                 messages: [...this.state.messages, message]
                             })
+                            console.log('message')
                             animateScroll.scrollToBottom({
-                                containerId: "chat-messages"
+                                containerId: this.state.currentRoom.id
                             });
                         },
                         onUserStartedTyping: user => {
@@ -59,8 +60,10 @@ export default class ChatInstance extends Component {
                     }
                 })
             })
-            .then(room => this.setState({currentRoom:room}))
+            .then(room => {this.setState({currentRoom:room})})
             .catch(error => console.log('Hiiiii', error))
+
+            
     }
 
     sendMessage = (text) => {
@@ -87,9 +90,10 @@ export default class ChatInstance extends Component {
         if (this.state.currentRoom.length === 0) {
             return <p>Loading....</p>
         }
+        
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
-                <div className="chat-messages" id="chat-messages">
+                <div className="chat-messages" id={this.state.currentRoom.id} >
                     <ul>
                         {this.state.messages.map((message, index) => {
                             
