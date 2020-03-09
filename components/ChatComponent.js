@@ -4,6 +4,7 @@ import ChatScreen from './ChatScreen'
 import ChatScreenDisplay from './ChatScreenDisplay'
 import axios from 'axios'
 import { RoomContext } from '../context';
+import format from 'date-format'
 import { MdChat, MdClear } from "react-icons/md";
 
 export default class ChatComponent extends Component {
@@ -18,11 +19,15 @@ export default class ChatComponent extends Component {
     }
     static contextType = RoomContext;
     handleSubmit = (username) => {
+        const dateRaw = format.asString(new Date());
+        const date = dateRaw.slice(0,10)
+        const time = dateRaw.slice(11,19)
         axios({
             url: 'https://express-login.now.sh/chat/users',
             method: 'POST',
             data: JSON.stringify({
-                username
+                username,
+                date: `${date} ${time}`
             }),
             headers: { 'Content-Type': 'application/json' }
         }).then(res => {
@@ -49,9 +54,6 @@ export default class ChatComponent extends Component {
             return (<div></div>)
         } else {
             return (
-                // <div className="chat-component">
-                //     {this.handleChat()}
-                // </div>
                 <div className="chat-component chat-icon">
                     <div className="chat-component-wrapper">
                         <ChatScreenDisplay show={this.state.modalShow} onSubmit={this.handleSubmit} currentScreen={this.state.currentScreen} currentUsername={this.state.currentUsername} userId={this.state.userId}/>

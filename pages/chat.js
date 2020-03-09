@@ -93,7 +93,6 @@ export default function chat() {
             })
             .then(currentUser => {
                 setCurrentUser(currentUser)
-                currentUser
                 return currentUser.subscribeToRoom({
                         roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
                         messageLimit: 100,
@@ -111,7 +110,7 @@ export default function chat() {
     const renderForm = () => {
         return (
             <React.Fragment>
-                <h3>Login to Chat</h3>
+                <h3>Welcome</h3>
                 {
                 Object.values(errors).map((err, index) => {
                     return <div key={index} className="login-err">{err}</div>

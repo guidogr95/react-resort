@@ -27,7 +27,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../context */ "./context.js");
-/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-icons/md */ "./node_modules/react-icons/md/index.esm.js");
+/* harmony import */ var date_format__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! date-format */ "./node_modules/date-format/lib/index.js");
+/* harmony import */ var date_format__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(date_format__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-icons/md */ "./node_modules/react-icons/md/index.esm.js");
 
 
 
@@ -47,6 +49,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
 
+
 var ChatComponent = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(ChatComponent, _Component);
 
@@ -58,11 +61,15 @@ var ChatComponent = /*#__PURE__*/function (_Component) {
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(ChatComponent).call(this, props));
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "handleSubmit", function (username) {
+      var dateRaw = date_format__WEBPACK_IMPORTED_MODULE_14___default.a.asString(new Date());
+      var date = dateRaw.slice(0, 10);
+      var time = dateRaw.slice(11, 19);
       axios__WEBPACK_IMPORTED_MODULE_12___default()({
         url: 'https://express-login.now.sh/chat/users',
         method: 'POST',
         data: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({
-          username: username
+          username: username,
+          date: "".concat(date, " ").concat(time)
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -103,77 +110,73 @@ var ChatComponent = /*#__PURE__*/function (_Component) {
         return __jsx("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 49
+            lineNumber: 54
           },
           __self: this
         });
       } else {
-        return (// <div className="chat-component">
-          //     {this.handleChat()}
-          // </div>
-          __jsx("div", {
-            className: "chat-component chat-icon",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 55
-            },
-            __self: this
-          }, __jsx("div", {
-            className: "chat-component-wrapper",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 56
-            },
-            __self: this
-          }, __jsx(_ChatScreenDisplay__WEBPACK_IMPORTED_MODULE_11__["default"], {
-            show: this.state.modalShow,
-            onSubmit: this.handleSubmit,
-            currentScreen: this.state.currentScreen,
-            currentUsername: this.state.currentUsername,
-            userId: this.state.userId,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 57
-            },
-            __self: this
-          }), __jsx("div", {
-            className: "chat-icon-wrapper",
-            onClick: this.toggleModal,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 58
-            },
-            __self: this
-          }, __jsx("div", {
-            className: "modal-icon",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 59
-            },
-            __self: this
-          }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_14__["MdClear"], {
-            className: this.state.modalShow ? "cross" : "cross hide",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 60
-            },
-            __self: this
-          })), __jsx("div", {
-            className: "modal-icon",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 62
-            },
-            __self: this
-          }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_14__["MdChat"], {
-            className: this.state.modalShow ? "chat hide" : "chat",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 63
-            },
-            __self: this
-          })))))
-        );
+        return __jsx("div", {
+          className: "chat-component chat-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 57
+          },
+          __self: this
+        }, __jsx("div", {
+          className: "chat-component-wrapper",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 58
+          },
+          __self: this
+        }, __jsx(_ChatScreenDisplay__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          show: this.state.modalShow,
+          onSubmit: this.handleSubmit,
+          currentScreen: this.state.currentScreen,
+          currentUsername: this.state.currentUsername,
+          userId: this.state.userId,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 59
+          },
+          __self: this
+        }), __jsx("div", {
+          className: "chat-icon-wrapper",
+          onClick: this.toggleModal,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 60
+          },
+          __self: this
+        }, __jsx("div", {
+          className: "modal-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61
+          },
+          __self: this
+        }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_15__["MdClear"], {
+          className: this.state.modalShow ? "cross" : "cross hide",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62
+          },
+          __self: this
+        })), __jsx("div", {
+          className: "modal-icon",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 64
+          },
+          __self: this
+        }, __jsx(react_icons_md__WEBPACK_IMPORTED_MODULE_15__["MdChat"], {
+          className: this.state.modalShow ? "chat hide" : "chat",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 65
+          },
+          __self: this
+        })))));
       }
     }
   }]);
@@ -255,8 +258,8 @@ var ChatScreen = /*#__PURE__*/function (_Component) {
 
         console.log(currentUser);
         return currentUser.createRoom({
-          id: "".concat(currentUser.id, "-room"),
-          name: "".concat(currentUser.id, "-room"),
+          id: currentUser.id,
+          name: currentUser.name,
           "private": true,
           addUserIds: [currentUser.id, 'guido']
         }).then(function (room) {
@@ -589,47 +592,49 @@ var MessageList = /*#__PURE__*/function (_Component) {
         __self: this
       }, this.props.messages.map(function (message, index) {
         var rawId = message.senderId;
-        var idLength = rawId.length - 4;
-        var Id = rawId.substring(0, idLength);
+        var idLength = rawId.length;
+        var Id = rawId.substring(20, idLength);
+        console.log(message.senderId);
+        console.log(_this.props.currentUser.id);
         return __jsx("li", {
           className: _this.props.currentUser.id == message.senderId ? "admin-style" : "customer-style",
-          key: index,
+          key: message.id,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 17
+            lineNumber: 19
           },
           __self: this
         }, __jsx("div", {
           className: "chat-msg",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 20
           },
           __self: this
         }, __jsx("div", {
           className: "avatar",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 21
           },
           __self: this
-        }, message.senderId[0]), __jsx("div", {
+        }, _this.props.currentUser.id == message.senderId ? Id[0] : rawId[0]), __jsx("div", {
           className: "msg-content",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 20
+            lineNumber: 22
           },
           __self: this
         }, __jsx("span", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 21
+            lineNumber: 23
           },
           __self: this
-        }, Id), __jsx("p", {
+        }, _this.props.currentUser.id == message.senderId ? Id : rawId), __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 22
+            lineNumber: 24
           },
           __self: this
         }, message.text))));
@@ -1063,6 +1068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/UsernameForm.js";
+
 var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
 
 
@@ -1101,14 +1107,14 @@ var UsernameForm = /*#__PURE__*/function (_Component) {
         autoComplete: "off",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 23
         },
         __self: this
       }, __jsx("label", {
         htmlFor: "username",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 24
         },
         __self: this
       }, "Enter your name to start chat with an agent"), __jsx("input", {
@@ -1119,7 +1125,7 @@ var UsernameForm = /*#__PURE__*/function (_Component) {
         value: this.state.username,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 25
         },
         __self: this
       }), __jsx("button", {
@@ -1127,7 +1133,7 @@ var UsernameForm = /*#__PURE__*/function (_Component) {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 26
         },
         __self: this
       }, "Enviar")));
@@ -8495,6 +8501,237 @@ for (var i = 0; i < DOMIterables.length; i++) {
   if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
   Iterators[NAME] = Iterators.Array;
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/date-format/lib/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/date-format/lib/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function padWithZeros(vNumber, width) {
+  var numAsString = vNumber.toString();
+  while (numAsString.length < width) {
+    numAsString = "0" + numAsString;
+  }
+  return numAsString;
+}
+
+function addZero(vNumber) {
+  return padWithZeros(vNumber, 2);
+}
+
+/**
+ * Formats the TimeOffset
+ * Thanks to http://www.svendtofte.com/code/date_format/
+ * @private
+ */
+function offset(timezoneOffset) {
+  var os = Math.abs(timezoneOffset);
+  var h = String(Math.floor(os / 60));
+  var m = String(os % 60);
+  if (h.length === 1) {
+    h = "0" + h;
+  }
+  if (m.length === 1) {
+    m = "0" + m;
+  }
+  return timezoneOffset < 0 ? "+" + h + m : "-" + h + m;
+}
+
+function asString(format, date) {
+  if (typeof format !== "string") {
+    date = format;
+    format = module.exports.ISO8601_FORMAT;
+  }
+  if (!date) {
+    date = module.exports.now();
+  }
+
+  // Issue # 14 - Per ISO8601 standard, the time string should be local time
+  // with timezone info.
+  // See https://en.wikipedia.org/wiki/ISO_8601 section "Time offsets from UTC"
+
+  var vDay = addZero(date.getDate());
+  var vMonth = addZero(date.getMonth() + 1);
+  var vYearLong = addZero(date.getFullYear());
+  var vYearShort = addZero(vYearLong.substring(2, 4));
+  var vYear = format.indexOf("yyyy") > -1 ? vYearLong : vYearShort;
+  var vHour = addZero(date.getHours());
+  var vMinute = addZero(date.getMinutes());
+  var vSecond = addZero(date.getSeconds());
+  var vMillisecond = padWithZeros(date.getMilliseconds(), 3);
+  var vTimeZone = offset(date.getTimezoneOffset());
+  var formatted = format
+    .replace(/dd/g, vDay)
+    .replace(/MM/g, vMonth)
+    .replace(/y{1,4}/g, vYear)
+    .replace(/hh/g, vHour)
+    .replace(/mm/g, vMinute)
+    .replace(/ss/g, vSecond)
+    .replace(/SSS/g, vMillisecond)
+    .replace(/O/g, vTimeZone);
+  return formatted;
+}
+
+function setDatePart(date, part, value, local) {
+  date['set' + (local ? '' : 'UTC') + part](value);
+}
+
+function extractDateParts(pattern, str, missingValuesDate) {
+  // Javascript Date object doesn't support custom timezone.  Sets all felds as
+  // GMT based to begin with.  If the timezone offset is provided, then adjust
+  // it using provided timezone, otherwise, adjust it with the system timezone.
+  var local = pattern.indexOf('O') < 0;
+  var matchers = [
+    {
+      pattern: /y{1,4}/,
+      regexp: "\\d{1,4}",
+      fn: function(date, value) {
+        setDatePart(date, 'FullYear', value, local);
+      }
+    },
+    {
+      pattern: /MM/,
+      regexp: "\\d{1,2}",
+      fn: function(date, value) {
+        setDatePart(date, 'Month', (value - 1), local);
+      }
+    },
+    {
+      pattern: /dd/,
+      regexp: "\\d{1,2}",
+      fn: function(date, value) {
+        setDatePart(date, 'Date', value, local);
+      }
+    },
+    {
+      pattern: /hh/,
+      regexp: "\\d{1,2}",
+      fn: function(date, value) {
+        setDatePart(date, 'Hours', value, local);
+      }
+    },
+    {
+      pattern: /mm/,
+      regexp: "\\d\\d",
+      fn: function(date, value) {
+        setDatePart(date, 'Minutes', value, local);
+      }
+    },
+    {
+      pattern: /ss/,
+      regexp: "\\d\\d",
+      fn: function(date, value) {
+        setDatePart(date, 'Seconds', value, local);
+      }
+    },
+    {
+      pattern: /SSS/,
+      regexp: "\\d\\d\\d",
+      fn: function(date, value) {
+        setDatePart(date, 'Milliseconds', value, local);
+      }
+    },
+    {
+      pattern: /O/,
+      regexp: "[+-]\\d{3,4}|Z",
+      fn: function(date, value) {
+        if (value === "Z") {
+          value = 0;
+        }
+        var offset = Math.abs(value);
+        var timezoneOffset = (value > 0 ? -1 :  1 ) * ((offset % 100) + Math.floor(offset / 100) * 60);
+        // Per ISO8601 standard: UTC = local time - offset
+        //
+        // For example, 2000-01-01T01:00:00-0700
+        //   local time: 2000-01-01T01:00:00
+        //   ==> UTC   : 2000-01-01T08:00:00 ( 01 - (-7) = 8 )
+        //
+        // To make it even more confusing, the date.getTimezoneOffset() is
+        // opposite sign of offset string in the ISO8601 standard.  So if offset
+        // is '-0700' the getTimezoneOffset() would be (+)420. The line above
+        // calculates timezoneOffset to matche Javascript's behavior.
+        //
+        // The date/time of the input is actually the local time, so the date
+        // object that was constructed is actually local time even thought the
+        // UTC setters are used.  This means the date object's internal UTC
+        // representation was wrong.  It needs to be fixed by substracting the
+        // offset (or adding the offset minutes as they are opposite sign).
+        //
+        // Note: the time zone has to be processed after all other fileds are
+        // set.  The result would be incorrect if the offset was calculated
+        // first then overriden by the other filed setters.
+        date.setUTCMinutes(date.getUTCMinutes() + timezoneOffset);
+      }
+    }
+  ];
+
+  var parsedPattern = matchers.reduce(
+    function(p, m) {
+      if (m.pattern.test(p.regexp)) {
+        m.index = p.regexp.match(m.pattern).index;
+        p.regexp = p.regexp.replace(m.pattern, "(" + m.regexp + ")");
+      } else {
+        m.index = -1;
+      }
+      return p;
+    },
+    { regexp: pattern, index: [] }
+  );
+
+  var dateFns = matchers.filter(function(m) {
+    return m.index > -1;
+  });
+  dateFns.sort(function(a, b) {
+    return a.index - b.index;
+  });
+
+  var matcher = new RegExp(parsedPattern.regexp);
+  var matches = matcher.exec(str);
+  if (matches) {
+    var date = missingValuesDate || module.exports.now();
+    dateFns.forEach(function(f, i) {
+      f.fn(date, matches[i + 1]);
+    });
+
+    return date;
+  }
+
+  throw new Error(
+    "String '" + str + "' could not be parsed as '" + pattern + "'"
+  );
+}
+
+function parse(pattern, str, missingValuesDate) {
+  if (!pattern) {
+    throw new Error("pattern must be supplied");
+  }
+
+  return extractDateParts(pattern, str, missingValuesDate);
+}
+
+/**
+ * Used for testing - replace this function with a fixed date.
+ */
+function now() {
+  return new Date();
+}
+
+module.exports = asString;
+module.exports.asString = asString;
+module.exports.parse = parse;
+module.exports.now = now;
+module.exports.ISO8601_FORMAT = "yyyy-MM-ddThh:mm:ss.SSS";
+module.exports.ISO8601_WITH_TZ_OFFSET_FORMAT = "yyyy-MM-ddThh:mm:ss.SSSO";
+module.exports.DATETIME_FORMAT = "dd MM yyyy hh:mm:ss.SSS";
+module.exports.ABSOLUTETIME_FORMAT = "hh:mm:ss.SSS";
 
 
 /***/ }),

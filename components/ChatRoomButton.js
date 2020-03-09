@@ -1,6 +1,8 @@
 import { Component } from 'react'
+import { RoomContext } from '../context';
 
 export default class ChatRoomButton extends Component {
+    static contextType = RoomContext;
     constructor(props) {
         super(props)
         this.state = {
@@ -19,9 +21,9 @@ export default class ChatRoomButton extends Component {
     }
 
     componentDidUpdate(prevProps) {
+
         if (prevProps.checkAll !== this.props.checkAll) {
             if ( this.props.checkAll && this.state.checked ) {
-
             } else if ( this.props.checkAll && !this.state.checked ) {
                 this.setState({ checked: !this.state.checked })
             } else if ( !this.props.checkAll && this.state.checked ) {
@@ -31,21 +33,20 @@ export default class ChatRoomButton extends Component {
     }
 
     render() {
-        const rawId = this.props.room.id;
-        const idLength = rawId.length - 9;
-        const Id = rawId.substring(0, idLength);
-
-        const rawDate = this.props.room.createdAt;
-        const splitDate = rawDate.split('T');
-        const Date = splitDate[0];
-        const Time = splitDate[1].substring(0,5);
+        const dateRaw = this.props.room.id
+        const Date = dateRaw.slice(0,10)
+        const Time = dateRaw.slice(11,16)
+        const id  = this.props.room.id.replace(/\s/g,'')
+        console.log(id)
         return (
             <>
-            <li className="chat-room" key={this.props.room.id}>
-                <input type="checkbox" name={this.props.room.id} id="chat-checkbox" checked={this.state.checked} onChange={this.handleChange}/>
-                <h5 onClick={this.props.see} >{Id}</h5>
-                <p>{Date}</p>
-                <p>{Time}</p>
+            <li className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>
+                <input type="checkbox" name={this.props.room.id} id={id} checked={this.state.checked} onChange={this.handleChange}/>
+                <label htmlFor={id}></label>
+                <div className="chat-info">
+                    <h5 onClick={this.props.see} >{this.props.room.name}</h5>
+                    <p onClick={() => console.log(this.state.checked)}>{Date} {Time}</p>
+                </div>
                 <div className="to-chat-btn">
                     <button value={this.props.room.id} onClick={this.props.onClick}>></button>
                 </div>

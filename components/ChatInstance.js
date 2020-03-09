@@ -3,6 +3,7 @@ import Chatkit from '@pusher/chatkit-client'
 import { RoomContext } from '../context'
 import { FaPaperPlane } from "react-icons/fa";
 import { animateScroll } from 'react-scroll'
+import RSC from 'react-scrollbars-custom'
 
 
 export default class ChatInstance extends Component {
@@ -93,7 +94,8 @@ export default class ChatInstance extends Component {
         
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
-                <div className="chat-messages" id={this.state.currentRoom.id} >
+                
+                <RSC className="chat-messages" id={this.state.currentRoom.id} >
                     <ul>
                         {this.state.messages.map((message, index) => {
                             
@@ -110,10 +112,10 @@ export default class ChatInstance extends Component {
                             )
                         })}
                     </ul>
-                </div>
+                </RSC>
                 <div className="chat-input-text">
                     <form onSubmit={this.onSubmit}>
-                            <input name="text" type="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" />
+                            <textarea className="hidescroll" name="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" wrap="hard" />
                             <div className="button-container">
                                 <button type="submit"><FaPaperPlane/></button>
                             </div>

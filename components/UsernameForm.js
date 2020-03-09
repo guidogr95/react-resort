@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 export default class UsernameForm extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ export default class UsernameForm extends Component {
         event.preventDefault();
         this.props.onSubmit(this.state.username);
     }
+
     render() {
         return (
             <>

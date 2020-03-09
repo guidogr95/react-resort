@@ -3,6 +3,7 @@ import { RoomContext } from '../context';
 import ChatRoomButton from './ChatRoomButton';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
+import RSC from 'react-scrollbars-custom'
 
 export default class ChatList extends Component {
     static contextType = RoomContext;
@@ -15,7 +16,8 @@ export default class ChatList extends Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
+        
         
         if ( (prevProps.currentUser !== this.props.currentUser) && this.props.currentUser !== null && this.props.currentUser.rooms.length > 1) {
             const chatWindow = this.props.currentUser.rooms.find(room => room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4' )
@@ -25,6 +27,10 @@ export default class ChatList extends Component {
         if ( this.state.checkedChats.length === 0 && this.state.checkAll ) {
             this.setState({ checkAll: false })
         }
+    }
+
+    useForceUpdate = () => {
+        this.setState({counter: this.state.counter + 1})
     }
 
     switchChat = (event) => {
@@ -38,15 +44,15 @@ export default class ChatList extends Component {
     }
 
     removeCheckedChat = (chatRoom) => {
-        const filtered = this.state.checkedChats.filter(room => room.id !== chatRoom.id)        
-        console.log(filtered)
+        const filtered = this.state.checkedChats.filter(room => room.id !== chatRoom.id)
         this.setState({
             checkedChats: filtered
         })
     }
 
     deleteChats = () => {
-
+        const length = this.state.checkedChats.length;
+        let loop = 0; 
         this.state.checkedChats.map(chat => {
             try {
                 const token = this.getToken();
@@ -64,6 +70,10 @@ export default class ChatList extends Component {
             .then(() => {
                 console.log(`Deleted room with ID: ${chat.id}`);
                 this.setState({ checkAll: false })
+                loop += 1
+                if ( loop === length ) {
+                    this.setState({ checkedChats: [] })
+                }
             })
             .catch(err => {
                 console.log(`Error deleted room ${chat.id}: ${err}`)
@@ -74,8 +84,6 @@ export default class ChatList extends Component {
     handleCheckAll = () => {
         const isCheckAll = !this.state.checkAll
         this.setState({ checkAll: !this.state.checkAll })
-
-        console.log(isCheckAll)
         if (isCheckAll)  {
             const allRooms = this.props.currentUser.rooms.filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45')
             this.setState({ checkedChats: allRooms })
@@ -99,22 +107,24 @@ export default class ChatList extends Component {
             <div className="chat-list-container">
                 <div>
                     <input type="checkbox" name="checkAll" id="chat-checkbox" checked={this.state.checkAll} onChange={this.handleCheckAll}/>
-                    <button onClick={this.getToken} >Delete Chats</button>
-                    <button onClick={this.deleteChats} >Delete Chats</button>
+                    <label htmlFor="chat-checkbox"></label>
+                    <button className="btn-primary" onClick={this.deleteChats} >Delete Chats</button>
                 </div>
-                <ul className="chatrooms-container">
+                <RSC>
+                    <ul className="chatrooms-container">
 
-                {
-                    currentUser ?
-                    Object.values(currentUser.rooms).map((room, index) => {
-                        if ( room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' ) {
-                            return (
-                                <ChatRoomButton key={index} room={room} see={this.seeList} clearAll={this.clearAll} checkAll={this.state.checkAll} onClick={this.switchChat} check={this.addCheckedChat} uncheck={this.removeCheckedChat}  />
-                            )
-                        }
-                    }) : 'Loading...'
-                }
-                </ul>
+                    {
+                        currentUser ?
+                        Object.values(this.props.currentUser.rooms).map((room, index) => {
+                            if ( room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' ) {
+                                return (
+                                    <ChatRoomButton key={room.id} room={room} see={this.seeList} checkAll={this.state.checkAll} onClick={this.switchChat} check={this.addCheckedChat} uncheck={this.removeCheckedChat}  />
+                                )
+                            }
+                        }) : 'Loading...'
+                    }
+                    </ul>
+                </RSC>
             </div>
         )
     }

@@ -33,8 +33,8 @@ export default class ChatScreen extends Component {
                 console.log(currentUser)
 
                 return currentUser.createRoom({
-                    id: `${currentUser.id}-room`,
-                    name: `${currentUser.id}-room`,
+                    id: currentUser.id,
+                    name: currentUser.name,
                     private: true,
                     addUserIds: [currentUser.id, 'guido']
                 }).then(room => {
