@@ -583,51 +583,49 @@ class MessageList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         lineNumber: 10
       },
       __self: this
-    }, this.props.messages.map((message, index) => {
+    }, this.props.messages.map(message => {
       const rawId = message.senderId;
       const idLength = rawId.length;
       const Id = rawId.substring(20, idLength);
-      console.log(message.senderId);
-      console.log(this.props.currentUser.id);
       return __jsx("li", {
         className: this.props.currentUser.id == message.senderId ? "admin-style" : "customer-style",
         key: message.id,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 17
         },
         __self: this
       }, __jsx("div", {
         className: "chat-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 18
         },
         __self: this
       }, __jsx("div", {
         className: "avatar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 19
         },
         __self: this
       }, this.props.currentUser.id == message.senderId ? Id[0] : rawId[0]), __jsx("div", {
         className: "msg-content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 20
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 21
         },
         __self: this
       }, this.props.currentUser.id == message.senderId ? Id : rawId), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 22
         },
         __self: this
       }, message.text))));

@@ -2,7 +2,6 @@ import { Component } from 'react'
 import Chatkit from '@pusher/chatkit-client'
 import { RoomContext } from '../context'
 import { FaPaperPlane } from "react-icons/fa";
-import { animateScroll } from 'react-scroll'
 import RSC from 'react-scrollbars-custom'
 
 
@@ -16,7 +15,8 @@ export default class ChatInstance extends Component {
             currentUser: {},
             userTyping: '',
             isUserTyping: false,
-            text: ''
+            text: '',
+            scrollHeight: 0
         }
     }
 
@@ -38,13 +38,16 @@ export default class ChatInstance extends Component {
                     messageLimit: 100,
                     hooks: {
                         onMessage: (message) => {
-                            this.setState({
-                                messages: [...this.state.messages, message]
-                            })
-                            console.log('message')
-                            animateScroll.scrollToBottom({
-                                containerId: this.state.currentRoom.id
-                            });
+                            if (Object.keys(this.state.currentRoom).length > 0) {
+                                this.setState({
+                                    messages: [...this.state.messages, message],
+                                    scrollHeight: document.getElementById(`${this.state.currentRoom.createdAt.replace(/[-\-:]/g, '')}`).clientHeight    
+                                })
+                            } else {
+                                this.setState({
+                                    messages: [...this.state.messages, message]
+                                })
+                            }
                         },
                         onUserStartedTyping: user => {
                             this.setState({
@@ -61,18 +64,26 @@ export default class ChatInstance extends Component {
                     }
                 })
             })
-            .then(room => {this.setState({currentRoom:room})})
+            .then(room => {
+                this.setState({currentRoom:room})
+            })
+            .then(() => {
+                this.setState({scrollHeight: document.getElementById(`${this.state.currentRoom.createdAt.replace(/[-\-:]/g, '')}`).clientHeight})
+            })
             .catch(error => console.log('Hiiiii', error))
-
             
-    }
+        }
 
     sendMessage = (text) => {
+        this.setState({text:''})
         this.state.currentUser.sendSimpleMessage({
             roomId: this.state.currentRoom.id,
             text
-        }).then(messageId => this.setState({text:''}))
-        .catch(err => console.log('error', err))
+        }).then()
+        .catch(err => {
+            console.log('error', err);
+            this.setState({text})
+        })
     }
 
     handleChange = (event) => {
@@ -86,25 +97,28 @@ export default class ChatInstance extends Component {
         this.sendMessage(this.state.text);
     }
 
+    onEnterPress = (e) => {
+        if(e.keyCode == 13 && e.shiftKey == false) {
+            this.onSubmit(e);
+          }
+    }
 
     render() {
-        if (this.state.currentRoom.length === 0) {
-            return <p>Loading....</p>
-        }
-        
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
                 
-                <RSC className="chat-messages" id={this.state.currentRoom.id} >
-                    <ul>
+                <div className="chat-messages" >
+                <RSC scrollTop={this.state.scrollHeight} >
+                    <ul id={ this.state.currentRoom.createdAt ? this.state.currentRoom.createdAt.replace(/[-\-:]/g, '') : "" } >
                         {this.state.messages.map((message, index) => {
-                            
+                            const rawId = message.senderId;
+                            const Id = rawId.slice(20,rawId.length)
                             return (
                                 <li className={ this.state.currentUser.id == message.senderId ? "admin-style" : "customer-style" } key={index}>
                                     <div className="chat-msg">
-                                        <div className="avatar">{message.senderId[0]}</div>
+                                        <div className="avatar">{ this.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0] }</div>
                                         <div className="msg-content">
-                                            <span>{message.senderId}</span>
+                                            <span>{this.state.currentUser.id == message.senderId ? message.senderId : Id}</span>
                                             <p>{message.text}</p>
                                         </div>
                                     </div>
@@ -113,9 +127,10 @@ export default class ChatInstance extends Component {
                         })}
                     </ul>
                 </RSC>
+                </div>
                 <div className="chat-input-text">
                     <form onSubmit={this.onSubmit}>
-                            <textarea className="hidescroll" name="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" wrap="hard" />
+                            <textarea onKeyDown={this.onEnterPress} className="hidescroll" name="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" wrap="hard" />
                             <div className="button-container">
                                 <button type="submit"><FaPaperPlane/></button>
                             </div>

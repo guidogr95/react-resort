@@ -9,12 +9,10 @@ export default class MessageList extends Component {
         return (
             <ul className="user-message-list">
 
-                {this.props.messages.map((message, index) => {
+                {this.props.messages.map((message) => {
                     const rawId = message.senderId;
                     const idLength = rawId.length;
                     const Id = rawId.substring(20, idLength);
-                    console.log(message.senderId)
-                    console.log(this.props.currentUser.id)
                     return (
                         <li className={ this.props.currentUser.id == message.senderId ? "admin-style" : "customer-style" } key={message.id}>
                             <div className="chat-msg">

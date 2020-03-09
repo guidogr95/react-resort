@@ -105,12 +105,12 @@ export default class ChatList extends Component {
         const { currentUser } = this.props
         return (
             <div className="chat-list-container">
-                <div>
+                <div className="chat-list-settings" >
                     <input type="checkbox" name="checkAll" id="chat-checkbox" checked={this.state.checkAll} onChange={this.handleCheckAll}/>
                     <label htmlFor="chat-checkbox"></label>
                     <button className="btn-primary" onClick={this.deleteChats} >Delete Chats</button>
                 </div>
-                <RSC>
+                <RSC className="chatlist-box">
                     <ul className="chatrooms-container">
 
                     {

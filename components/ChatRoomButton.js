@@ -37,7 +37,6 @@ export default class ChatRoomButton extends Component {
         const Date = dateRaw.slice(0,10)
         const Time = dateRaw.slice(11,16)
         const id  = this.props.room.id.replace(/\s/g,'')
-        console.log(id)
         return (
             <>
             <li className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>

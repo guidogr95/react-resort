@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -174,16 +174,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../context */ "./context.js");
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fa */ "react-icons/fa");
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_scroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-scroll */ "react-scroll");
-/* harmony import */ var react_scroll__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_scroll__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-scrollbars-custom */ "react-scrollbars-custom");
-/* harmony import */ var react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-scrollbars-custom */ "react-scrollbars-custom");
+/* harmony import */ var react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatInstance.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -211,13 +208,16 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
-              this.setState({
-                messages: [...this.state.messages, message]
-              });
-              console.log('message');
-              react_scroll__WEBPACK_IMPORTED_MODULE_4__["animateScroll"].scrollToBottom({
-                containerId: this.state.currentRoom.id
-              });
+              if (Object.keys(this.state.currentRoom).length > 0) {
+                this.setState({
+                  messages: [...this.state.messages, message],
+                  scrollHeight: document.getElementById(`${this.state.currentRoom.createdAt.replace(/[-\-:]/g, '')}`).clientHeight
+                });
+              } else {
+                this.setState({
+                  messages: [...this.state.messages, message]
+                });
+              }
             },
             onUserStartedTyping: user => {
               this.setState({
@@ -237,16 +237,26 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         this.setState({
           currentRoom: room
         });
+      }).then(() => {
+        this.setState({
+          scrollHeight: document.getElementById(`${this.state.currentRoom.createdAt.replace(/[-\-:]/g, '')}`).clientHeight
+        });
       }).catch(error => console.log('Hiiiii', error));
     });
 
     _defineProperty(this, "sendMessage", text => {
+      this.setState({
+        text: ''
+      });
       this.state.currentUser.sendSimpleMessage({
         roomId: this.state.currentRoom.id,
         text
-      }).then(messageId => this.setState({
-        text: ''
-      })).catch(err => console.log('error', err));
+      }).then().catch(err => {
+        console.log('error', err);
+        this.setState({
+          text
+        });
+      });
     });
 
     _defineProperty(this, "handleChange", event => {
@@ -260,106 +270,113 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       this.sendMessage(this.state.text);
     });
 
+    _defineProperty(this, "onEnterPress", e => {
+      if (e.keyCode == 13 && e.shiftKey == false) {
+        this.onSubmit(e);
+      }
+    });
+
     this.state = {
       messages: [],
       currentRoom: {},
       currentUser: {},
       userTyping: '',
       isUserTyping: false,
-      text: ''
+      text: '',
+      scrollHeight: 0
     };
   }
 
   render() {
-    if (this.state.currentRoom.length === 0) {
-      return __jsx("p", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 92
-        },
-        __self: this
-      }, "Loading....");
-    }
-
     return __jsx("div", {
       className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 96
+        lineNumber: 108
       },
       __self: this
-    }, __jsx(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    }, __jsx("div", {
       className: "chat-messages",
-      id: this.state.currentRoom.id,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 98
+        lineNumber: 110
+      },
+      __self: this
+    }, __jsx(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      scrollTop: this.state.scrollHeight,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 111
       },
       __self: this
     }, __jsx("ul", {
+      id: this.state.currentRoom.createdAt ? this.state.currentRoom.createdAt.replace(/[-\-:]/g, '') : "",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 112
       },
       __self: this
     }, this.state.messages.map((message, index) => {
+      const rawId = message.senderId;
+      const Id = rawId.slice(20, rawId.length);
       return __jsx("li", {
         className: this.state.currentUser.id == message.senderId ? "admin-style" : "customer-style",
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103
+          lineNumber: 117
         },
         __self: this
       }, __jsx("div", {
         className: "chat-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104
+          lineNumber: 118
         },
         __self: this
       }, __jsx("div", {
         className: "avatar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 119
         },
         __self: this
-      }, message.senderId[0]), __jsx("div", {
+      }, this.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0]), __jsx("div", {
         className: "msg-content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106
+          lineNumber: 120
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 121
         },
         __self: this
-      }, message.senderId), __jsx("p", {
+      }, this.state.currentUser.id == message.senderId ? message.senderId : Id), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 122
         },
         __self: this
       }, message.text))));
-    }))), __jsx("div", {
+    })))), __jsx("div", {
       className: "chat-input-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 116
+        lineNumber: 131
       },
       __self: this
     }, __jsx("form", {
       onSubmit: this.onSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 117
+        lineNumber: 132
       },
       __self: this
     }, __jsx("textarea", {
+      onKeyDown: this.onEnterPress,
       className: "hidescroll",
       name: "text",
       placeholder: "Your text...",
@@ -369,27 +386,27 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       wrap: "hard",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 118
+        lineNumber: 133
       },
       __self: this
     }), __jsx("div", {
       className: "button-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 119
+        lineNumber: 134
       },
       __self: this
     }, __jsx("button", {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 120
+        lineNumber: 135
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaPaperPlane"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 120
+        lineNumber: 135
       },
       __self: this
     }))))));
@@ -564,6 +581,7 @@ class ChatList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx("div", {
+      className: "chat-list-settings",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 108
@@ -596,6 +614,7 @@ class ChatList extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, "Delete Chats")), __jsx(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      className: "chatlist-box",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 113
@@ -696,12 +715,11 @@ class ChatRoomButton extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     const Date = dateRaw.slice(0, 10);
     const Time = dateRaw.slice(11, 16);
     const id = this.props.room.id.replace(/\s/g, '');
-    console.log(id);
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("li", {
       className: this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 42
       },
       __self: this
     }, __jsx("input", {
@@ -712,42 +730,42 @@ class ChatRoomButton extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onChange: this.handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 43
       },
       __self: this
     }), __jsx("label", {
       htmlFor: id,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 44
       },
       __self: this
     }), __jsx("div", {
       className: "chat-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 45
       },
       __self: this
     }, __jsx("h5", {
       onClick: this.props.see,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 46
       },
       __self: this
     }, this.props.room.name), __jsx("p", {
       onClick: () => console.log(this.state.checked),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 47
       },
       __self: this
     }, Date, " ", Time)), __jsx("div", {
       className: "to-chat-btn",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 49
       },
       __self: this
     }, __jsx("button", {
@@ -755,7 +773,7 @@ class ChatRoomButton extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.props.onClick,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: this
     }, ">"))));
@@ -2956,8 +2974,7 @@ function chat() {
       onRoomDeleted: () => {
         useForceUpdate();
       },
-      onPresenceChanged: (state, user) => {
-        console.log(`User ${user.name} is ${state.current}`);
+      onPresenceChanged: (state, user) => {// console.log(`User ${user.name} is ${state.current}`)
       }
     }).then(currentUser => {
       setCurrentUser(currentUser);
@@ -2965,8 +2982,7 @@ function chat() {
         roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
         messageLimit: 100,
         hooks: {
-          onPresenceChanged: (state, user) => {
-            console.log(`User ${user.name} is ${state.current}`);
+          onPresenceChanged: (state, user) => {// console.log(`User ${user.name} is ${state.current}`)
           }
         }
       }).catch(err => console.log(err));
@@ -3170,7 +3186,7 @@ function chat() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*****************************!*\
   !*** multi ./pages/chat.js ***!
   \*****************************/
@@ -3322,17 +3338,6 @@ module.exports = require("react-icons/fa");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
-
-/***/ }),
-
-/***/ "react-scroll":
-/*!*******************************!*\
-  !*** external "react-scroll" ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-scroll");
 
 /***/ }),
 

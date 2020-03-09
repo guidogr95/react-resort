@@ -88,7 +88,7 @@ export default function chat() {
                     useForceUpdate();
                 },
                 onPresenceChanged: (state, user) => {
-                    console.log(`User ${user.name} is ${state.current}`)
+                    // console.log(`User ${user.name} is ${state.current}`)
                 }
             })
             .then(currentUser => {
@@ -98,7 +98,7 @@ export default function chat() {
                         messageLimit: 100,
                         hooks: {
                             onPresenceChanged: (state, user) => {
-                                console.log(`User ${user.name} is ${state.current}`)
+                                // console.log(`User ${user.name} is ${state.current}`)
                             }
                         }
                         
