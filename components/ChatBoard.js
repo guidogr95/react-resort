@@ -1,33 +1,35 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ChatInstance from './ChatInstance'
+import Link from 'next/link'
+import { RoomContext } from '../context'
 
 export default class ChatBoard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            currentUser: this.props.currentUser
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        if ( prevProps.currentUser !== this.props.currentUser ) {
-            this.setState({
-                currentUser: this.props.currentUser
-            })
-        }
-    }
+    static contextType = RoomContext;
     render() {
-        const { currentUser } = this.state
         return (
-            <div className="chat-board">
-                {
-                    currentUser && currentUser !== null ?
-                    Object.values(currentUser.rooms).map((room) => {
-                        if ( room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4' ) {
-                            return <ChatInstance id={room.id} key={room.id} roomInfo={room}  />
-                        }
-                    }) : 'Loading'
-                }
+            <div className="chat-header-board">
+                <div className="chat-header">
+                    <Link href="/">
+                        <a className="btn-primary">
+                            Go Home
+                        </a>
+                    </Link>
+                    <Link href="/admin">
+                        <a className="btn-primary">
+                            Admin Panel
+                        </a>
+                    </Link>
+                </div>
+                <div className="chat-board">
+                    {
+                        Object.keys(this.context.currentUser).length > 0 ?
+                        Object.values(this.context.currentUser.rooms).map((room) => {
+                            if ( room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4' ) {
+                                return <ChatInstance id={room.id} key={room.id} roomInfo={room}  />
+                            }
+                        }) : 'Loading'
+                    }
+                </div>
             </div>
         )
     }

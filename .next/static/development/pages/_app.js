@@ -1248,7 +1248,26 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
       authenticated: null,
       chatUserId: 'guido',
-      activeWindow: ''
+      activeWindow: '',
+      currentUser: {}
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "setCurrentUser", function (currentUser) {
+      _this.setState({
+        currentUser: currentUser
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "addChatRoom", function (room) {
+      _this.setState(function (prevState) {
+        return {
+          currentUser: {
+            rooms: _objectSpread({
+              room: room
+            }, prevState.currentUser.rooms)
+          }
+        };
+      });
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "formatData", function (items) {
@@ -1455,11 +1474,13 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           handleChange: this.handleChange,
           updateCredentials: this.updateCredentials,
           logOut: this.logOut,
-          changeWindow: this.changeWindow
+          changeWindow: this.changeWindow,
+          setCurrentUser: this.setCurrentUser,
+          addChatRoom: this.addChatRoom
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 176
+          lineNumber: 192
         },
         __self: this
       }, this.props.children);
@@ -1475,7 +1496,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 214
       },
       __self: this
     }, function (value) {
@@ -1483,7 +1504,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 197
+          lineNumber: 215
         },
         __self: this
       }));

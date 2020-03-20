@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nexport default function TypingIndicator(props) {\n  return __jsx(\"div\", null, __jsx(\"p\", null, props.userTyping, \" is typing...\"));\n}","map":null,"metadata":{},"sourceType":"module"}

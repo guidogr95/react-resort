@@ -22,7 +22,8 @@ class RoomProvider extends Component {
         PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
         authenticated: null,
         chatUserId: 'guido',
-        activeWindow: ''
+        activeWindow: '',
+        currentUser: {}
     }
     componentDidMount(){
         const self = this;
@@ -72,6 +73,21 @@ class RoomProvider extends Component {
             console.log(error)
         })
     }
+    setCurrentUser = (currentUser) => {
+        this.setState({currentUser})
+    }
+
+    addChatRoom = (room) => {
+        this.setState(prevState => ({
+            currentUser:  {
+                rooms: {
+                    room,
+                    ...prevState.currentUser.rooms
+                }
+            }
+        }))
+    }
+
     formatData = (items) => {
         let tempItems = items.map(item => {
             let id = item.id;
@@ -180,7 +196,9 @@ class RoomProvider extends Component {
                     handleChange: this.handleChange,
                     updateCredentials: this.updateCredentials,
                     logOut: this.logOut,
-                    changeWindow: this.changeWindow
+                    changeWindow: this.changeWindow,
+                    setCurrentUser: this.setCurrentUser,
+                    addChatRoom: this.addChatRoom
                 }}
             >
                 {this.props.children}

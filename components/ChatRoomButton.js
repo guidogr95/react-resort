@@ -1,5 +1,7 @@
 import { Component } from 'react'
 import { RoomContext } from '../context';
+import { FaAsterisk, FaIgloo } from "react-icons/fa";
+
 
 export default class ChatRoomButton extends Component {
     static contextType = RoomContext;
@@ -30,8 +32,9 @@ export default class ChatRoomButton extends Component {
                 this.setState({ checked: !this.state.checked })
             }
         }
+        
     }
-
+    
     render() {
         const dateRaw = this.props.room.id
         const Date = dateRaw.slice(0,10)
@@ -39,15 +42,15 @@ export default class ChatRoomButton extends Component {
         const id  = this.props.room.id.replace(/\s/g,'')
         return (
             <>
-            <li className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>
+            <li onClick={() => this.props.onClick(this.props.room.id)} className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>
                 <input type="checkbox" name={this.props.room.id} id={id} checked={this.state.checked} onChange={this.handleChange}/>
                 <label htmlFor={id}></label>
                 <div className="chat-info">
-                    <h5 onClick={this.props.see} >{this.props.room.name}</h5>
-                    <p onClick={() => console.log(this.state.checked)}>{Date} {Time}</p>
-                </div>
-                <div className="to-chat-btn">
-                    <button value={this.props.room.id} onClick={this.props.onClick}>></button>
+                    <div>
+                        <h5>{this.props.room.name}</h5>
+                        {this.props.room.unreadCount > 0 ? <FaAsterisk/> : ''}
+                    </div>
+                    <p>{Date} {Time}</p>
                 </div>
             </li>
         </>

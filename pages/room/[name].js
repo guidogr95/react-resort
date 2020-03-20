@@ -55,7 +55,7 @@ class room extends Component {
         
     render() {
         
-        if (!room) {
+        if (!this.props.room) {
             return <Loading/>
         }
         const { name,description,capacity,size,price,extras,breakfast,pets,images } = this.state.room

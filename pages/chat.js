@@ -3,13 +3,13 @@ import chatImg from '../images/chat.jpg'
 import loading from '../images/gif/loading-arrow.gif'
 import axios from 'axios';
 import { RoomContext } from '../context'
-import Link from 'next/link';
 import Chatkit from '@pusher/chatkit-client'
 import ChatList from '../components/ChatList'
 import ChatBoard from '../components/ChatBoard'
 
 
 export default function chat() {
+    
     const context = useContext(RoomContext);
     const [input, setInput] = useState({});
     const [btnDisabled, setbtnDisabled] = useState(false);
@@ -20,7 +20,8 @@ export default function chat() {
     const style = {
         minHeight: 600,
         width: "100%",
-        padding: "50px 0 50px 0"
+        height: "calc(100vh - 65px)",
+        background: "rgba(175, 154, 125,0.5)"
     };
     const handleChange = (event) => setInput({
         ...input,
@@ -28,7 +29,7 @@ export default function chat() {
     });
 
     const useForceUpdate = () => {
-        setValue(Math.random());
+        setValue(Math.random);
     }
 
     useEffect(() => {
@@ -87,12 +88,16 @@ export default function chat() {
                 onRoomDeleted: () => {
                     useForceUpdate();
                 },
-                onPresenceChanged: (state, user) => {
-                    // console.log(`User ${user.name} is ${state.current}`)
+                onNewReadCursor: () => {
+                    useForceUpdate();
+                },
+                onRoomUpdated: () => {
+                    useForceUpdate();
                 }
             })
             .then(currentUser => {
-                setCurrentUser(currentUser)
+                console.log('updated')
+                context.setCurrentUser(currentUser)
                 return currentUser.subscribeToRoom({
                         roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
                         messageLimit: 100,
@@ -110,13 +115,13 @@ export default function chat() {
     const renderForm = () => {
         return (
             <React.Fragment>
-                <h3>Welcome</h3>
+                <h3 className="welcome">Welcome</h3>
                 {
                 Object.values(errors).map((err, index) => {
                     return <div key={index} className="login-err">{err}</div>
                 })
                 }
-                <form onSubmit={handleSubmit}>
+                <form className="login-form" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" onChange={handleChange}/>
 
@@ -134,20 +139,20 @@ export default function chat() {
     const renderLoggedin = () => {
         return (
             <div className="signed">
-                <h3>You are logged in</h3>
+                {/* <h3>You are logged in</h3>
                 <Link href="/">
-                    <a className="btn-primary signed">
+                    <a className="btn-primary">
                         Go Home
                     </a>
                 </Link>
                 <Link href="/admin">
-                    <a className="btn-primary signed">
+                    <a className="btn-primary">
                         Admin Panel
                     </a>
-                </Link>
+                </Link> */}
                 <div className="chat-window">
-                    <ChatList currentUser={currentUser} />
-                    <ChatBoard currentUser={currentUser} />
+                    <ChatList />
+                    <ChatBoard  />
                 </div>
                 
             </div>

@@ -4,7 +4,7 @@ import ChatComponent from '../components/ChatComponent'
 import { RoomProvider } from '../context'
 
 export default function MyApp({Component, pageProps}) {
-
+    
     return (
     <> 
     <RoomProvider>

@@ -74,6 +74,13 @@ export default class ChatInstance extends Component {
             
         }
 
+    componentDidUpdate() {
+        if ( this.context.activeWindow === this.state.currentRoom.id && this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0 ) {
+            console.log('ran')
+            this.onCursor()
+        }
+    }
+
     sendMessage = (text) => {
         this.setState({text:''})
         this.state.currentUser.sendSimpleMessage({
@@ -103,6 +110,19 @@ export default class ChatInstance extends Component {
           }
     }
 
+    onCursor = () => {
+        this.state.currentUser.setReadCursor({
+            roomId: this.state.currentRoom.id,
+            position: this.state.messages[this.state.messages.length-1].id
+          })
+            .then(() => {
+              console.log('Success!')
+            })
+            .catch(err => {
+              console.log(`Error setting cursor: ${err}`)
+            })
+    }
+
     render() {
         return (
             <div className={this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive"}>
@@ -116,7 +136,7 @@ export default class ChatInstance extends Component {
                             return (
                                 <li className={ this.state.currentUser.id == message.senderId ? "admin-style" : "customer-style" } key={index}>
                                     <div className="chat-msg">
-                                        <div className="avatar">{ this.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0] }</div>
+                                        <div className="avatar" onClick={this.onCursor} >{ this.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0] }</div>
                                         <div className="msg-content">
                                             <span>{this.state.currentUser.id == message.senderId ? message.senderId : Id}</span>
                                             <p>{message.text}</p>

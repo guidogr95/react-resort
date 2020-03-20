@@ -1109,7 +1109,24 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       PUBLICTOKEN: 'f3341f2f85860e06446a5e86bfd392',
       authenticated: null,
       chatUserId: 'guido',
-      activeWindow: ''
+      activeWindow: '',
+      currentUser: {}
+    });
+
+    _defineProperty(this, "setCurrentUser", currentUser => {
+      this.setState({
+        currentUser
+      });
+    });
+
+    _defineProperty(this, "addChatRoom", room => {
+      this.setState(prevState => ({
+        currentUser: {
+          rooms: _objectSpread({
+            room
+          }, prevState.currentUser.rooms)
+        }
+      }));
     });
 
     _defineProperty(this, "formatData", items => {
@@ -1304,11 +1321,13 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         handleChange: this.handleChange,
         updateCredentials: this.updateCredentials,
         logOut: this.logOut,
-        changeWindow: this.changeWindow
+        changeWindow: this.changeWindow,
+        setCurrentUser: this.setCurrentUser,
+        addChatRoom: this.addChatRoom
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 176
+        lineNumber: 192
       },
       __self: this
     }, this.props.children);
@@ -1322,14 +1341,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 196
+        lineNumber: 214
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 197
+        lineNumber: 215
       },
       __self: this
     })));
