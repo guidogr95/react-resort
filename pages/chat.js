@@ -6,6 +6,7 @@ import { RoomContext } from '../context'
 import Chatkit from '@pusher/chatkit-client'
 import ChatList from '../components/ChatList'
 import ChatBoard from '../components/ChatBoard'
+import Head from 'next/head';
 
 
 export default function chat() {
@@ -77,6 +78,17 @@ export default function chat() {
         setchatListActive(!chatListActive)
     }
 
+    const checkNewMsg = () => {
+        let msgs;
+        const title = document.title
+        if ( Object.keys(this.context.currentUser).length > 0 ) {
+            const unreadMsgs = Object.values(this.context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0)
+            console.log(unreadMsgs)
+            console.log(unreadMsgs.length)
+            msgs = unreadMsgs.length
+        }
+    }
+
     const handleChatSession = () => {
         const chatManager = new Chatkit.ChatManager({
             instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
@@ -95,6 +107,7 @@ export default function chat() {
                     useForceUpdate();
                 },
                 onNewReadCursor: () => {
+
                     useForceUpdate();
                 },
                 onRoomUpdated: () => {
@@ -121,6 +134,9 @@ export default function chat() {
     const renderForm = () => {
         return (
             <React.Fragment>
+                <Head>
+                    <title>Hotel Admin</title>
+                </Head>
                 <h3 className="welcome">Welcome</h3>
                 {
                 Object.values(errors).map((err, index) => {

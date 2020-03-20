@@ -2998,6 +2998,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_ChatList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/ChatList */ "./components/ChatList.js");
 /* harmony import */ var _components_ChatBoard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ChatBoard */ "./components/ChatBoard.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_8__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/chat.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -3007,6 +3009,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3100,6 +3103,18 @@ function chat() {
     setchatListActive(!chatListActive);
   };
 
+  const checkNewMsg = () => {
+    let msgs;
+    const title = document.title;
+
+    if (Object.keys(this.context.currentUser).length > 0) {
+      const unreadMsgs = Object.values(this.context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0);
+      console.log(unreadMsgs);
+      console.log(unreadMsgs.length);
+      msgs = unreadMsgs.length;
+    }
+  };
+
   const handleChatSession = () => {
     const chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_5___default.a.ChatManager({
       instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
@@ -3139,14 +3154,26 @@ function chat() {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 123
+        lineNumber: 136
       },
       __self: this
-    }, __jsx("h3", {
+    }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 137
+      },
+      __self: this
+    }, __jsx("title", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 138
+      },
+      __self: this
+    }, "Hotel Admin")), __jsx("h3", {
       className: "welcome",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 124
+        lineNumber: 140
       },
       __self: this
     }, "Welcome"), Object.values(errors).map((err, index) => {
@@ -3155,7 +3182,7 @@ function chat() {
         className: "login-err",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 127
+          lineNumber: 143
         },
         __self: this
       }, err);
@@ -3164,14 +3191,14 @@ function chat() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 130
+        lineNumber: 146
       },
       __self: this
     }, __jsx("label", {
       htmlFor: "email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 147
       },
       __self: this
     }, "Email"), __jsx("input", {
@@ -3181,14 +3208,14 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 148
       },
       __self: this
     }), __jsx("label", {
       htmlFor: "password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 134
+        lineNumber: 150
       },
       __self: this
     }, "Password"), __jsx("input", {
@@ -3198,7 +3225,7 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 151
       },
       __self: this
     }), __jsx("button", {
@@ -3207,7 +3234,7 @@ function chat() {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 136
+        lineNumber: 152
       },
       __self: this
     }, btnDisabled ? __jsx("img", {
@@ -3216,7 +3243,7 @@ function chat() {
       alt: "loading spinner",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 154
       },
       __self: this
     }) : "Enviar")));
@@ -3227,14 +3254,14 @@ function chat() {
       className: "signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 147
+        lineNumber: 163
       },
       __self: this
     }, __jsx("div", {
       className: "chat-window",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 148
+        lineNumber: 164
       },
       __self: this
     }, __jsx(_components_ChatList__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -3242,14 +3269,14 @@ function chat() {
       setChatListActive: setChatListActive,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 149
+        lineNumber: 165
       },
       __self: this
     }), __jsx(_components_ChatBoard__WEBPACK_IMPORTED_MODULE_7__["default"], {
       setChatListActive: setChatListActive,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 166
       },
       __self: this
     })));
@@ -3260,14 +3287,14 @@ function chat() {
       style: style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 158
+        lineNumber: 174
       },
       __self: this
     }, __jsx("div", {
       className: "log-box loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 159
+        lineNumber: 175
       },
       __self: this
     }, __jsx("img", {
@@ -3276,7 +3303,7 @@ function chat() {
       alt: "loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 160
+        lineNumber: 176
       },
       __self: this
     })));
@@ -3286,14 +3313,14 @@ function chat() {
     style: style,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 166
+      lineNumber: 182
     },
     __self: this
   }, __jsx("div", {
     className: "log-box",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 167
+      lineNumber: 183
     },
     __self: this
   }, context.authenticated ? renderLoggedin() : renderForm()));
@@ -3398,6 +3425,17 @@ module.exports = require("core-js/library/fn/weak-map");
 /***/ (function(module, exports) {
 
 module.exports = require("jsonwebtoken");
+
+/***/ }),
+
+/***/ "next/head":
+/*!****************************!*\
+  !*** external "next/head" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 
