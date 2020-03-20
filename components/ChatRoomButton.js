@@ -34,6 +34,11 @@ export default class ChatRoomButton extends Component {
         }
         
     }
+
+    handleChatSwitch = () => {
+        this.props.onClick(this.props.room.id);
+        this.props.setChatListActive();
+    }
     
     render() {
         const dateRaw = this.props.room.id
@@ -42,7 +47,7 @@ export default class ChatRoomButton extends Component {
         const id  = this.props.room.id.replace(/\s/g,'')
         return (
             <>
-            <li onClick={() => this.props.onClick(this.props.room.id)} className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>
+            <li onClick={this.handleChatSwitch} className={ this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room" }>
                 <input type="checkbox" name={this.props.room.id} id={id} checked={this.state.checked} onChange={this.handleChange}/>
                 <label htmlFor={id}></label>
                 <div className="chat-info">

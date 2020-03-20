@@ -210,27 +210,9 @@ h6 {
 }
 
 .show-nav {
-  height: 100px;
+  height: 150px;
 }
-@media screen and (min-width: 768px) {
-  .nav-btn {
-    display: none;
-  }
-  .nav-center {
-    max-width: 1170px;
-    margin: 0 auto;
-    display: flex;
-  }
-  .nav-links {
-    height: auto;
-    display: flex;
-    margin-left: 4rem;
-  }
-  .nav-links a {
-    margin: 0 1rem;
-    padding: 0.5rem 0;
-  }
-}
+
 /* end of navbar */
 /* Hero */
 .defaultHero,
@@ -689,11 +671,47 @@ h6 {
 .chat-list-container {
   overflow: hidden;
   width:25%;
-  background: rgba(175, 154, 125,0.2);
+  background: #efebe5;
+  transition: .5s ease-out;
+  z-index: 999
 }
 
 .chat-list-container .ScrollbarsCustom-Wrapper {
   right: 0px !important;
+}
+
+.chat-list-settings svg {
+  color: white;
+  align-self: center;
+  font-size: 1.5em;
+  display: none;
+}
+
+.chat-header svg {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.95em;
+  cursor: pointer;
+  display: none;
+}
+
+@media screen and (max-width: 1190px) {
+  .chat-list-container {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+  }
+  .chat-list-container.active {
+    left: 0;
+    min-width: 275px;
+  }
+  .chat-window {
+    position: relative;
+  }
+  .chat-list-settings svg,
+  .chat-header svg {
+    display: unset;
+  }
 }
 
 .chat-list-settings {
@@ -979,6 +997,26 @@ h6 {
 .chat-header-board .chat-header {
   padding: 10px;
   background: rgba(175, 154, 125,0.7);
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deploy-chats {
+  line-height: 0;
+  position: relative;
+}
+
+.pending-msg {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 0, 0,0.5);
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  right: -5px;
 }
 
 .chat-header-board .chat-header .btn-primary {
@@ -1004,17 +1042,14 @@ h6 {
 /*end of log box*/
 /*Admin panel*/
 .admin-panel {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: flex;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  align-items: center;
-  color: #2c2c2c;
+  display: block;
+  text-decoration: none;
+  padding: 1rem 0;
+  transition: var(--mainTransition);
+  text-align: center;
 }
 
-.admin-panel .user-circle {
+.admin-panel svg {
   font-size: 1.2em;
   margin-right: 5px;
   cursor: pointer;
@@ -1024,6 +1059,10 @@ h6 {
   background: none;
   outline: none;
   border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mainBlack);
+  letter-spacing: var(--mainSpacing);
 }
 
 .admin-panel a {
@@ -1218,7 +1257,45 @@ h6 {
 }
 
 /*End of chat*/
-
+@media screen and (min-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+  .admin-panel {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    align-items: center;
+    color: #2c2c2c;
+  }
+  .admin-panel button {
+    background: none;
+    outline: none;
+    border: none;
+    letter-spacing: unset;
+  }
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+    margin-left: 4rem;
+  }
+  .nav-links a {
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+  }
+  .admin-panel a {
+    letter-spacing: unset;
+    margin: 0;
+  }
+}
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/

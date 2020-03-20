@@ -3,6 +3,7 @@ import { RoomContext } from '../context';
 import ChatRoomButton from './ChatRoomButton';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
+import { IoIosCloseCircle } from "react-icons/io"
 import RSC from 'react-scrollbars-custom'
 
 export default class ChatList extends Component {
@@ -107,11 +108,12 @@ export default class ChatList extends Component {
         const { currentUser } = this.context
         
         return (
-            <div className="chat-list-container">
+            <div className={ !this.props.active ? "chat-list-container" : "chat-list-container active"}>
                 <div className="chat-list-settings" >
                     <input type="checkbox" name="checkAll" id="chat-checkbox" checked={this.state.checkAll} onChange={this.handleCheckAll}/>
                     <label htmlFor="chat-checkbox"></label>
                     <button className="btn-primary" onClick={this.deleteChats} >Delete</button>
+                    <IoIosCloseCircle onClick={this.props.setChatListActive} />
                 </div>
                 <RSC className="chatlist-box">
                     <ul className="chatrooms-container">
@@ -121,7 +123,7 @@ export default class ChatList extends Component {
                         Object.values(currentUser.rooms).reverse().map(room => {
                             if ( room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' ) {
                                 return (
-                                    <ChatRoomButton key={room.id} room={room} checkAll={this.state.checkAll} onClick={this.switchChat} check={this.addCheckedChat} uncheck={this.removeCheckedChat}  />
+                                    <ChatRoomButton setChatListActive={this.props.setChatListActive} key={room.id} room={room} checkAll={this.state.checkAll} onClick={this.switchChat} check={this.addCheckedChat} uncheck={this.removeCheckedChat}  />
                                 )
                             }
                         }) : 'Loading...'

@@ -721,28 +721,28 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "navbar",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 35
       },
       __self: this
     }, __jsx("div", {
       className: "nav-center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 36
       },
       __self: this
     }, __jsx("div", {
       className: "nav-header",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 37
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 38
       },
       __self: this
     }, __jsx("img", {
@@ -750,7 +750,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       alt: "logo",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 39
       },
       __self: this
     })), __jsx("button", {
@@ -758,7 +758,7 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "nav-btn",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 41
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaAlignRight"], {
@@ -766,75 +766,75 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.handleToggle,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 42
       },
       __self: this
     }))), __jsx("ul", {
       className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 45
       },
       __self: this
     }, __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 47
+        lineNumber: 46
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 47
       },
       __self: this
     }, __jsx("a", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 47
       },
       __self: this
     }, "Home"))), __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 49
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/rooms/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: this
     }, __jsx("a", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: this
-    }, "Rooms")))), __jsx("div", {
+    }, "Rooms"))), __jsx("li", {
       className: "admin-panel",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 52
       },
       __self: this
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/chat/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55
+        lineNumber: 53
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaUserCircle"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 54
       },
       __self: this
-    })), this.adminPanel())));
+    })), this.adminPanel()))));
   }
 
 }

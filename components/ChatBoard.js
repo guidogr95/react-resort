@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import ChatInstance from './ChatInstance'
 import Link from 'next/link'
+import { IoMdChatboxes } from "react-icons/io"
 import { RoomContext } from '../context'
 
 export default class ChatBoard extends Component {
@@ -9,6 +10,14 @@ export default class ChatBoard extends Component {
         return (
             <div className="chat-header-board">
                 <div className="chat-header">
+                    <div className="deploy-chats">
+                        <IoMdChatboxes onClick={this.props.setChatListActive} />
+                        { 
+                            Object.keys(this.context.currentUser).length > 0 ?
+                            Object.values(this.context.currentUser.rooms).find(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' &&room.unreadCount > 0) ? <div className="pending-msg"></div> : '' 
+                            : ''
+                        }
+                    </div>
                     <Link href="/">
                         <a className="btn-primary">
                             Go Home

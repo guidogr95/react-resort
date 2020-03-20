@@ -31,7 +31,6 @@ export default class Navbar extends Component {
         }
     }
     render() {
-        
         return (
             <nav className="navbar">
                 <div className="nav-center">
@@ -50,13 +49,14 @@ export default class Navbar extends Component {
                         <li>
                             <Link href="/rooms/"><a>Rooms</a></Link>
                         </li>
+                        <li className="admin-panel">
+                            <Link href="/chat/">
+                                <FaUserCircle  />
+                            </Link>
+                            {this.adminPanel()}
+                        </li>
                     </ul>
-                    <div className="admin-panel">
-                        <Link href="/chat/">
-                            <FaUserCircle  />
-                        </Link>
-                        {this.adminPanel()}
-                    </div>
+                    
                 </div>
             </nav>
         )

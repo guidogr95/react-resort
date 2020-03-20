@@ -16,6 +16,7 @@ export default function chat() {
     const [errors, setErrors] = useState({});
     const [currentUser, setCurrentUser] = useState(null);
     const [currentRoom, setCurrentRoom] = useState({});
+    const [chatListActive, setchatListActive] = useState(false)
     const [value, setValue] = useState(0);
     const style = {
         minHeight: 600,
@@ -69,6 +70,11 @@ export default function chat() {
             })
             setbtnDisabled(false);
         })
+    }
+
+    const setChatListActive = () => {
+        console.log('true')
+        setchatListActive(!chatListActive)
     }
 
     const handleChatSession = () => {
@@ -139,20 +145,9 @@ export default function chat() {
     const renderLoggedin = () => {
         return (
             <div className="signed">
-                {/* <h3>You are logged in</h3>
-                <Link href="/">
-                    <a className="btn-primary">
-                        Go Home
-                    </a>
-                </Link>
-                <Link href="/admin">
-                    <a className="btn-primary">
-                        Admin Panel
-                    </a>
-                </Link> */}
                 <div className="chat-window">
-                    <ChatList />
-                    <ChatBoard  />
+                    <ChatList active={chatListActive} setChatListActive={setChatListActive} />
+                    <ChatBoard  setChatListActive={setChatListActive} />
                 </div>
                 
             </div>
