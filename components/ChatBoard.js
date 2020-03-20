@@ -6,6 +6,16 @@ import { RoomContext } from '../context'
 
 export default class ChatBoard extends Component {
     static contextType = RoomContext;
+
+    checkNewMsg = () => {
+        if ( Object.keys(this.context.currentUser).length > 0 ) {
+            const unreadMsgs = Object.values(this.context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0)
+            console.log(unreadMsgs)
+            console.log(unreadMsgs.length)
+            console.log(window.title)
+        }
+    }
+
     render() {
         return (
             <div className="chat-header-board">
@@ -14,9 +24,10 @@ export default class ChatBoard extends Component {
                         <IoMdChatboxes onClick={this.props.setChatListActive} />
                         { 
                             Object.keys(this.context.currentUser).length > 0 ?
-                            Object.values(this.context.currentUser.rooms).find(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' &&room.unreadCount > 0) ? <div className="pending-msg"></div> : '' 
+                            Object.values(this.context.currentUser.rooms).find(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0) ? <div className="pending-msg"></div> : '' 
                             : ''
                         }
+                        <button onClick={this.checkNewMsg} >check unread</button>
                     </div>
                     <Link href="/">
                         <a className="btn-primary">

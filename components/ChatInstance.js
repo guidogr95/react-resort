@@ -76,7 +76,6 @@ export default class ChatInstance extends Component {
 
     componentDidUpdate() {
         if ( this.context.activeWindow === this.state.currentRoom.id && this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0 ) {
-            console.log('ran')
             this.onCursor()
         }
     }
@@ -109,7 +108,6 @@ export default class ChatInstance extends Component {
             this.onSubmit(e);
           }
     }
-
     onCursor = () => {
         this.state.currentUser.setReadCursor({
             roomId: this.state.currentRoom.id,

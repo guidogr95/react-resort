@@ -123,75 +123,95 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class ChatBoard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "checkNewMsg", () => {
+      if (Object.keys(this.context.currentUser).length > 0) {
+        const unreadMsgs = Object.values(this.context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0);
+        console.log(unreadMsgs);
+        console.log(unreadMsgs.length);
+        console.log(window.title);
+      }
+    });
+  }
+
   render() {
     return __jsx("div", {
       className: "chat-header-board",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 11
+        lineNumber: 21
       },
       __self: this
     }, __jsx("div", {
       className: "chat-header",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 22
       },
       __self: this
     }, __jsx("div", {
       className: "deploy-chats",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 23
       },
       __self: this
     }, __jsx(react_icons_io__WEBPACK_IMPORTED_MODULE_3__["IoMdChatboxes"], {
       onClick: this.props.setChatListActive,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 14
+        lineNumber: 24
       },
       __self: this
     }), Object.keys(this.context.currentUser).length > 0 ? Object.values(this.context.currentUser.rooms).find(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0) ? __jsx("div", {
       className: "pending-msg",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17
+        lineNumber: 27
       },
       __self: this
-    }) : '' : ''), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    }) : '' : '', __jsx("button", {
+      onClick: this.checkNewMsg,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      },
+      __self: this
+    }, "check unread")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 32
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 33
       },
       __self: this
     }, "Go Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
       href: "/admin",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 37
       },
       __self: this
     }, __jsx("a", {
       className: "btn-primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 38
       },
       __self: this
     }, "Admin Panel"))), __jsx("div", {
       className: "chat-board",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 43
       },
       __self: this
     }, Object.keys(this.context.currentUser).length > 0 ? Object.values(this.context.currentUser.rooms).map(room => {
@@ -202,7 +222,7 @@ class ChatBoard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           roomInfo: room,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 37
+            lineNumber: 48
           },
           __self: this
         });
@@ -359,7 +379,6 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   componentDidUpdate() {
     if (this.context.activeWindow === this.state.currentRoom.id && this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0) {
-      console.log('ran');
       this.onCursor();
     }
   }
@@ -369,28 +388,28 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 128
+        lineNumber: 126
       },
       __self: this
     }, __jsx("div", {
       className: "chat-messages",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 130
+        lineNumber: 128
       },
       __self: this
     }, __jsx(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_4___default.a, {
       scrollTop: this.state.scrollHeight,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 131
+        lineNumber: 129
       },
       __self: this
     }, __jsx("ul", {
       id: this.state.currentRoom.createdAt ? this.state.currentRoom.createdAt.replace(/[-\-:]/g, '') : "",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 130
       },
       __self: this
     }, this.state.messages.map((message, index) => {
@@ -401,14 +420,14 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         key: index,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 135
         },
         __self: this
       }, __jsx("div", {
         className: "chat-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 136
         },
         __self: this
       }, __jsx("div", {
@@ -416,26 +435,26 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         onClick: this.onCursor,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 139
+          lineNumber: 137
         },
         __self: this
       }, this.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0]), __jsx("div", {
         className: "msg-content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 140
+          lineNumber: 138
         },
         __self: this
       }, __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 141
+          lineNumber: 139
         },
         __self: this
       }, this.state.currentUser.id == message.senderId ? message.senderId : Id), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 142
+          lineNumber: 140
         },
         __self: this
       }, message.text))));
@@ -443,14 +462,14 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       className: "chat-input-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 149
       },
       __self: this
     }, __jsx("form", {
       onSubmit: this.onSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 152
+        lineNumber: 150
       },
       __self: this
     }, __jsx("textarea", {
@@ -464,27 +483,27 @@ class ChatInstance extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       wrap: "hard",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 153
+        lineNumber: 151
       },
       __self: this
     }), __jsx("div", {
       className: "button-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 152
       },
       __self: this
     }, __jsx("button", {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 153
       },
       __self: this
     }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_3__["FaPaperPlane"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 153
       },
       __self: this
     }))))));
