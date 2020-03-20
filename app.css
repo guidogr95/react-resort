@@ -802,6 +802,12 @@ h6 {
   -ms-flex-direction: row-reverse;
 }
 
+@media screen and (max-width: 728px) {
+  .chat-msg {
+    width: 90% !important;
+  }
+}
+
 .avatar {
   display: flex;
   display: -webkit-flex;
@@ -1042,11 +1048,11 @@ h6 {
 /*end of log box*/
 /*Admin panel*/
 .admin-panel {
-  display: block;
+  display: flex;
   text-decoration: none;
-  padding: 1rem 0;
   transition: var(--mainTransition);
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .admin-panel svg {
@@ -1066,9 +1072,19 @@ h6 {
 }
 
 .admin-panel a {
-  color: #2c2c2c;
   text-decoration: none;
-  font-size: 0.9em;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mainBlack);
+  letter-spacing: var(--mainSpacing);
+}
+
+.admin-panel button:hover,
+.admin-panel a:hover {
+  color: var(--primaryColor)
 }
 /*End of Admin panel*/
 
@@ -1263,7 +1279,7 @@ h6 {
   }
   .admin-panel {
     position: absolute;
-    top: 5px;
+    top: -5px;
     right: 5px;
     display: flex;
     display: -webkit-flex;
@@ -1276,6 +1292,7 @@ h6 {
     outline: none;
     border: none;
     letter-spacing: unset;
+    font-size: 0.9rem;
   }
   .nav-center {
     max-width: 1170px;
@@ -1294,5 +1311,6 @@ h6 {
   .admin-panel a {
     letter-spacing: unset;
     margin: 0;
+    font-size: 0.9rem;
   }
 }

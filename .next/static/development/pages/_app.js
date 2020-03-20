@@ -721,14 +721,27 @@ var Navbar = /*#__PURE__*/function (_Component) {
       var authenticated = _this.context.authenticated;
 
       if (authenticated === null) {} else if (authenticated) {
-        return __jsx("button", {
+        return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "/chat/",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, "Admin ")), " / ", __jsx("button", {
           onClick: _this.context.logOut,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 23
           },
           __self: this
-        }, "Log Out");
+        }, " Log Out"));
       } else {
         return __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
           href: "/chat/",

@@ -689,14 +689,27 @@ class Navbar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       } = this.context;
 
       if (authenticated === null) {} else if (authenticated) {
-        return __jsx("button", {
+        return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+          href: "/chat/",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, "Admin ")), " / ", __jsx("button", {
           onClick: this.context.logOut,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 23
           },
           __self: this
-        }, "Log Out");
+        }, " Log Out"));
       } else {
         return __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
           href: "/chat/",

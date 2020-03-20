@@ -20,7 +20,7 @@ export default class Navbar extends Component {
         if (authenticated === null) {
         } else if (authenticated) {
             return (
-                <button onClick={this.context.logOut}>Log Out</button>
+                <><Link href="/chat/"><a>Admin </a></Link> / <button onClick={this.context.logOut}> Log Out</button></>
             )
         } else {
             return (
