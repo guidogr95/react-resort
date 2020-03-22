@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react'
-import chatImg from '../images/chat.jpg'
 import loading from '../images/gif/loading-arrow.gif'
 import axios from 'axios';
 import { RoomContext } from '../context'
@@ -15,8 +14,6 @@ export default function chat() {
     const [input, setInput] = useState({});
     const [btnDisabled, setbtnDisabled] = useState(false);
     const [errors, setErrors] = useState({});
-    const [currentUser, setCurrentUser] = useState(null);
-    const [currentRoom, setCurrentRoom] = useState({});
     const [chatListActive, setchatListActive] = useState(false)
     const [value, setValue] = useState(0);
     const style = {
@@ -36,6 +33,7 @@ export default function chat() {
 
     useEffect(() => {
         context.updateCredentials(true);
+        
     }, [])
 
     useEffect(() => {
@@ -74,19 +72,7 @@ export default function chat() {
     }
 
     const setChatListActive = () => {
-        console.log('true')
         setchatListActive(!chatListActive)
-    }
-
-    const checkNewMsg = () => {
-        let msgs;
-        const title = document.title
-        if ( Object.keys(this.context.currentUser).length > 0 ) {
-            const unreadMsgs = Object.values(this.context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0)
-            console.log(unreadMsgs)
-            console.log(unreadMsgs.length)
-            msgs = unreadMsgs.length
-        }
     }
 
     const handleChatSession = () => {
@@ -107,7 +93,6 @@ export default function chat() {
                     useForceUpdate();
                 },
                 onNewReadCursor: () => {
-
                     useForceUpdate();
                 },
                 onRoomUpdated: () => {
@@ -115,7 +100,6 @@ export default function chat() {
                 }
             })
             .then(currentUser => {
-                console.log('updated')
                 context.setCurrentUser(currentUser)
                 return currentUser.subscribeToRoom({
                         roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
@@ -134,9 +118,7 @@ export default function chat() {
     const renderForm = () => {
         return (
             <React.Fragment>
-                <Head>
-                    <title>Hotel Admin</title>
-                </Head>
+                
                 <h3 className="welcome">Welcome</h3>
                 {
                 Object.values(errors).map((err, index) => {
@@ -178,15 +160,31 @@ export default function chat() {
             </div>
         )
     }
+
+    const checkNewMsg = () => {
+        const unreadMsgs = Object.values(context.currentUser.rooms).filter(room => room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0)
+        return unreadMsgs.length > 0 ? `(${unreadMsgs.length}) ` : ''
+    }
+
     return (
-        <div style={style}>
-            <div className="log-box">
-                {
-                    context.authenticated ?
-                        renderLoggedin() :
-                        renderForm()
+        <>
+            <Head>
+                <title>{
+                    Object.keys(context.currentUser).length > 0 ?
+                        checkNewMsg() :
+                        ''
                 }
+                Hotel Admin</title>
+            </Head>
+            <div style={style}>
+                <div className="log-box">
+                    {
+                        context.authenticated ?
+                            renderLoggedin() :
+                            renderForm()
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }

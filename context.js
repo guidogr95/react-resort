@@ -23,9 +23,15 @@ class RoomProvider extends Component {
         authenticated: null,
         chatUserId: 'guido',
         activeWindow: '',
-        currentUser: {}
+        prevWindow: '',
+        currentUser: {},
+        audio: ''
     }
+    
     componentDidMount(){
+        this.setState({
+            audio : new Audio('/me-too.mp3')
+        })
         const self = this;
         axios({
             url: 'https://graphql.datocms.com/',
@@ -187,6 +193,11 @@ class RoomProvider extends Component {
             sortedRooms: tempRooms
         })
     }
+
+    playNotif = () => {
+        this.state.audio.play()
+    }
+
     render() {
         return (
             <RoomContext.Provider 
@@ -198,7 +209,8 @@ class RoomProvider extends Component {
                     logOut: this.logOut,
                     changeWindow: this.changeWindow,
                     setCurrentUser: this.setCurrentUser,
-                    addChatRoom: this.addChatRoom
+                    addChatRoom: this.addChatRoom,
+                    playNotif: this.playNotif
                 }}
             >
                 {this.props.children}

@@ -14,7 +14,6 @@ export default class ChatScreenDisplay extends Component {
 
     componentDidUpdate(prevProps) {
         if ( prevProps.userId !== this.props.userId && prevProps.currentUsername !== this.props.currentUsername ) {
-            console.log('updated', this.props)
             this.setState({ 
                 userId: this.props.userId,
                 currentUsername: this.props.currentUsername
@@ -33,7 +32,7 @@ export default class ChatScreenDisplay extends Component {
     render() {
         return (
             <div className={this.props.show ? "chat-screen-display" : "chat-screen-display inactive" } >
-                <ChatWidgetHeader />
+                <ChatWidgetHeader toggleModal={this.props.toggleModal} />
                 {this.handleChat()}
             </div>
         )

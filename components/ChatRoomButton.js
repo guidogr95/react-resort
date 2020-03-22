@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { RoomContext } from '../context';
-import { FaAsterisk, FaIgloo } from "react-icons/fa";
 
 
 export default class ChatRoomButton extends Component {
@@ -53,7 +52,7 @@ export default class ChatRoomButton extends Component {
                 <div className="chat-info">
                     <div>
                         <h5>{this.props.room.name}</h5>
-                        {this.props.room.unreadCount > 0 ? <FaAsterisk/> : ''}
+                        {this.props.room.unreadCount > 0 ? <div className="pending-msg-onlist"/> : ''}
                     </div>
                     <p>{Date} {Time}</p>
                 </div>

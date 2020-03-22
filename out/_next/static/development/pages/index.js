@@ -643,12 +643,26 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       authenticated: null,
       chatUserId: 'guido',
       activeWindow: '',
-      currentUser: {}
+      prevWindow: '',
+      currentUser: {},
+      audio: ''
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "setCurrentUser", function (currentUser) {
       _this.setState({
         currentUser: currentUser
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "addChatRoom", function (room) {
+      _this.setState(function (prevState) {
+        return {
+          currentUser: {
+            rooms: _objectSpread({
+              room: room
+            }, prevState.currentUser.rooms)
+          }
+        };
       });
     });
 
@@ -803,12 +817,21 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       });
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "playNotif", function () {
+      console.log(_this.state.audio);
+
+      _this.state.audio.play();
+    });
+
     return _this;
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_11__["default"])(RoomProvider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.setState({
+        audio: new Audio('/static/audio/me-too.mp3')
+      });
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_18___default()({
         url: 'https://graphql.datocms.com/',
@@ -857,11 +880,13 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           updateCredentials: this.updateCredentials,
           logOut: this.logOut,
           changeWindow: this.changeWindow,
-          setCurrentUser: this.setCurrentUser
+          setCurrentUser: this.setCurrentUser,
+          addChatRoom: this.addChatRoom,
+          playNotif: this.playNotif
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 180
+          lineNumber: 204
         },
         __self: this
       }, this.props.children);
@@ -877,7 +902,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 201
+        lineNumber: 227
       },
       __self: this
     }, function (value) {
@@ -885,7 +910,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 202
+          lineNumber: 228
         },
         __self: this
       }));
@@ -21822,26 +21847,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
- // import '../app.css'
+
 
 var Home = function Home() {
-  var context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_5__["RoomContext"]);
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 14
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 15
     },
     __self: this
   }, "Beach Hotel"), __jsx("meta", {
@@ -21849,7 +21873,7 @@ var Home = function Home() {
     content: "Beach Hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 16
     },
     __self: this
   }), __jsx("meta", {
@@ -21857,7 +21881,7 @@ var Home = function Home() {
     content: "It is a beach hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 17
     },
     __self: this
   }), __jsx("meta", {
@@ -21865,7 +21889,7 @@ var Home = function Home() {
     content: "It is a beach hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 18
     },
     __self: this
   }), __jsx("meta", {
@@ -21873,19 +21897,19 @@ var Home = function Home() {
     content: "Beach Hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 19
     },
     __self: this
   })), __jsx(_context__WEBPACK_IMPORTED_MODULE_5__["RoomProvider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 21
     },
     __self: this
   }, __jsx(_components_Hero__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 22
     },
     __self: this
   }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -21893,33 +21917,33 @@ var Home = function Home() {
     subtitle: "Deluxe Rooms Starting at $299",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 23
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
     href: "/rooms/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 24
     },
     __self: this
   }, __jsx("a", {
     className: "btn-primary",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 25
     },
     __self: this
   }, "our rooms")))), __jsx(_components_Services__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 29
     },
     __self: this
   }), __jsx(_components_FeaturedRooms__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 30
     },
     __self: this
   })));

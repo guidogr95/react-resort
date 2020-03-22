@@ -1,11 +1,13 @@
 import { Component } from 'react'
 import Chatkit from '@pusher/chatkit-client'
+import { RoomContext } from '../context'
 //Components
 import MessageList from './MessageList'
 import SendMessageForm from './SendMessageForm'
 import TypingIndicator from './TypingIndicator'
 
 export default class ChatScreen extends Component {
+    static contextType = RoomContext;
     constructor(props) {
         super(props)
         this.state = {
@@ -13,7 +15,8 @@ export default class ChatScreen extends Component {
             currentRoom: {},
             currentUser: {},
             userTyping: '',
-            isUserTyping: false
+            isUserTyping: false,
+            scrollHeight: 0
         }
     }
 
@@ -29,9 +32,7 @@ export default class ChatScreen extends Component {
         chatManager
             .connect()
             .then(currentUser => {
-                this.setState({currentUser});
-                console.log(currentUser)
-
+                this.setState({currentUser})
                 return currentUser.createRoom({
                     id: currentUser.id,
                     name: currentUser.name,
@@ -44,9 +45,12 @@ export default class ChatScreen extends Component {
                     messageLimit: 100,
                     hooks: {
                         onMessage: (message) => {
-                            console.log(message)
+                            if ( message.senderId !== this.state.currentUser.id ) {
+                                this.context.playNotif();
+                            }
                             this.setState({
-                                messages: [...this.state.messages, message]
+                                messages: [...this.state.messages, message],
+                                scrollHeight: document.getElementById('chatbox-user').clientHeight    
                             })
                         },
                         onUserStartedTyping: user => {
@@ -68,7 +72,7 @@ export default class ChatScreen extends Component {
                         messageLimit: 100,
                         hooks: {
                             onPresenceChanged: (state, user) => {
-                                console.log(`User ${user.name} is ${state.current}`)
+                                // console.log(`User ${user.name} is ${state.current}`)
                             }
                         }
                         
@@ -100,7 +104,7 @@ export default class ChatScreen extends Component {
     render() {
         return (
             <div className="chat-screen" >
-                <MessageList messages={this.state.messages} currentUser={this.state.currentUser} />
+                <MessageList messages={this.state.messages} currentUser={this.state.currentUser} scrollHeight={this.state.scrollHeight} />
                 { this.state.isUserTyping ? <TypingIndicator userTyping={this.state.userTyping} /> : '' }
                 <SendMessageForm onSubmit={this.sendMessage} onChange={this.sendTypingEvent} />
             </div>

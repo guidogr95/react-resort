@@ -196,7 +196,7 @@ class FeaturedRooms extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx(_Title__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      title: "Featured Rooms",
+      title: "Habitaciones Recomendadas",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 18
@@ -449,7 +449,7 @@ class Services extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __self: this
         }),
-        title: "Free Cocktails",
+        title: "Cocteles gratis",
         info: "Lorem ipsom dolor sit amet consectetur adipisicing elit. Magni, corporis!"
       }, {
         icon: __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaHiking"], {
@@ -459,7 +459,7 @@ class Services extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __self: this
         }),
-        title: "Endless Hking",
+        title: "Caminatas",
         info: "Lorem ipsom dolor sit amet consectetur adipisicing elit. Magni, corporis!"
       }, {
         icon: __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaShuttleVan"], {
@@ -469,7 +469,7 @@ class Services extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __self: this
         }),
-        title: "Free Shuttle",
+        title: "Transporte gratis",
         info: "Lorem ipsom dolor sit amet consectetur adipisicing elit. Magni, corporis!"
       }, {
         icon: __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaBeer"], {
@@ -479,7 +479,7 @@ class Services extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __self: this
         }),
-        title: "Strongest Beer",
+        title: "Bares cercanos",
         info: "Lorem ipsom dolor sit amet consectetur adipisicing elit. Magni, corporis!"
       }]
     });
@@ -494,7 +494,7 @@ class Services extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __self: this
     }, __jsx(_Title__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      title: "Services",
+      title: "Servicios",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 34
@@ -638,7 +638,9 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       authenticated: null,
       chatUserId: 'guido',
       activeWindow: '',
-      currentUser: {}
+      prevWindow: '',
+      currentUser: {},
+      audio: ''
     });
 
     _defineProperty(this, "setCurrentUser", currentUser => {
@@ -788,9 +790,16 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         sortedRooms: tempRooms
       });
     });
+
+    _defineProperty(this, "playNotif", () => {
+      this.state.audio.play();
+    });
   }
 
   componentDidMount() {
+    this.setState({
+      audio: new Audio('/me-too.mp3')
+    });
     const self = this;
     axios__WEBPACK_IMPORTED_MODULE_1___default()({
       url: 'https://graphql.datocms.com/',
@@ -851,11 +860,12 @@ class RoomProvider extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         logOut: this.logOut,
         changeWindow: this.changeWindow,
         setCurrentUser: this.setCurrentUser,
-        addChatRoom: this.addChatRoom
+        addChatRoom: this.addChatRoom,
+        playNotif: this.playNotif
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 192
+        lineNumber: 203
       },
       __self: this
     }, this.props.children);
@@ -869,14 +879,14 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 214
+        lineNumber: 226
       },
       __self: this
     }, value => __jsx(Component, _extends({}, props, {
       context: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 215
+        lineNumber: 227
       },
       __self: this
     })));
@@ -2690,26 +2700,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
- // import '../app.css'
+
 
 const Home = () => {
-  const context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_5__["RoomContext"]);
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     },
     __self: undefined
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 14
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 15
     },
     __self: undefined
   }, "Beach Hotel"), __jsx("meta", {
@@ -2717,7 +2726,7 @@ const Home = () => {
     content: "Beach Hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 16
     },
     __self: undefined
   }), __jsx("meta", {
@@ -2725,7 +2734,7 @@ const Home = () => {
     content: "It is a beach hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 17
     },
     __self: undefined
   }), __jsx("meta", {
@@ -2733,7 +2742,7 @@ const Home = () => {
     content: "It is a beach hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 18
     },
     __self: undefined
   }), __jsx("meta", {
@@ -2741,53 +2750,53 @@ const Home = () => {
     content: "Beach Hotel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 19
     },
     __self: undefined
   })), __jsx(_context__WEBPACK_IMPORTED_MODULE_5__["RoomProvider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 21
     },
     __self: undefined
   }, __jsx(_components_Hero__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 22
     },
     __self: undefined
   }, __jsx(_components_Banner__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    title: "Luxurious Rooms",
-    subtitle: "Deluxe Rooms Starting at $299",
+    title: "Habitaciones de Lujo",
+    subtitle: "Habitaciones de lujo desde $150",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 23
     },
     __self: undefined
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
     href: "/rooms/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 24
     },
     __self: undefined
   }, __jsx("a", {
     className: "btn-primary",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 25
     },
     __self: undefined
-  }, "our rooms")))), __jsx(_components_Services__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "nuestras habitaciontes")))), __jsx(_components_Services__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 29
     },
     __self: undefined
   }), __jsx(_components_FeaturedRooms__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 30
     },
     __self: undefined
   })));

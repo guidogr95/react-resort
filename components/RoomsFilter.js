@@ -31,11 +31,11 @@ export default function RoomsFilter({rooms}) {
 
     return (
         <section className="filter-container">
-            <Title title="search rooms"/>
+            <Title title="Buscar Habitaciones"/>
             <form className="filter-form">
                 {/*select type*/}
                 <div className="form-group">
-                    <label htmlFor="type">room type</label>
+                    <label htmlFor="type">Tipo</label>
                     <select 
                         name="roomtype" 
                         id="type" 
@@ -49,7 +49,7 @@ export default function RoomsFilter({rooms}) {
                 {/*end select type*/}
                 {/*guests*/}
                 <div className="form-group">
-                    <label htmlFor="capacity">Guests</label>
+                    <label htmlFor="capacity">Capacidad</label>
                     <select 
                         name="capacity" 
                         id="capacity" 
@@ -64,7 +64,7 @@ export default function RoomsFilter({rooms}) {
                 {/*room price */}
                 <div className="form-group">
                     <label htmlFor="price">
-                        room price ${price}
+                        Precio ${price}
                     </label>
                     <input type="range" name="price" min={minPrice} max={maxPrice} id="price" value={price} onChange={handleChange}
                     className="form-control" />
@@ -74,11 +74,11 @@ export default function RoomsFilter({rooms}) {
                     <div className="form-group">
                         <div className="single-extra">
                             <input type="checkbox" name="breakfast" id="breakfast" checked={breakfast} onChange={handleChange}/>
-                            <label htmlFor="breakfast">breakfast</label>
+                            <label htmlFor="breakfast">Desayuno</label>
                         </div>
                         <div className="single-extra">
                             <input type="checkbox" name="pets" id="pets" checked={pets} onChange={handleChange}/>
-                            <label htmlFor="pets">pets</label>
+                            <label htmlFor="pets">mascotas</label>
                         </div>
                     </div>
                 {/*end of extras */}

@@ -12,9 +12,9 @@ const Rooms = () => {
         <>
         <RoomProvider>
         <Hero hero="roomsHero">
-            <Banner title="Our Rooms">
+            <Banner title="Habitaciones">
                 <Link href="/">
-                    <a className="btn-primary">Return Home</a>
+                    <a className="btn-primary">Regresar a Inicio</a>
                 </Link>
             </Banner>
         </Hero>

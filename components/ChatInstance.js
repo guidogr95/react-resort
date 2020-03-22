@@ -38,6 +38,9 @@ export default class ChatInstance extends Component {
                     messageLimit: 100,
                     hooks: {
                         onMessage: (message) => {
+                            if ( this.context.activeWindow !== message.room.id && message.room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && message.room.unreadCount > 0 ) {
+                                this.context.playNotif();
+                            }
                             if (Object.keys(this.state.currentRoom).length > 0) {
                                 this.setState({
                                     messages: [...this.state.messages, message],
@@ -74,18 +77,23 @@ export default class ChatInstance extends Component {
             
         }
 
-    componentDidUpdate() {
-        if ( this.context.activeWindow === this.state.currentRoom.id && this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0 ) {
-            this.onCursor()
-        }
-    }
-
     sendMessage = (text) => {
         this.setState({text:''})
         this.state.currentUser.sendSimpleMessage({
             roomId: this.state.currentRoom.id,
             text
-        }).then()
+        }).then(msg => {
+            this.state.currentUser.setReadCursor({
+            roomId: this.state.currentRoom.id,
+            position: msg
+            })
+            .then(() => {
+                // console.log('Success!')
+            })
+            .catch(err => {
+                console.log(`Error setting cursor: ${err}`)
+            })
+        })
         .catch(err => {
             console.log('error', err);
             this.setState({text})
@@ -109,16 +117,18 @@ export default class ChatInstance extends Component {
           }
     }
     onCursor = () => {
-        this.state.currentUser.setReadCursor({
-            roomId: this.state.currentRoom.id,
-            position: this.state.messages[this.state.messages.length-1].id
-          })
-            .then(() => {
-              console.log('Success!')
-            })
-            .catch(err => {
-              console.log(`Error setting cursor: ${err}`)
-            })
+        if ( this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0 ) {
+            this.state.currentUser.setReadCursor({
+                roomId: this.state.currentRoom.id,
+                position: this.state.messages[this.state.messages.length-1].id
+              })
+                .then(() => {
+                //   console.log('Success!')
+                })
+                .catch(err => {
+                  console.log(`Error setting cursor: ${err}`)
+                })
+        }
     }
 
     render() {
@@ -148,7 +158,7 @@ export default class ChatInstance extends Component {
                 </div>
                 <div className="chat-input-text">
                     <form onSubmit={this.onSubmit}>
-                            <textarea onKeyDown={this.onEnterPress} className="hidescroll" name="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" wrap="hard" />
+                            <textarea onFocus={this.onCursor} onKeyDown={this.onEnterPress} className="hidescroll" name="text" placeholder="Your text..." onChange={this.handleChange} value={this.state.text} autoComplete="off" wrap="hard" />
                             <div className="button-container">
                                 <button type="submit"><FaPaperPlane/></button>
                             </div>

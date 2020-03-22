@@ -31,8 +31,6 @@ export default class ChatComponent extends Component {
             }),
             headers: { 'Content-Type': 'application/json' }
         }).then(res => {
-            console.log(res.data.userId)
-            console.log('success')
             this.setState({
                 currentUsername: username,
                 currentScreen: 'ChatScreen',
@@ -56,7 +54,7 @@ export default class ChatComponent extends Component {
             return (
                 <div className="chat-component chat-icon">
                     <div className="chat-component-wrapper">
-                        <ChatScreenDisplay show={this.state.modalShow} onSubmit={this.handleSubmit} currentScreen={this.state.currentScreen} currentUsername={this.state.currentUsername} userId={this.state.userId}/>
+                        <ChatScreenDisplay show={this.state.modalShow}  toggleModal={this.toggleModal} onSubmit={this.handleSubmit} currentScreen={this.state.currentScreen} currentUsername={this.state.currentUsername} userId={this.state.userId}/>
                         <div className="chat-icon-wrapper" onClick={this.toggleModal}>
                             <div className="modal-icon">
                                 <MdClear className={this.state.modalShow ? "cross" : "cross hide"} />

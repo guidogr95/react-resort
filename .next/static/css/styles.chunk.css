@@ -146,6 +146,19 @@ h6 {
   background: transparent;
   color: var(--primaryColor);
 }
+
+.btn-primary.chat {
+  max-height: 33.78px; min-height: 33.78px;
+  width: 100%;
+  padding: 0;
+}
+
+.btn-primary.disabled {
+  background: transparent;
+  color: var(--primaryColor);
+  
+}
+
 .loading {
   text-transform: capitalize;
   text-align: center;
@@ -218,13 +231,13 @@ h6 {
 .defaultHero,
 .roomsHero {
   min-height: calc(100vh - 66px);
-  background: url(/_next/static/images/defaultBcg-aebaec51b2f82a2993fda821ca04e228.jpeg) center/cover no-repeat;
+  background: url(/_next/static/images/defaultBcg-384426e8c9fae8823701da006c673451.jpg) center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .roomsHero {
-  background-image: url(/_next/static/images/room-2-052c76815f889f20b8a498c19a212c50.jpeg);
+  background-image: url(/_next/static/images/defaultroom-013e448e54abcc5151b309f8fa2ec5a0.jpg);
   min-height: 60vh;
 }
 /* End of Hero */
@@ -687,10 +700,17 @@ h6 {
   display: none;
 }
 
+
+
 .chat-header svg {
   color: rgba(255,255,255,0.8);
   font-size: 1.95em;
   cursor: pointer;
+}
+
+.deploy-chats {
+  line-height: 0;
+  position: relative;
   display: none;
 }
 
@@ -709,7 +729,7 @@ h6 {
     position: relative;
   }
   .chat-list-settings svg,
-  .chat-header svg {
+  .deploy-chats {
     display: unset;
   }
 }
@@ -868,7 +888,7 @@ h6 {
   max-width: 100%;
 }
 
-.ScrollbarsCustom-Track {
+.chatlist-box .ScrollbarsCustom-Track {
   opacity: 0;
   transition: .4s;
   position: absolute;
@@ -1015,11 +1035,6 @@ h6 {
   align-items: center;
 }
 
-.deploy-chats {
-  line-height: 0;
-  position: relative;
-}
-
 .pending-msg {
   width: 10px;
   height: 10px;
@@ -1028,6 +1043,14 @@ h6 {
   position: absolute;
   top: 0;
   right: -5px;
+}
+
+.pending-msg-onlist {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 0, 0,0.5);
+  border-radius: 100%;
+  margin-left: 5px;
 }
 
 .chat-header-board .chat-header .btn-primary {
@@ -1132,18 +1155,27 @@ h6 {
 
 .widget-header {
   background: var(--primaryColor);
-  padding: 10px 0;
+  padding: 10px 10px;
   display: flex;
   display: -webkit-flex;
   display: -ms-flexbox;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  flex-direction: column;
-  -ms-flex-direction: column;
+}
+
+.widget-header .widget-header-clear {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: var(--mainWhite);
+  display: none;
+}
+
+.widget-header .widget-header-text {
+  margin-left: 10px;
 }
 
 .widget-header h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
 }
 
 .widget-header h5 {
@@ -1191,6 +1223,7 @@ h6 {
   padding: 8px 5px;
   background: rgb(235,235,235);
   border: none;
+  width: 100%;
 }
 
 .chat-screen {
@@ -1205,7 +1238,7 @@ h6 {
 }
 
 .user-message-list {  
-  height: 90%;
+  height: 88%;
   width: 100%;
   padding: 5px 5px 5px 5px;
   overflow: auto;
@@ -1220,9 +1253,17 @@ h6 {
 }
 
 .user-send-form {
-  height: 10%;
+  height: 12%;
   position: relative;
   width: 100%;
+  max-height: 42px;
+}
+
+.chatbox-text {
+  font-size: 0.8em;
+  padding: 10px 15px;
+  color: var(--mainBlack);
+  text-align: center;
 }
 
 .user-send-form form {
@@ -1232,7 +1273,7 @@ h6 {
 
 .user-send-form input {
   background: whitesmoke;
-  padding: 5px 25px 5px 2px;
+  padding: 10px 25px 10px 5px;
   width: 100%;
   height: 100%;
   border: none;
@@ -1275,6 +1316,28 @@ h6 {
 .chat.hide {
   opacity: 0;
   transform: rotate(90deg);
+}
+
+@media screen and (max-width: 450px) {
+  .chat-component {
+    left: 20px;
+    bottom: 20px;
+  }
+  .chat-screen-display {
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 100%;
+  }
+  .user-send-form {
+    position: fixed;
+    bottom: 0;
+  }
+  .widget-header .widget-header-clear {
+    display: unset;
+  }
 }
 
 /*End of chat*/

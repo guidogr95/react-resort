@@ -7,10 +7,8 @@ import FeaturedRooms from '../components/FeaturedRooms'
 import { RoomProvider, RoomContext } from '../context';
 import Link from 'next/link'
 import Head from 'next/head'
-// import '../app.css'
 
 const Home = () => {
-    const context = useContext(RoomContext)
     return (
         <React.Fragment>
             <Head>
@@ -22,9 +20,9 @@ const Home = () => {
             </Head>
         <RoomProvider>
             <Hero>
-                <Banner title="Luxurious Rooms" subtitle="Deluxe Rooms Starting at $299">
+                <Banner title="Habitaciones de Lujo" subtitle="Habitaciones de lujo desde $150">
                     <Link href="/rooms/">
-                        <a className="btn-primary">our rooms</a>
+                        <a className="btn-primary">nuestras habitaciontes</a>
                     </Link>
                 </Banner>
             </Hero>

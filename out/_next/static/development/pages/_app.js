@@ -721,14 +721,27 @@ var Navbar = /*#__PURE__*/function (_Component) {
       var authenticated = _this.context.authenticated;
 
       if (authenticated === null) {} else if (authenticated) {
-        return __jsx("button", {
+        return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "/chat/",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23
+          },
+          __self: this
+        }, "Admin ")), " / ", __jsx("button", {
           onClick: _this.context.logOut,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 23
           },
           __self: this
-        }, "Log Out");
+        }, " Log Out"));
       } else {
         return __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
           href: "/chat/",
@@ -757,28 +770,28 @@ var Navbar = /*#__PURE__*/function (_Component) {
         className: "navbar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 35
         },
         __self: this
       }, __jsx("div", {
         className: "nav-center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 36
         },
         __self: this
       }, __jsx("div", {
         className: "nav-header",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 37
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
         href: "/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39
+          lineNumber: 38
         },
         __self: this
       }, __jsx("img", {
@@ -786,7 +799,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
         alt: "logo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 39
         },
         __self: this
       })), __jsx("button", {
@@ -794,7 +807,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
         className: "nav-btn",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 41
         },
         __self: this
       }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_10__["FaAlignRight"], {
@@ -802,75 +815,75 @@ var Navbar = /*#__PURE__*/function (_Component) {
         onClick: this.handleToggle,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 42
         },
         __self: this
       }))), __jsx("ul", {
         className: this.state.isOpen ? "nav-links show-nav" : "nav-links",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 45
         },
         __self: this
       }, __jsx("li", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 46
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
         href: "/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 47
         },
         __self: this
       }, __jsx("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 47
         },
         __self: this
       }, "Home"))), __jsx("li", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 49
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
         href: "/rooms/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 50
         },
         __self: this
       }, __jsx("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 50
         },
         __self: this
-      }, "Rooms")))), __jsx("div", {
+      }, "Rooms"))), __jsx("li", {
         className: "admin-panel",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 52
         },
         __self: this
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
         href: "/chat/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 53
         },
         __self: this
       }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_10__["FaUserCircle"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 54
         },
         __self: this
-      })), this.adminPanel())));
+      })), this.adminPanel()))));
     }
   }]);
 
@@ -1249,12 +1262,26 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       authenticated: null,
       chatUserId: 'guido',
       activeWindow: '',
-      currentUser: {}
+      prevWindow: '',
+      currentUser: {},
+      audio: ''
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "setCurrentUser", function (currentUser) {
       _this.setState({
         currentUser: currentUser
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "addChatRoom", function (room) {
+      _this.setState(function (prevState) {
+        return {
+          currentUser: {
+            rooms: _objectSpread({
+              room: room
+            }, prevState.currentUser.rooms)
+          }
+        };
       });
     });
 
@@ -1409,12 +1436,21 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       });
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "playNotif", function () {
+      console.log(_this.state.audio);
+
+      _this.state.audio.play();
+    });
+
     return _this;
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_11__["default"])(RoomProvider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.setState({
+        audio: new Audio('/static/audio/me-too.mp3')
+      });
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_18___default()({
         url: 'https://graphql.datocms.com/',
@@ -1463,11 +1499,13 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           updateCredentials: this.updateCredentials,
           logOut: this.logOut,
           changeWindow: this.changeWindow,
-          setCurrentUser: this.setCurrentUser
+          setCurrentUser: this.setCurrentUser,
+          addChatRoom: this.addChatRoom,
+          playNotif: this.playNotif
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 180
+          lineNumber: 204
         },
         __self: this
       }, this.props.children);
@@ -1483,7 +1521,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 201
+        lineNumber: 227
       },
       __self: this
     }, function (value) {
@@ -1491,7 +1529,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 202
+          lineNumber: 228
         },
         __self: this
       }));

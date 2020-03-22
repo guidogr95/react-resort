@@ -18,17 +18,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _ChatInstance__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ChatInstance */ "./components/ChatInstance.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var react_icons_io__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-icons/io */ "./node_modules/react-icons/io/index.esm.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../context */ "./context.js");
-
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _ChatInstance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ChatInstance */ "./components/ChatInstance.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_icons_io__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-icons/io */ "./node_modules/react-icons/io/index.esm.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../context */ "./context.js");
 
 
 
@@ -39,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatBoard.js";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
 
@@ -47,34 +45,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement;
 
 
 var ChatBoard = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_7__["default"])(ChatBoard, _Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(ChatBoard, _Component);
 
   function ChatBoard() {
-    var _getPrototypeOf2;
-
-    var _this;
-
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, ChatBoard);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(ChatBoard)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this), "checkNewMsg", function () {
-      if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default()(_this.context.currentUser).length > 0) {
-        var unreadMsgs = _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_0___default()(_this.context.currentUser.rooms).filter(function (room) {
-          return room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0;
-        });
-
-        console.log(unreadMsgs);
-        console.log(unreadMsgs.length);
-        console.log(window.title);
-      }
-    });
-
-    return _this;
+    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(ChatBoard).apply(this, arguments));
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(ChatBoard, [{
@@ -84,28 +60,28 @@ var ChatBoard = /*#__PURE__*/function (_Component) {
         className: "chat-header-board",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 12
         },
         __self: this
       }, __jsx("div", {
         className: "chat-header",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 13
         },
         __self: this
       }, __jsx("div", {
         className: "deploy-chats",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 14
         },
         __self: this
-      }, __jsx(react_icons_io__WEBPACK_IMPORTED_MODULE_12__["IoMdChatboxes"], {
+      }, __jsx(react_icons_io__WEBPACK_IMPORTED_MODULE_11__["IoMdChatboxes"], {
         onClick: this.props.setChatListActive,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24
+          lineNumber: 15
         },
         __self: this
       }), _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default()(this.context.currentUser).length > 0 ? _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_0___default()(this.context.currentUser.rooms).find(function (room) {
@@ -114,60 +90,53 @@ var ChatBoard = /*#__PURE__*/function (_Component) {
         className: "pending-msg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 18
         },
         __self: this
-      }) : '' : '', __jsx("button", {
-        onClick: this.checkNewMsg,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 30
-        },
-        __self: this
-      }, "check unread")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_11___default.a, {
+      }) : '' : ''), __jsx(next_link__WEBPACK_IMPORTED_MODULE_10___default.a, {
         href: "/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 22
         },
         __self: this
       }, __jsx("a", {
         className: "btn-primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 23
         },
         __self: this
-      }, "Go Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_11___default.a, {
+      }, "Go Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_10___default.a, {
         href: "/admin",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 27
         },
         __self: this
       }, __jsx("a", {
         className: "btn-primary",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 28
         },
         __self: this
       }, "Admin Panel"))), __jsx("div", {
         className: "chat-board",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 33
         },
         __self: this
       }, _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default()(this.context.currentUser).length > 0 ? _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_0___default()(this.context.currentUser.rooms).map(function (room) {
         if (room.id !== '992194b2-feaa-4842-a546-5c3482ae69c4') {
-          return __jsx(_ChatInstance__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          return __jsx(_ChatInstance__WEBPACK_IMPORTED_MODULE_9__["default"], {
             id: room.id,
             key: room.id,
             roomInfo: room,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48
+              lineNumber: 38
             },
             __self: this
           });
@@ -177,9 +146,9 @@ var ChatBoard = /*#__PURE__*/function (_Component) {
   }]);
 
   return ChatBoard;
-}(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
-Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(ChatBoard, "contextType", _context__WEBPACK_IMPORTED_MODULE_13__["RoomContext"]);
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(ChatBoard, "contextType", _context__WEBPACK_IMPORTED_MODULE_12__["RoomContext"]);
 
 
 
@@ -258,6 +227,10 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
           messageLimit: 100,
           hooks: {
             onMessage: function onMessage(message) {
+              if (_this.context.activeWindow !== message.room.id && message.room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && message.room.unreadCount > 0) {
+                _this.context.playNotif();
+              }
+
               if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default()(_this.state.currentRoom).length > 0) {
                 _this.setState({
                   messages: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_this.state.messages), [message]),
@@ -304,7 +277,15 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
       _this.state.currentUser.sendSimpleMessage({
         roomId: _this.state.currentRoom.id,
         text: text
-      }).then()["catch"](function (err) {
+      }).then(function (msg) {
+        _this.state.currentUser.setReadCursor({
+          roomId: _this.state.currentRoom.id,
+          position: msg
+        }).then(function () {// console.log('Success!')
+        })["catch"](function (err) {
+          console.log("Error setting cursor: ".concat(err));
+        });
+      })["catch"](function (err) {
         console.log('error', err);
 
         _this.setState({
@@ -330,14 +311,15 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this), "onCursor", function () {
-      _this.state.currentUser.setReadCursor({
-        roomId: _this.state.currentRoom.id,
-        position: _this.state.messages[_this.state.messages.length - 1].id
-      }).then(function () {
-        console.log('Success!');
-      })["catch"](function (err) {
-        console.log("Error setting cursor: ".concat(err));
-      });
+      if (_this.state.messages.length > 0 && _this.state.currentRoom.unreadCount > 0) {
+        _this.state.currentUser.setReadCursor({
+          roomId: _this.state.currentRoom.id,
+          position: _this.state.messages[_this.state.messages.length - 1].id
+        }).then(function () {//   console.log('Success!')
+        })["catch"](function (err) {
+          console.log("Error setting cursor: ".concat(err));
+        });
+      }
     });
 
     _this.state = {
@@ -353,13 +335,6 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(ChatInstance, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (this.context.activeWindow === this.state.currentRoom.id && this.state.messages.length > 0 && this.state.currentRoom.unreadCount > 0) {
-        this.onCursor();
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -368,28 +343,28 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         className: this.context.activeWindow === this.state.currentRoom.id ? "chat-instance" : "chat-instance inactive",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 126
+          lineNumber: 136
         },
         __self: this
       }, __jsx("div", {
         className: "chat-messages",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128
+          lineNumber: 138
         },
         __self: this
       }, __jsx(react_scrollbars_custom__WEBPACK_IMPORTED_MODULE_13__["default"], {
         scrollTop: this.state.scrollHeight,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 139
         },
         __self: this
       }, __jsx("ul", {
         id: this.state.currentRoom.createdAt ? this.state.currentRoom.createdAt.replace(/[-\-:]/g, '') : "",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 140
         },
         __self: this
       }, this.state.messages.map(function (message, index) {
@@ -400,14 +375,14 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 135
+            lineNumber: 145
           },
           __self: this
         }, __jsx("div", {
           className: "chat-msg",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 136
+            lineNumber: 146
           },
           __self: this
         }, __jsx("div", {
@@ -415,26 +390,26 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
           onClick: _this2.onCursor,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 137
+            lineNumber: 147
           },
           __self: this
         }, _this2.state.currentUser.id == message.senderId ? message.senderId[0] : Id[0]), __jsx("div", {
           className: "msg-content",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 138
+            lineNumber: 148
           },
           __self: this
         }, __jsx("span", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 139
+            lineNumber: 149
           },
           __self: this
         }, _this2.state.currentUser.id == message.senderId ? message.senderId : Id), __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 140
+            lineNumber: 150
           },
           __self: this
         }, message.text))));
@@ -442,17 +417,18 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         className: "chat-input-text",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 149
+          lineNumber: 159
         },
         __self: this
       }, __jsx("form", {
         onSubmit: this.onSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 150
+          lineNumber: 160
         },
         __self: this
       }, __jsx("textarea", {
+        onFocus: this.onCursor,
         onKeyDown: this.onEnterPress,
         className: "hidescroll",
         name: "text",
@@ -463,27 +439,27 @@ var ChatInstance = /*#__PURE__*/function (_Component) {
         wrap: "hard",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 151
+          lineNumber: 161
         },
         __self: this
       }), __jsx("div", {
         className: "button-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 152
+          lineNumber: 162
         },
         __self: this
       }, __jsx("button", {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 163
         },
         __self: this
       }, __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_12__["FaPaperPlane"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 163
         },
         __self: this
       }))))));
@@ -817,7 +793,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../context */ "./context.js");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 
 
 
@@ -828,7 +803,6 @@ __webpack_require__.r(__webpack_exports__);
 var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/components/ChatRoomButton.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
-
 
 
 
@@ -895,7 +869,7 @@ var ChatRoomButton = /*#__PURE__*/function (_Component) {
         className: this.context.activeWindow === this.props.room.id ? "chat-room active" : "chat-room",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 49
         },
         __self: this
       }, __jsx("input", {
@@ -906,45 +880,46 @@ var ChatRoomButton = /*#__PURE__*/function (_Component) {
         onChange: this.handleChange,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 50
         },
         __self: this
       }), __jsx("label", {
         htmlFor: id,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 51
         },
         __self: this
       }), __jsx("div", {
         className: "chat-info",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 52
         },
         __self: this
       }, __jsx("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 53
         },
         __self: this
       }, __jsx("h5", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 54
         },
         __self: this
-      }, this.props.room.name), this.props.room.unreadCount > 0 ? __jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_9__["FaAsterisk"], {
+      }, this.props.room.name), this.props.room.unreadCount > 0 ? __jsx("div", {
+        className: "pending-msg-onlist",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 55
         },
         __self: this
       }) : ''), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 57
         },
         __self: this
       }, Date, " ", Time))));
@@ -1064,7 +1039,9 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       authenticated: null,
       chatUserId: 'guido',
       activeWindow: '',
-      currentUser: {}
+      prevWindow: '',
+      currentUser: {},
+      audio: ''
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "setCurrentUser", function (currentUser) {
@@ -1236,12 +1213,19 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
       });
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_16__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_14__["default"])(_this), "playNotif", function () {
+      _this.state.audio.play();
+    });
+
     return _this;
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_11__["default"])(RoomProvider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.setState({
+        audio: new Audio('/me-too.mp3')
+      });
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_18___default()({
         url: 'https://graphql.datocms.com/',
@@ -1291,11 +1275,12 @@ var RoomProvider = /*#__PURE__*/function (_Component) {
           logOut: this.logOut,
           changeWindow: this.changeWindow,
           setCurrentUser: this.setCurrentUser,
-          addChatRoom: this.addChatRoom
+          addChatRoom: this.addChatRoom,
+          playNotif: this.playNotif
         }),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 192
+          lineNumber: 203
         },
         __self: this
       }, this.props.children);
@@ -1311,7 +1296,7 @@ function withRoomConsumer(Component) {
     return __jsx(RoomConsumer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 214
+        lineNumber: 226
       },
       __self: this
     }, function (value) {
@@ -1319,7 +1304,7 @@ function withRoomConsumer(Component) {
         context: value,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 215
+          lineNumber: 227
         },
         __self: this
       }));
@@ -1327,17 +1312,6 @@ function withRoomConsumer(Component) {
   };
 }
 
-
-/***/ }),
-
-/***/ "./images/chat.jpg":
-/*!*************************!*\
-  !*** ./images/chat.jpg ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/_next/static/images/chat-a96fa1d206e4650bcc1b39e32442def1.jpg";
 
 /***/ }),
 
@@ -6398,7 +6372,7 @@ function fromByteArray (uint8) {
 
   var Buffer;
   try {
-    Buffer = __webpack_require__(/*! buffer */ 6).Buffer;
+    Buffer = __webpack_require__(/*! buffer */ 7).Buffer;
   } catch (e) {
   }
 
@@ -9840,7 +9814,7 @@ if (typeof self === 'object') {
 } else {
   // Node.js or Web worker with no crypto support
   try {
-    var crypto = __webpack_require__(/*! crypto */ 7);
+    var crypto = __webpack_require__(/*! crypto */ 8);
     if (typeof crypto.randomBytes !== 'function')
       throw new Error('Not supported');
 
@@ -51639,7 +51613,7 @@ util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inh
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(/*! util */ 4);
+var debugUtil = __webpack_require__(/*! util */ 5);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -53528,7 +53502,7 @@ Writable.prototype._destroy = function (err, cb) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
-var util = __webpack_require__(/*! util */ 5);
+var util = __webpack_require__(/*! util */ 6);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -58723,10 +58697,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/values */ "./node_modules/@babel/runtime-corejs2/core-js/object/values.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/values */ "./node_modules/@babel/runtime-corejs2/core-js/object/values.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
@@ -58734,19 +58708,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _images_chat_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../images/chat.jpg */ "./images/chat.jpg");
-/* harmony import */ var _images_chat_jpg__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_images_chat_jpg__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../images/gif/loading-arrow.gif */ "./images/gif/loading-arrow.gif");
-/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../context */ "./context.js");
-/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @pusher/chatkit-client */ "./node_modules/@pusher/chatkit-client/dist/web/chatkit.js");
-/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _components_ChatList__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/ChatList */ "./components/ChatList.js");
-/* harmony import */ var _components_ChatBoard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/ChatBoard */ "./components/ChatBoard.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../images/gif/loading-arrow.gif */ "./images/gif/loading-arrow.gif");
+/* harmony import */ var _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../context */ "./context.js");
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @pusher/chatkit-client */ "./node_modules/@pusher/chatkit-client/dist/web/chatkit.js");
+/* harmony import */ var _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_ChatList__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/ChatList */ "./components/ChatList.js");
+/* harmony import */ var _components_ChatBoard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/ChatBoard */ "./components/ChatBoard.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_17__);
 
 
 
@@ -58761,7 +58733,7 @@ var _jsxFileName = "/home/guido/Documents/GitHub/react-resort/pages/chat.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement;
 
-function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_6___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
@@ -58773,11 +58745,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-
 function chat() {
-  var _this = this;
-
-  var context = Object(react__WEBPACK_IMPORTED_MODULE_10__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_14__["RoomContext"]);
+  var context = Object(react__WEBPACK_IMPORTED_MODULE_10__["useContext"])(_context__WEBPACK_IMPORTED_MODULE_13__["RoomContext"]);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])({}),
       input = _useState[0],
@@ -58791,21 +58760,13 @@ function chat() {
       errors = _useState3[0],
       setErrors = _useState3[1];
 
-  var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(null),
-      currentUser = _useState4[0],
-      setCurrentUser = _useState4[1];
+  var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(false),
+      chatListActive = _useState4[0],
+      setchatListActive = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])({}),
-      currentRoom = _useState5[0],
-      setCurrentRoom = _useState5[1];
-
-  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(false),
-      chatListActive = _useState6[0],
-      setchatListActive = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(0),
-      value = _useState7[0],
-      setValue = _useState7[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(0),
+      value = _useState5[0],
+      setValue = _useState5[1];
 
   var style = {
     minHeight: 600,
@@ -58838,7 +58799,7 @@ function chat() {
           case 0:
             event.preventDefault();
             setbtnDisabled(true);
-            axios__WEBPACK_IMPORTED_MODULE_13___default()({
+            axios__WEBPACK_IMPORTED_MODULE_12___default()({
               url: 'https://express-login.now.sh/api/users/login',
               method: 'POST',
               data: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_8___default()({
@@ -58868,30 +58829,14 @@ function chat() {
   };
 
   var setChatListActive = function setChatListActive() {
-    console.log('true');
     setchatListActive(!chatListActive);
   };
 
-  var checkNewMsg = function checkNewMsg() {
-    var msgs;
-    var title = document.title;
-
-    if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_6___default()(_this.context.currentUser).length > 0) {
-      var unreadMsgs = _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_5___default()(_this.context.currentUser.rooms).filter(function (room) {
-        return room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0;
-      });
-
-      console.log(unreadMsgs);
-      console.log(unreadMsgs.length);
-      msgs = unreadMsgs.length;
-    }
-  };
-
   var handleChatSession = function handleChatSession() {
-    var chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_15___default.a.ChatManager({
+    var chatManager = new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_14___default.a.ChatManager({
       instanceLocator: 'v1:us1:fe088103-8b4d-4e06-a93c-4d2fb3f963be',
       userId: context.chatUserId,
-      tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_15___default.a.TokenProvider({
+      tokenProvider: new _pusher_chatkit_client__WEBPACK_IMPORTED_MODULE_14___default.a.TokenProvider({
         url: 'https://express-login.now.sh/chat/authenticate'
       })
     });
@@ -58909,7 +58854,6 @@ function chat() {
         useForceUpdate();
       }
     }).then(function (currentUser) {
-      console.log('updated');
       context.setCurrentUser(currentUser);
       return currentUser.subscribeToRoom({
         roomId: '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45',
@@ -58930,35 +58874,23 @@ function chat() {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 136
+        lineNumber: 120
       },
       __self: this
-    }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_18___default.a, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 137
-      },
-      __self: this
-    }, __jsx("title", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 138
-      },
-      __self: this
-    }, "Hotel Admin")), __jsx("h3", {
+    }, __jsx("h3", {
       className: "welcome",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 122
       },
       __self: this
-    }, "Welcome"), _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_5___default()(errors).map(function (err, index) {
+    }, "Welcome"), _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_6___default()(errors).map(function (err, index) {
       return __jsx("div", {
         key: index,
         className: "login-err",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 143
+          lineNumber: 125
         },
         __self: this
       }, err);
@@ -58967,14 +58899,14 @@ function chat() {
       onSubmit: handleSubmit,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 146
+        lineNumber: 128
       },
       __self: this
     }, __jsx("label", {
       htmlFor: "email",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 147
+        lineNumber: 129
       },
       __self: this
     }, "Email"), __jsx("input", {
@@ -58984,14 +58916,14 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 148
+        lineNumber: 130
       },
       __self: this
     }), __jsx("label", {
       htmlFor: "password",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 132
       },
       __self: this
     }, "Password"), __jsx("input", {
@@ -59001,7 +58933,7 @@ function chat() {
       onChange: handleChange,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 133
       },
       __self: this
     }), __jsx("button", {
@@ -59010,16 +58942,16 @@ function chat() {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 152
+        lineNumber: 134
       },
       __self: this
     }, btnDisabled ? __jsx("img", {
       className: "loading-login",
-      src: _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_12___default.a,
+      src: _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_11___default.a,
       alt: "loading spinner",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 136
       },
       __self: this
     }) : "Enviar")));
@@ -59030,29 +58962,29 @@ function chat() {
       className: "signed",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 163
+        lineNumber: 145
       },
       __self: this
     }, __jsx("div", {
       className: "chat-window",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 164
+        lineNumber: 146
       },
       __self: this
-    }, __jsx(_components_ChatList__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    }, __jsx(_components_ChatList__WEBPACK_IMPORTED_MODULE_15__["default"], {
       active: chatListActive,
       setChatListActive: setChatListActive,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 165
+        lineNumber: 147
       },
       __self: this
-    }), __jsx(_components_ChatBoard__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    }), __jsx(_components_ChatBoard__WEBPACK_IMPORTED_MODULE_16__["default"], {
       setChatListActive: setChatListActive,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 166
+        lineNumber: 148
       },
       __self: this
     })));
@@ -59063,48 +58995,68 @@ function chat() {
       style: style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 174
+        lineNumber: 156
       },
       __self: this
     }, __jsx("div", {
       className: "log-box loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 175
+        lineNumber: 157
       },
       __self: this
     }, __jsx("img", {
       className: "loading-spinner",
-      src: _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_12___default.a,
+      src: _images_gif_loading_arrow_gif__WEBPACK_IMPORTED_MODULE_11___default.a,
       alt: "loading",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 176
+        lineNumber: 158
       },
       __self: this
     })));
   }
 
-  return __jsx("div", {
+  var checkNewMsg = function checkNewMsg() {
+    var unreadMsgs = _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_6___default()(context.currentUser.rooms).filter(function (room) {
+      return room.id !== '765b61eb-ad46-4c8b-bd31-2e4d4acc6f45' && room.unreadCount > 0;
+    });
+
+    return unreadMsgs.length > 0 ? "(".concat(unreadMsgs.length, ") ") : '';
+  };
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_17___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 171
+    },
+    __self: this
+  }, __jsx("title", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 172
+    },
+    __self: this
+  }, _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(context.currentUser).length > 0 ? checkNewMsg() : '', "Hotel Admin")), __jsx("div", {
     style: style,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 182
+      lineNumber: 179
     },
     __self: this
   }, __jsx("div", {
     className: "log-box",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 183
+      lineNumber: 180
     },
     __self: this
-  }, context.authenticated ? renderLoggedin() : renderForm()));
+  }, context.authenticated ? renderLoggedin() : renderForm())));
 }
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fchat&absolutePagePath=%2Fhome%2Fguido%2FDocuments%2FGitHub%2Freact-resort%2Fpages%2Fchat.js ***!
   \******************************************************************************************************************************************/
@@ -59113,17 +59065,6 @@ function chat() {
 
 module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fchat&absolutePagePath=%2Fhome%2Fguido%2FDocuments%2FGitHub%2Freact-resort%2Fpages%2Fchat.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fchat&absolutePagePath=%2Fhome%2Fguido%2FDocuments%2FGitHub%2Freact-resort%2Fpages%2Fchat.js!./");
 
-
-/***/ }),
-
-/***/ 4:
-/*!**********************!*\
-  !*** util (ignored) ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
 
 /***/ }),
 
@@ -59139,6 +59080,17 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fchat&a
 /***/ }),
 
 /***/ 6:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 7:
 /*!************************!*\
   !*** buffer (ignored) ***!
   \************************/
@@ -59149,7 +59101,7 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fchat&a
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /*!************************!*\
   !*** crypto (ignored) ***!
   \************************/
@@ -59171,5 +59123,5 @@ module.exports = dll_0fb095e325d7ebf261c3;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[4,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=chat.js.map
